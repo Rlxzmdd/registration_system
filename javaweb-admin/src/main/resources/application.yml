@@ -7,7 +7,7 @@ spring:
   devtools:
     restart:
       # 热部署开关
-      enabled: false
+      enabled: true
 
   # 自定义国际化配置
   messages:
