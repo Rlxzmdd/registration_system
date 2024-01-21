@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.activity.mapper.ActivityItemManageListMapper">
+    <select id="getManagerListByActivityId" resultType="com.withmore.activity.vo.activity.ActivityManageVo">
+        select aManager.id,
+               aManager.activity_item_id,
+               aManager.manager_number,
+               aManager.manager_type,
+               aManager.inviter_number,
+               aManager.inviter_type,
+               aManager.is_read,
+               aManager.is_modify,
+               aManager.is_examine,
+               aManager.is_invite,
+               aManager.invite_time,
+               aManager.create_time,
+               aManager.create_user,
+               aManager.update_time,
+               aManager.update_user,
+               aManager.mark,
+               count(aExamine.id) as examine_num,
+               if(aManager.manager_type = 'student',stu.real_name,tch.real_name) as real_name
+        from activity_item_manage_list as aManager
+
+                 left JOIN user_student AS stu
+                           ON aManager.manager_type = '${stuType}' AND stu.stu_number = aManager.manager_number
+                 left JOIN user_teacher AS tch
+                           ON aManager.manager_type = '${tchType}' AND tch.tch_number = aManager.manager_number
+
+                 left JOIN activity_examine as aExamine
+                           ON aExamine.activity_item_id = aManager.activity_item_id
+                               and aExamine.examiner_number = aManager.manager_number
+                               and aExamine.examiner_type = aManager.manager_type
+
+        where aManager.activity_item_id = '${activityId}' and aManager.mark = 1
+        group by aManager.id, aManager.activity_item_id, aManager.manager_number,
+                 aManager.manager_type, aManager.inviter_number, aManager.inviter_type,
+                 aManager.is_read, aManager.is_modify, aManager.is_examine, aManager.is_invite,
+                 aManager.invite_time, if(aManager.manager_type = 'student',stu.real_name,tch.real_name)
+   </select>
+</mapper>

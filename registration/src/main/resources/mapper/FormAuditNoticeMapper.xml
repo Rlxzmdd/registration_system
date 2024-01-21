@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.event.todo.mapper.FormAuditNoticeMapper">
+
+    <select id="getAuditNotices"
+            resultType="com.withmore.event.todo.vo.formAuditNotice.FormAuditNoticeSimpleVo">
+        WITH inventory
+        AS (
+        SELECT item.item_uuid AS itemUuid,
+        item.submit_number AS submitNumber,
+        item.update_time AS submitTime,
+        item.user_type AS userType,
+        an.form_key AS formKey,
+        ef.title AS title,
+        IF(item.user_type = 'student', stu.real_name, tch.real_name) AS submitName,
+        IF(item.user_type = 'student', cla.class_name, '') AS classes,
+        IF(an.audit_id IS NOT NULL, TRUE, FALSE) AS auditStatus,
+        IF(an.audit_id IS NOT NULL , fa.is_through , FALSE ) AS passed,
+        ROW_NUMBER() over (PARTITION BY an.form_key ORDER BY item.update_time ) row_num
+        FROM event_form_audit_notice AS an
+        INNER JOIN event_form_item AS item ON item.item_uuid = an.item_uuid
+        INNER JOIN event_form AS ef ON ef.form_key = item.form_key
+        LEFT JOIN event_form_audit AS fa on fa.id=an.audit_id
+        LEFT JOIN user_student AS stu ON stu.stu_number = item.submit_number
+        LEFT JOIN user_teacher AS tch ON tch.tch_number = item.submit_number
+        LEFT JOIN entity_classes AS cla ON cla.id = stu.classes_id
+        WHERE an.reviewer_number = '${number}'
+        AND an.reviewer_type = '${type}'
+        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_WAIT">
+            AND an.audit_id IS NULL
+        </if>
+        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_EXCEPTION">
+            AND (an.audit_id IS NOT NULL AND fa.is_through = 0)
+        </if>
+        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_OTHER">
+            AND (an.audit_id IS NOT NULL AND fa.is_through = 1)
+        </if>
+        )
+        SELECT itemUuid,
+        submitNumber,
+        submitTime,
+        formKey,
+        title,
+        submitName,
+        classes,
+        auditStatus,
+        passed
+        FROM inventory
+        WHERE row_num &lt;= ${limit}
+    </select>
+    <select id="getAuditNoticeByFormKey"
+            resultType="com.withmore.event.todo.vo.formAuditNotice.FormAuditNoticeSimpleVo">
+        SELECT DISTINCT item.item_uuid AS itemUuid,
+        item.submit_number AS submitNumber,
+        item.update_time AS submitTime,
+        item.user_type AS userType,
+        an.form_key AS formKey,
+        ef.title AS title,
+        IF(item.user_type = 'student', stu.real_name, tch.real_name) AS submitName,
+        IF(item.user_type = 'student', cla.class_name, '') AS classes,
+        IF(an.audit_id IS NOT NULL, TRUE, FALSE) AS auditStatus,
+        IF(an.audit_id IS NOT NULL , fa.is_through , FALSE ) AS passed
+        FROM event_form_audit_notice AS an
+        INNER JOIN event_form_item AS item ON item.item_uuid = an.item_uuid
+        INNER JOIN event_form AS ef ON ef.form_key = item.form_key
+        LEFT JOIN event_form_audit AS fa on fa.id=an.audit_id
+        LEFT JOIN user_student AS stu ON stu.stu_number = item.submit_number
+        LEFT JOIN user_teacher AS tch ON tch.tch_number = item.submit_number
+        LEFT JOIN entity_classes AS cla ON cla.id = stu.classes_id
+        WHERE an.reviewer_number = '${number}'
+        AND an.reviewer_type = '${type}'
+        AND an.form_key = '${formKey}'
+        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_WAIT">
+            AND an.audit_id IS NULL
+        </if>
+        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_EXCEPTION">
+            AND (an.audit_id IS NOT NULL AND fa.is_through = 0)
+        </if>
+        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_OTHER">
+            AND (an.audit_id IS NOT NULL AND fa.is_through = 1)
+        </if>
+    </select>
+    <select id="getAuditNoticeByFormKeyAndUuid"
+            resultType="com.withmore.event.todo.dto.FormAuditNoticeTranDto">
+        SELECT an.*,
+               fa.*
+        FROM event_form_audit_notice AS an
+                 LEFT JOIN event_form_audit AS fa ON fa.id = an.audit_id
+        WHERE an.form_key = '${formKey}'
+          AND an.item_uuid = '${uuid}'
+          AND an.reviewer_number = '${reviewerNumber}'
+          AND an.reviewer_type = '${reviewerType}'
+        ORDER BY an.create_time DESC
+        LIMIT 1
+    </select>
+    <select id="getLastFormAuditNotice" resultType="com.withmore.event.todo.entity.FormAuditNotice">
+        SELECT *
+        FROM event_form_audit_notice AS an
+        WHERE an.item_uuid = '${uuid}'
+        ORDER BY an.create_time DESC
+        LIMIT 1
+    </select>
+</mapper>

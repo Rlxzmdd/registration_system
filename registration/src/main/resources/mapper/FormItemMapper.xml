@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.event.todo.mapper.FormItemMapper">
+
+    <resultMap id="FormDataItemVo" type="com.withmore.event.todo.vo.formItem.FormDataItemVo">
+        <result property="content" column="content"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+        <result property="formKey" column="formKey"/>
+        <result property="uuid" column="uuid"/>
+        <result property="auditFinish" column="auditFinish"/>
+        <result property="passed" column="passed"/>
+        <result property="auditName" column="auditName"/>
+    </resultMap>
+    <update id="retractFormItemAudit">
+        UPDATE event_form_item
+        SET audit_finish=0, audit_passed = 0
+        WHERE form_key = '${formKey}'
+        AND submit_number in
+        <foreach collection="numbers" item="i" open="(" separator="," close=")">
+            ${i}
+        </foreach>
+    </update>
+
+    <select id="getFormDataItemByKey" resultMap="FormDataItemVo">
+        <foreach collection="nodes" item="node" separator="UNION">
+            SELECT DISTINCT
+            fi.content AS content,
+            fi.item_uuid AS uuid,
+            fi.form_key AS formKey,
+            fi.audit_finish AS auditFinish,
+            fi.audit_passed AS passed,
+            IF(an.reviewer_type='student' , stu.real_name , tch.real_name) AS auditName
+            FROM event_form_item AS fi
+            INNER JOIN event_form AS ef ON ef.form_key=fi.form_key AND ef.mark=1
+            INNER JOIN event_form_permission AS fp ON fp.form_id=ef.id AND fp.mark=1
+            INNER JOIN permission_node AS pn ON pn.id=fp.permission_id
+            LEFT JOIN event_form_audit_notice AS an ON an.item_uuid=fi.item_uuid
+            LEFT JOIN user_student AS stu ON stu.stu_number=an.reviewer_number AND an.reviewer_type='student'
+            LEFT JOIN user_teacher AS tch ON tch.tch_number=an.reviewer_number AND an.reviewer_type='teacher'
+            <where>
+                fi.submit_number='${number}' AND fi.user_type='${type}' AND fi.form_key='${formKey}'
+                <if test='node.getLevel1() !="*" '>
+                    AND (pn.level1 = '${node.getLevel1()}' OR pn.level1='*' )
+                </if>
+                <if test='node.getLevel2() !="*" '>
+                    AND (pn.level2 = '${node.getLevel2()}' OR pn.level2='*' )
+                </if>
+                <if test='node.getLevel3() !="*" '>
+                    AND (pn.level3 like '${node.getLevel3()}' OR pn.level3='*' )
+                </if>
+                <if test='node.getLevel4() !="*" '>
+                    AND (pn.level4 = '${node.getLevel4()}' OR pn.level4='*' )
+                </if>
+            </where>
+            ORDER BY an.create_time DESC
+            LIMIT 1
+        </foreach>
+    </select>
+    <select id="getFormDataItemStatusList"
+            resultType="com.withmore.event.todo.vo.formItem.FormDataItemStatusVO">
+        WITH inventory AS (
+        SELECT
+        item.item_uuid AS uuid ,
+        item.form_key AS formKey,
+        item.audit_finish AS auditFinish ,
+        item.audit_passed AS passed ,
+        form.title AS title,
+        audit.opinion AS opinion,
+        IF(notice.audit_id IS NOT NULL , TRUE , FALSE) AS isAudit,
+        IF(notice.reviewer_type='student' , stu.real_name , tch.real_name) AS auditName,
+        ROW_NUMBER() over (PARTITION BY item.form_key ORDER BY notice.create_time DESC ) row_num
+        FROM event_form_item AS item
+        LEFT JOIN event_form AS form ON form.form_key=item.form_key
+        LEFT JOIN event_form_audit_notice AS notice ON notice.item_uuid=item.item_uuid
+        LEFT JOIN event_form_audit AS audit ON audit.id=notice.audit_id
+        LEFT JOIN user_student AS stu ON stu.stu_number=notice.reviewer_number AND notice.reviewer_type='student'
+        LEFT JOIN user_teacher AS tch ON tch.tch_number=notice.reviewer_number AND notice.reviewer_type='teacher'
+        <where>
+            item.submit_number='${number}' AND item.user_type='${type}'
+            <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_WAIT">
+                AND notice.audit_id IS NULL
+            </if>
+            <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_EXCEPTION">
+                AND (notice.audit_id IS NOT NULL AND audit.is_through = 0)
+            </if>
+            <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_OTHER">
+                AND (notice.audit_id IS NOT NULL AND audit.is_through = 1)
+            </if>
+        </where>
+        )
+        SELECT uuid,formKey,auditFinish,passed,auditName,isAudit,row_num,title,opinion
+        FROM inventory WHERE row_num=1
+    </select>
+</mapper>

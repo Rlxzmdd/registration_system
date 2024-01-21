@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.event.todo.mapper.FormMapper">
+
+    <select id="getFormSimpleList" resultType="com.withmore.event.todo.vo.form.FormSimpleListVo">
+        SELECT DISTINCT
+        tf.id ,
+        tf.title,
+        tf.start_time AS startTime ,
+        tf.end_time AS endTime,
+        tf.form_key AS formKey
+        FROM event_form AS tf
+        INNER JOIN event_form_permission AS fp ON (fp.form_id=tf.id AND fp.mark=1)
+        INNER JOIN permission_node AS pn ON pn.id=fp.permission_id
+        <where>
+            <if test='node.level1 != "*" '>
+                (pn.level1='${node.getLevel1()}' OR pn.level1 = '*')
+            </if>
+            <if test='node.level2 != "*" '>
+                AND (pn.level2='${node.getLevel2()}' OR pn.level2 = '*')
+            </if>
+            <if test='node.level3 != "*" '>
+                AND (pn.level3 like '${node.getLevel3()}' OR pn.level3 = '*')
+            </if>
+            <if test='node.level4 != "*" '>
+                AND (pn.level4='${node.getLevel4()}' OR pn.level4 = '*')
+            </if>
+        </where>
+    </select>
+<!--    #         ORDER BY tf.create_time DESC-->
+    <select id="getFormSubmitStatus" resultType="com.withmore.event.todo.dto.FormSubmitStatusDto">
+        SELECT
+        item.form_key AS formKey,
+        item.audit_passed AS passed,
+        item.audit_finish AS auditStatus
+        FROM event_form_item AS item
+        <where>
+            item.submit_number='${dto.getNumber()}' AND item.user_type='${dto.getType()}'
+            <foreach collection="formKeys" item="key" open="AND (" separator=" OR " close=")">
+                item.form_key='${key}'
+            </foreach>
+        </where>
+    </select>
+
+    <resultMap id="FormDetailVo" type="com.withmore.event.todo.vo.form.FormDetailVo">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="startTime" column="startTime"/>
+        <result property="endTime" column="endTime"/>
+        <result property="formKey" column="formKey"/>
+        <result property="template" column="template"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+    </resultMap>
+    <select id="getFormDetail" resultMap="FormDetailVo">
+        SELECT DISTINCT
+        tf.id ,
+        tf.title,
+        tf.template,
+        tf.start_time AS startTime ,
+        tf.end_time AS endTime,
+        tf.form_key AS formKey
+        FROM event_form AS tf
+        INNER JOIN event_form_permission AS fp ON (fp.form_id=tf.id AND fp.mark=1)
+        INNER JOIN permission_node AS pn ON pn.id=fp.permission_id
+        <where>
+            tf.form_key = '${formKey}'
+            <if test='node.level1 != "*" '>
+                AND (pn.level1='${node.getLevel1()}' OR pn.level1 = '*')
+            </if>
+            <if test='node.level2 != "*" '>
+                AND (pn.level2='${node.getLevel2()}' OR pn.level2 = '*')
+            </if>
+            <if test='node.level3 != "*" '>
+                AND (pn.level3 like '${node.getLevel3()}' OR pn.level3 = '*')
+            </if>
+            <if test='node.level4 != "*" '>
+                AND (pn.level4='${node.getLevel4()}' OR pn.level4 = '*')
+            </if>
+        </where>
+    </select>
+</mapper>

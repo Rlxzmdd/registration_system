@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.user.teacher.mapper.TeacherPermissionMapper">
+    <select id="getTeacherViewPermission" resultType="com.withmore.user.teacher.dto.TeacherPermissionDto">
+        SELECT pn.id ,
+               ps.tch_number AS tchNumber,
+               pn.level1,
+               pn.level2,
+               pn.level3,
+               pn.level4
+        FROM user_teacher_permission AS ps
+                 INNER JOIN permission_node AS pn ON ps.permission_id = pn.id AND pn.mark=1
+        WHERE ps.tch_number = #{tchNumber} AND ps.mark=1
+    </select>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.event.todo.mapper.FormAuditMapper">
+
+    <select id="getLastFormAudit" resultType="com.withmore.event.todo.entity.FormAudit">
+        SELECT audit.*
+        FROM event_form_audit_notice AS notice
+                 LEFT JOIN event_form_audit AS audit ON audit.item_uuid = notice.item_uuid
+        WHERE notice.item_uuid = '${uuid}'
+        ORDER BY notice.id DESC
+        LIMIT 1
+    </select>
+</mapper>

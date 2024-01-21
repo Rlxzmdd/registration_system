@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.activity.mapper.ActivityItemInfoMapper">
+    <select id="getActivityList" resultType="com.withmore.activity.vo.activity.ActivityInfoManageVo">
+        select DISTINCT(aInfo.id),
+                       aInfo.title,
+                       if(aInfo.creator_type = 'student',stu.real_name,tch.real_name) as real_name,
+                       aInfo.creator_number,
+                       aInfo.creator_type,
+                       aInfo.location,
+                       aInfo.is_apply,
+                       aInfo.is_durative,
+                       aInfo.is_repeat,
+                       aInfo.is_share,
+                       aInfo.apply_time_start,
+                       aInfo.apply_time_end,
+                       aInfo.activity_time_start,
+                       aInfo.activity_time_end,
+                       aInfo.create_time,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,0) as is_owner,
+                       if(aManage.activity_item_id = aInfo.id,1,0) as is_manager,
+                       if(aExamine.activity_item_id = aInfo.id,1,0) as is_examiner,
+                       if(aSign.activity_item_id = aInfo.id,1,0) as is_signup,
+                       ifnull(aSign.is_approval,0) as is_approval,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,ifnull(aManage.is_modify,0)) as is_modify,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,ifnull(aManage.is_read,0)) as is_read,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,ifnull(aManage.is_examine,0)) as is_examine,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,ifnull(aManage.is_invite,0)) as is_invite
+        from activity_item_info as aInfo
+
+                 left join activity_item_info as aItem
+                           on aItem.creator_number = '${number}' and aItem.creator_type = '${type}' and aItem.id = aInfo.id and aItem.mark = 1
+
+                 left join activity_item_manage_list as aManage
+                           on aManage.manager_number = '${number}' and aManage.manager_type = '${type}' and aManage.activity_item_id = aInfo.id and aManage.mark = 1
+
+                 left join activity_examine as aExamine
+                           on aExamine.examiner_number = '${number}' and aExamine.examiner_type = '${type}' and aExamine.activity_item_id = aInfo.id and aExamine.mark = 1
+
+                 left join activity_sign_up as aSign
+                           on aSign.user_number = '${number}' and aSign.user_type = '${type}' and aSign.activity_item_id = aInfo.id and aSign.mark = 1
+
+                 left JOIN user_student AS stu
+                           ON aInfo.creator_type = '${stuType}' AND stu.stu_number = aInfo.creator_number
+                 left JOIN user_teacher AS tch
+                           ON aInfo.creator_type = '${tchType}' AND tch.tch_number = aInfo.creator_number
+
+        where aInfo.mark = 1 and
+              (aInfo.id = aItem.id or aInfo.id = aManage.activity_item_id)
+    </select>
+    <select id="getActivity" resultType="com.withmore.activity.vo.activity.ActivityInfoManageVo">
+        select DISTINCT(aInfo.id),
+                       aInfo.title,
+                       if(aInfo.creator_type = 'student',stu.real_name,tch.real_name) as real_name,
+                       aInfo.creator_number,
+                       aInfo.creator_type,
+                       aInfo.location,
+                       aInfo.is_apply,
+                       aInfo.is_durative,
+                       aInfo.is_repeat,
+                       aInfo.is_share,
+                       aInfo.apply_time_start,
+                       aInfo.apply_time_end,
+                       aInfo.activity_time_start,
+                       aInfo.activity_time_end,
+                       aInfo.create_time,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,0) as is_owner,
+                       if(aManage.activity_item_id = aInfo.id,1,0) as is_manager,
+                       if(aExamine.activity_item_id = aInfo.id,1,0) as is_examiner,
+                       if(aSign.activity_item_id = aInfo.id,1,0) as is_signup,
+                       ifnull(aSign.is_approval,0) as is_approval,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,ifnull(aManage.is_modify,0)) as is_modify,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,ifnull(aManage.is_read,0)) as is_read,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,ifnull(aManage.is_examine,0)) as is_examine,
+                       if(aInfo.creator_number = '${number}' and aInfo.creator_type = '${type}',1,ifnull(aManage.is_invite,0)) as is_invite
+        from activity_item_info as aInfo
+
+                 left join activity_item_info as aItem
+                           on aItem.creator_number = '${number}' and aItem.creator_type = '${type}' and aItem.id = '${activityId}' and aItem.mark = 1
+
+                 left join activity_item_manage_list as aManage
+                           on aManage.manager_number = '${number}' and aManage.manager_type = '${type}' and aManage.activity_item_id = '${activityId}' and aManage.mark = 1
+
+                 left join activity_examine as aExamine
+                           on aExamine.examiner_number = '${number}' and aExamine.examiner_type = '${type}' and aExamine.activity_item_id = '${activityId}' and aExamine.mark = 1
+
+                 left join activity_sign_up as aSign
+                           on aSign.user_number = '${number}' and aSign.user_type = '${type}' and aSign.activity_item_id = '${activityId}' and aSign.mark = 1
+
+                 left JOIN user_student AS stu
+                           ON aInfo.creator_type = '${stuType}' AND stu.stu_number = aInfo.creator_number
+                 left JOIN user_teacher AS tch
+                           ON aInfo.creator_type = '${tchType}' AND tch.tch_number = aInfo.creator_number
+
+        where aInfo.mark = 1 and (aInfo.id = aItem.id or aInfo.id = aManage.activity_item_id or aInfo.id = aExamine.activity_item_id or aInfo.id = aSign.activity_item_id)
+    </select>
+</mapper>

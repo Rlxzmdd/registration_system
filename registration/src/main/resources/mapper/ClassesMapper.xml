@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.group.classes.mapper.ClassesMapper">
+
+    <select id="list" resultType="com.withmore.group.classes.vo.classes.ClassesSimpleVo">
+        <foreach collection="nodes" item="node" separator="UNION">
+            SELECT
+            cla.id,
+            cla.class_name AS classes,
+            coll.coll_name AS college,
+            mj.maj_name AS major,
+            COUNT(stu.id) AS num
+            FROM entity_classes AS cla
+            LEFT JOIN user_student AS stu ON stu.classes_id=cla.id
+            INNER JOIN entity_major AS mj ON stu.major_id=mj.id
+            INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+            <where>
+                <if test='node.level1 != "*" '>
+                    coll.coll_name='${node.getLevel1()}'
+                </if>
+                <if test='node.level2 != "*" '>
+                    AND mj.maj_name='${node.getLevel2()}'
+                </if>
+                <if test='node.level3 != "*" '>
+                    AND cla.class_name like '${node.getLevel3()}'
+                </if>
+            </where>
+            GROUP BY cla.class_name
+        </foreach>
+    </select>
+    <select id="simple" resultType="com.withmore.group.classes.vo.classes.ClassesSimpleVo">
+        <foreach collection="nodes" item="node" separator="UNION">
+            SELECT
+            cla.id,
+            cla.class_name AS classes,
+            coll.coll_name AS college,
+            mj.maj_name AS major,
+            COUNT(stu.id) AS num
+            FROM entity_classes AS cla
+            LEFT JOIN user_student AS stu ON stu.classes_id=cla.id
+            INNER JOIN entity_major AS mj ON stu.major_id=mj.id
+            INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+            <where>
+                cla.id = #{classesId}
+                <if test='node.level1 != "*" '>
+                    AND coll.coll_name='${node.getLevel1()}'
+                </if>
+                <if test='node.level2 != "*" '>
+                    AND mj.maj_name='${node.getLevel2()}'
+                </if>
+                <if test='node.level3 != "*" '>
+                    AND cla.class_name like '${node.getLevel3()}'
+                </if>
+            </where>
+            group by cla.class_name
+        </foreach>
+    </select>
+    <select id="contact" resultType="com.withmore.group.classes.vo.classes.ClassesContactVo">
+        SELECT tch.real_name  AS name,
+               tch.phone,
+               tch.office,
+               wx.wechat_name AS wechat,
+               'teacher'      AS `identity`
+        FROM entity_classes AS cla
+                 INNER JOIN user_teacher AS tch ON tch.tch_number = cla.teacher_number
+                 LEFT JOIN user_wechat AS wx ON wx.id = tch.wx_id
+        WHERE cla.id = #{id}
+        UNION
+        SELECT tch.real_name  AS name,
+               tch.phone,
+               tch.office,
+               wx.wechat_name AS wechat,
+               'counselor'    AS `identity`
+        FROM entity_classes AS cla
+                 INNER JOIN user_teacher AS tch ON tch.tch_number = cla.counselor_number
+                 LEFT JOIN user_wechat AS wx ON wx.id = tch.wx_id
+        WHERE cla.id = #{id}
+        UNION
+        SELECT stu.real_name  AS name,
+               stu.phone,
+               cla.class_name AS office,
+               wx.wechat_name AS wechat,
+               'assistant'    AS `identity`
+        FROM entity_classes AS cla
+                 INNER JOIN user_student AS stu ON stu.stu_number = cla.assistant_number
+                 LEFT JOIN user_wechat AS wx ON wx.id = stu.wx_id
+        WHERE cla.id = #{id}
+    </select>
+    <select id="dict" resultType="com.withmore.group.classes.dto.DictDto">
+        SELECT cla.class_name AS classes,
+               mj.maj_name    AS major,
+               coll.coll_name AS college
+        FROM entity_classes AS cla
+                 INNER JOIN entity_major AS mj ON cla.major_id = mj.id
+                 INNER JOIN entity_college AS coll ON cla.college_id = coll.id
+    </select>
+</mapper>

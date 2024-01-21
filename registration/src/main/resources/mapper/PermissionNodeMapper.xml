@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.user.permission.mapper.PermissionNodeMapper">
+
+    <select id="getPermissionNodeFilter" resultType="com.withmore.user.permission.dto.PermissionNodeFilterDto">
+        <foreach collection="nodes" item="node" separator="UNION">
+            SELECT
+            cla.class_name AS classes,
+            col.coll_name AS college,
+            maj.maj_name AS major
+            FROM entity_classes AS cla
+            INNER JOIN entity_college AS col ON col.id=cla.college_id
+            INNER JOIN entity_major AS maj ON maj.id=cla.major_id
+            <where>
+                <if test='node.level1 != "*" '>
+                    col.coll_name='${node.getLevel1()}'
+                </if>
+                <if test='node.level2 != "*" '>
+                    AND maj.maj_name='${node.getLevel2()}'
+                </if>
+                <if test='node.level3 != "*" '>
+                    AND cla.class_name like '${node.getLevel3()}'
+                </if>
+            </where>
+        </foreach>
+    </select>
+</mapper>

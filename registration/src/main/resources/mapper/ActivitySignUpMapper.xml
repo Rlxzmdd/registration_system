@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.activity.mapper.ActivitySignUpMapper">
+    <select id="getSignUpListByActivityId" resultType="com.withmore.activity.vo.activitysignup.ActivitySignUpListVo">
+        SELECT  sign_up.id,
+                sign_up.user_number,
+                sign_up.user_type,
+                sign_up.sign_up_time AS releaseTime,
+                sign_up.is_approval,
+                IF(sign_up.user_type='${stuType}',stu.real_name , tch.real_name) AS user_name,
+                col.coll_abbr AS college_abbr,
+                col.coll_name as college_name,
+                IF(sign_up.user_type='${stuType}',cls.class_name , dep.dep_name) AS classes_abbr
+        FROM activity_sign_up AS sign_up
+
+                 left JOIN user_student AS stu
+                           ON sign_up.user_type = '${stuType}' AND stu.stu_number = sign_up.user_number
+
+                 left JOIN user_teacher AS tch
+                           ON sign_up.user_type = '${tchType}' AND tch.tch_number = sign_up.user_number
+
+                 left join entity_college as col
+                           ON (sign_up.user_type = '${stuType}' AND col.id = stu.college_id)
+                               or ( sign_up.user_type = '${tchType}' AND col.id = tch.college_id)
+
+                 left join entity_classes as cls ON sign_up.user_type = '${stuType}' and cls.id = stu.classes_id
+                 left join entity_department as dep ON sign_up.user_type = '${tchType}' and dep.id = tch.department_id
+        where activity_item_id = '${activity_id}'
+        ORDER BY sign_up.id;
+    </select>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.user.teacher.mapper.TeacherMapper">
+
+    <select id="getTeacherAtomPermissionNode" resultType="com.withmore.user.teacher.dto.TeacherPermissionDto">
+        SELECT coll.coll_name AS level1,
+               '*'            AS level2,
+               '*'            AS level3,
+               '*'            AS level4,
+               tch.tch_number AS tchNumber
+        FROM user_teacher AS tch
+                 INNER JOIN entity_college AS coll ON coll.id = tch.college_id
+        WHERE tch.tch_number = #{number}
+    </select>
+</mapper>

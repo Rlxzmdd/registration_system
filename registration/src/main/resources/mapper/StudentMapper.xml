@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.user.student.mapper.StudentMapper">
+
+    <select id="getStudentDetails" resultType="com.withmore.user.student.vo.student.StudentDetailsVo">
+        SELECT stu.real_name  AS name,
+               stu.stu_number AS number,
+               stu.phone,
+               stu.id_card    AS idCard,
+               stu.gender,
+               stu.nation,
+               stu.email,
+               stu.qq,
+               stu.politic,
+               cla.class_name AS classes,
+               coll.coll_name AS college,
+               img.url        AS avatar
+        FROM user_student AS stu
+                 INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+                 INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
+                 LEFT JOIN resource_img AS img ON img.uuid = stu.avatar AND img.create_number = '${stuNumber}'
+        WHERE stu.stu_number = #{stuNumber}
+    </select>
+    <select id="getStudentSimple" resultType="com.withmore.user.student.vo.student.StudentSimpleVo">
+        SELECT stu.real_name  AS name,
+               stu.stu_number AS number,
+               cla.class_name AS classes,
+               cla.id         AS classesId,
+               coll.coll_name AS college,
+               mj.maj_name    AS major
+        FROM user_student AS stu
+                 INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+                 INNER JOIN entity_major AS mj ON stu.major_id = mj.id
+                 INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
+        WHERE stu.stu_number = #{stuNumber}
+    </select>
+    <select id="getStudentSimpleList" resultType="com.withmore.user.student.vo.student.StudentSimpleVo">
+        with section AS (
+        <foreach collection="nodes" item="node" separator="UNION">
+            SELECT stu.real_name AS name,
+            stu.stu_number AS number,
+            cla.class_name AS classes,
+            coll.coll_name AS college,
+            cla.id AS classesId,
+            mj.maj_name AS major
+            FROM user_student AS stu
+            INNER JOIN entity_major AS mj ON stu.major_id=mj.id
+            INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+            INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
+            <where>
+                <if test='node.level1 != "*" '>
+                    coll.coll_name='${node.getLevel1()}'
+                </if>
+                <if test='node.level2 != "*" '>
+                    AND mj.maj_name='${node.getLevel2()}'
+                </if>
+                <if test='node.level3 != "*" '>
+                    AND cla.class_name like '${node.getLevel3()}'
+                </if>
+                <if test='node.level4 != "*" '>
+                    AND stu.stu_number='${node.getLevel4()}'
+                </if>
+            </where>
+        </foreach>
+        ) SELECT * FROM section
+        ORDER BY `number`
+    </select>
+    <select id="getStudentSimpleAuth" resultType="com.withmore.user.student.vo.student.StudentSimpleVo">
+        <foreach collection="nodes" item="node" separator="UNION">
+            SELECT stu.real_name AS name,
+            stu.stu_number AS number,
+            cla.class_name AS classes,
+            coll.coll_name AS college,
+            cla.id AS classesId,
+            mj.maj_name AS major
+            FROM user_student AS stu
+            INNER JOIN entity_major AS mj ON stu.major_id=mj.id
+            INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+            INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
+            <where>
+                stu.stu_number = #{stuNumber}
+                <if test='node.level1 != "*" '>
+                    AND coll.coll_name='${node.getLevel1()}'
+                </if>
+                <if test='node.level2 != "*" '>
+                    AND mj.maj_name='${node.getLevel2()}'
+                </if>
+                <if test='node.level3 != "*" '>
+                    AND cla.class_name like '${node.getLevel3()}'
+                </if>
+                <if test='node.level4 != "*" '>
+                    AND stu.stu_number='${node.getLevel4()}'
+                </if>
+            </where>
+        </foreach>
+    </select>
+    <select id="getStudentSimpleListFilter" resultType="com.withmore.user.student.vo.student.StudentSimpleVo">
+        SELECT stu.real_name  AS name,
+               stu.stu_number AS number,
+               cla.class_name AS classes,
+               cla.id         AS classesId,
+               coll.coll_name AS college,
+               mj.maj_name    AS major
+        FROM user_student AS stu
+                 INNER JOIN entity_major AS mj ON stu.major_id = mj.id
+                 INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+                 INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
+        WHERE coll.coll_name = '${query.getCollege()}'
+          AND mj.maj_name = '${query.getMajor()}'
+          AND cla.class_name = '${query.getClasses()}'
+    </select>
+    <select id="getStudentDetailsAuth" resultType="com.withmore.user.student.vo.student.StudentDetailsVo">
+        <foreach collection="nodes" item="node" separator="UNION">
+            SELECT stu.real_name AS name,
+            stu.stu_number AS number,
+            stu.phone,
+            stu.id_card AS idCard,
+            stu.gender,
+            stu.nation,
+            stu.email,
+            stu.qq,
+            stu.politic,
+            cla.class_name AS classes,
+            coll.coll_name AS college,
+            img.url AS avatar
+            FROM user_student AS stu
+            INNER JOIN entity_major AS mj ON stu.major_id = mj.id
+            INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+            INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
+            LEFT JOIN resource_img AS img ON img.uuid = stu.avatar AND img.create_number = '${stuNumber}'
+            <where>
+                stu.stu_number = #{stuNumber}
+                <if test='node.level1 != "*" '>
+                    AND coll.coll_name='${node.getLevel1()}'
+                </if>
+                <if test='node.level2 != "*" '>
+                    AND mj.maj_name='${node.getLevel2()}'
+                </if>
+                <if test='node.level3 != "*" '>
+                    AND cla.class_name like '${node.getLevel3()}'
+                </if>
+            </where>
+        </foreach>
+    </select>
+    <select id="getStudentAtomPermissionNode" resultType="com.withmore.user.student.dto.StudentPermissionDto">
+        SELECT coll.coll_name AS level1,
+               mj.maj_name    AS level2,
+               cla.class_name AS level3,
+               stu.stu_number AS level4,
+               stu.stu_number AS stuNumber
+        FROM user_student AS stu
+                 INNER JOIN entity_major AS mj ON stu.major_id = mj.id
+                 INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+                 INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
+        WHERE stu.stu_number = #{stuNumber}
+    </select>
+</mapper>

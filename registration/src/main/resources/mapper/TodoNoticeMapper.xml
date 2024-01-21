@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.event.todo.mapper.TodoNoticeMapper">
+
+    <select id="getTodoNoticeDetailsList" resultType="com.withmore.event.todo.dto.NoticeDetailsDto">
+        SELECT nt.id,
+        nt.title,
+        nt.content,
+        ri.url ,
+        nt.create_time AS releaseTime,
+        IF(nt.initiator_type='${stuType}',stu.real_name , tch.real_name) AS publisher
+        FROM event_todo_notice AS nt
+
+        INNER JOIN event_todo_notice_permission AS ntp
+        ON ntp.notice_id = nt.id AND ntp.mark=1
+
+        INNER JOIN permission_node AS pn
+        ON pn.id=ntp.permission_id
+
+        INNER JOIN event_todo_notice_img AS img
+        ON img.notice_id = nt.id AND img.mark=1
+
+        INNER JOIN resource_img ri ON img.uuid = ri.uuid
+
+        LEFT JOIN user_student AS stu
+        ON nt.initiator_type = '${stuType}' AND stu.stu_number = nt.initiator_number
+
+        LEFT JOIN user_teacher AS tch
+        ON nt.initiator_type = '${tchType}' AND tch.tch_number = nt.initiator_number
+        <where>
+               nt.mark=1
+            <if test='node.getLevel1() != "*"'>
+                AND (pn.level1='${node.getLevel1()}' OR pn.level1='*')
+            </if>
+            <if test='node.getLevel2() != "*"'>
+                AND (pn.level2='${node.getLevel2()}' OR pn.level2='*')
+            </if>
+            <if test='node.getLevel3() != "*"'>
+                AND (pn.level3 like '${node.getLevel3()}' OR pn.level3='*')
+            </if>
+            <if test='node.getLevel4() != "*"'>
+                AND (pn.level4='${node.getLevel4()}' OR pn.level4='*')
+            </if>
+        </where>
+        ORDER BY nt.create_time DESC;
+    </select>
+</mapper>

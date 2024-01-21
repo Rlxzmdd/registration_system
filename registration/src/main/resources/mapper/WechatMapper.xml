@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmore.user.wechat.mapper.WechatMapper">
+
+    <select id="getUserSimpleByNumber" resultType="com.withmore.user.student.vo.student.UserSimpleVo">
+        SELECT stu.real_name  AS name,
+               stu.stu_number AS number,
+               'student'      AS type
+        FROM user_student AS stu
+        WHERE stu.stu_number = '${number}'
+        UNION
+        SELECT tch.real_name  AS name,
+               tch.tch_number AS number,
+               'teacher'      AS type
+        FROM user_teacher AS tch
+        WHERE tch.tch_number = '${number}'
+    </select>
+</mapper>
