@@ -2,123 +2,171 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.withmore.activity.mapper.ActivityExamineMapper">
     <select id="selectOneExamine" resultType="com.withmore.activity.vo.activityexamine.ActivityExamineInfoVo">
-    SELECT  examin.id,
-            examin.serial_num,
-            examin.examined_number,
-            examin.examined_type,
-            examin.examine_time
-    FROM    activity_examine AS examin
-    where   activity_item_id = '${activityItemId}' and
-            examined_number = '${examinedNumber}' and
-            examined_type = '${examinedType}' and
-            mark = '${mark}'
-    limit 0,1
+        SELECT examin.id,
+               examin.serial_num,
+               examin.examined_number,
+               examin.examined_type,
+               examin.examine_time
+        FROM activity_examine AS examin
+        where activity_item_id = '${activityItemId}'
+          and examined_number = '${examinedNumber}'
+          and examined_type = '${examinedType}'
+          and mark = '${mark}'
+        limit 0,1
     </select>
 
     <select id="getExamineListSelf" resultType="com.withmore.activity.vo.activity.ActivityExamineVo">
-        SELECT  examin.id,
-                examin.activity_item_id,
-                ainfo.title,
-                examin.serial_num,
-                examin.examiner_number,
-                examin.examiner_type,
-                if(examin.examiner_type = 'student',stu_er.real_name,tch_er.real_name) as examiner_name,
-                c_info_er.coll_name as examiner_college,
-                class_info_er.class_name as examiner_classes,
-                d_info_er.dep_name as examiner_department,
-                examin.examined_number,
-                examin.examined_type,
-                if(examin.examined_type = 'student',stu_ed.real_name,tch_ed.real_name) as examined_name,
-                c_info_ed.coll_name as examined_college,
-                class_info_ed.class_name as examined_classes,
-                d_info_ed.dep_name as examined_department,
-                examin.examine_time
-        FROM    activity_examine AS examin
-        left JOIN activity_item_info AS ainfo
-            ON ainfo.id = examin.activity_item_id
+        SELECT examin.id,
+               examin.activity_item_id,
+               ainfo.title,
+               examin.serial_num,
+               examin.examiner_number,
+               examin.examiner_type,
+               if(examin.examiner_type = 'student', stu_er.real_name, tch_er.real_name) as examiner_name,
+               c_info_er.coll_name                                                      as examiner_college,
+               class_info_er.class_name                                                 as examiner_classes,
+               d_info_er.dep_name                                                       as examiner_department,
+               examin.examined_number,
+               examin.examined_type,
+               if(examin.examined_type = 'student', stu_ed.real_name, tch_ed.real_name) as examined_name,
+               c_info_ed.coll_name                                                      as examined_college,
+               class_info_ed.class_name                                                 as examined_classes,
+               d_info_ed.dep_name                                                       as examined_department,
+               examin.examine_time
+        FROM activity_examine AS examin
+                 left JOIN activity_item_info AS ainfo
+                           ON ainfo.id = examin.activity_item_id
 
-        left JOIN user_student AS stu_er
-                  ON examin.examiner_type = 'student' AND stu_er.stu_number = examin.examiner_number
-        left JOIN user_teacher AS tch_er
-                  ON examin.examiner_type = 'teacher' AND tch_er.tch_number = examin.examiner_number
+                 left JOIN user_student AS stu_er
+                           ON examin.examiner_type = 'student' AND stu_er.stu_number = examin.examiner_number
+                 left JOIN user_teacher AS tch_er
+                           ON examin.examiner_type = 'teacher' AND tch_er.tch_number = examin.examiner_number
 
-        left JOIN user_student AS stu_ed
-                  ON examin.examined_type = 'student' AND stu_ed.stu_number = examin.examined_number
-        left JOIN user_teacher AS tch_ed
-                  ON examin.examined_type = 'teacher' AND tch_ed.tch_number = examin.examined_number
+                 left JOIN user_student AS stu_ed
+                           ON examin.examined_type = 'student' AND stu_ed.stu_number = examin.examined_number
+                 left JOIN user_teacher AS tch_ed
+                           ON examin.examined_type = 'teacher' AND tch_ed.tch_number = examin.examined_number
 
-            left JOIN entity_college as c_info_er
-                      ON c_info_er.id = if(examin.examiner_type = 'student',stu_er.college_id,tch_er.college_id)
-            left JOIN entity_college as c_info_ed
-                      ON c_info_ed.id = if(examin.examined_type = 'student',stu_ed.college_id,tch_ed.college_id)
+                 left JOIN entity_college as c_info_er
+                           ON c_info_er.id = if(examin.examiner_type = 'student', stu_er.college_id, tch_er.college_id)
+                 left JOIN entity_college as c_info_ed
+                           ON c_info_ed.id = if(examin.examined_type = 'student', stu_ed.college_id, tch_ed.college_id)
 
-            left JOIN entity_classes as class_info_er
-                      ON class_info_er.id = stu_er.classes_id
-            left JOIN entity_classes as class_info_ed
-                      ON class_info_ed.id = stu_ed.classes_id
+                 left JOIN entity_classes as class_info_er
+                           ON class_info_er.id = stu_er.classes_id
+                 left JOIN entity_classes as class_info_ed
+                           ON class_info_ed.id = stu_ed.classes_id
 
-            left JOIN entity_department as d_info_er
-                      ON d_info_er.id = tch_er.department_id
-            left JOIN entity_department as d_info_ed
-                      ON d_info_ed.id = tch_ed.department_id
+                 left JOIN entity_department as d_info_er
+                           ON d_info_er.id = tch_er.department_id
+                 left JOIN entity_department as d_info_ed
+                           ON d_info_ed.id = tch_ed.department_id
 
-        where
-                examined_number = '${examinedNumber}' and
-                examined_type = '${examinedType}' and
-                examin.mark = '${mark}'
+        where examined_number = '${examinedNumber}'
+          and examined_type = '${examinedType}'
+          and examin.mark = '${mark}'
     </select>
 
     <select id="getExamineList" resultType="com.withmore.activity.vo.activity.ActivityExamineVo">
-        SELECT  examin.id,
-                examin.activity_item_id,
-                ainfo.title,
-                examin.serial_num,
-                examin.examiner_number,
-                examin.examiner_type,
-                if(examin.examiner_type = 'student',stu_er.real_name,tch_er.real_name) as examiner_name,
-                c_info_er.coll_name as examiner_college,
-                class_info_er.class_name as examiner_classes,
-                d_info_er.dep_name as examiner_department,
-                examin.examined_number,
-                examin.examined_type,
-                if(examin.examined_type = 'student',stu_ed.real_name,tch_ed.real_name) as examined_name,
-                c_info_ed.coll_name as examined_college,
-                class_info_ed.class_name as examined_classes,
-                d_info_ed.dep_name as examined_department,
-                examin.examine_time
-        FROM    activity_examine AS examin
-                    left JOIN activity_item_info AS ainfo
-                              ON ainfo.id = examin.activity_item_id
+        SELECT examin.id,
+               examin.activity_item_id,
+               ainfo.title,
+               examin.serial_num,
+               examin.examiner_number,
+               examin.examiner_type,
+               if(examin.examiner_type = 'student', stu_er.real_name, tch_er.real_name) as examiner_name,
+               c_info_er.coll_name                                                      as examiner_college,
+               class_info_er.class_name                                                 as examiner_classes,
+               d_info_er.dep_name                                                       as examiner_department,
+               examin.examined_number,
+               examin.examined_type,
+               if(examin.examined_type = 'student', stu_ed.real_name, tch_ed.real_name) as examined_name,
+               c_info_ed.coll_name                                                      as examined_college,
+               class_info_ed.class_name                                                 as examined_classes,
+               d_info_ed.dep_name                                                       as examined_department,
+               examin.examine_time
+        FROM activity_examine AS examin
+                 left JOIN activity_item_info AS ainfo
+                           ON ainfo.id = examin.activity_item_id
 
-                    left JOIN user_student AS stu_er
-                              ON examin.examiner_type = 'student' AND stu_er.stu_number = examin.examiner_number
-                    left JOIN user_teacher AS tch_er
-                              ON examin.examiner_type = 'teacher' AND tch_er.tch_number = examin.examiner_number
+                 left JOIN user_student AS stu_er
+                           ON examin.examiner_type = 'student' AND stu_er.stu_number = examin.examiner_number
+                 left JOIN user_teacher AS tch_er
+                           ON examin.examiner_type = 'teacher' AND tch_er.tch_number = examin.examiner_number
 
-                    left JOIN user_student AS stu_ed
-                              ON examin.examined_type = 'student' AND stu_ed.stu_number = examin.examined_number
-                    left JOIN user_teacher AS tch_ed
-                              ON examin.examined_type = 'teacher' AND tch_ed.tch_number = examin.examined_number
+                 left JOIN user_student AS stu_ed
+                           ON examin.examined_type = 'student' AND stu_ed.stu_number = examin.examined_number
+                 left JOIN user_teacher AS tch_ed
+                           ON examin.examined_type = 'teacher' AND tch_ed.tch_number = examin.examined_number
 
-                    left JOIN entity_college as c_info_er
-                              ON c_info_er.id = if(examin.examiner_type = 'student',stu_er.college_id,tch_er.college_id)
-                    left JOIN entity_college as c_info_ed
-                              ON c_info_ed.id = if(examin.examined_type = 'student',stu_ed.college_id,tch_ed.college_id)
+                 left JOIN entity_college as c_info_er
+                           ON c_info_er.id = if(examin.examiner_type = 'student', stu_er.college_id, tch_er.college_id)
+                 left JOIN entity_college as c_info_ed
+                           ON c_info_ed.id = if(examin.examined_type = 'student', stu_ed.college_id, tch_ed.college_id)
 
-                    left JOIN entity_classes as class_info_er
-                              ON class_info_er.id = stu_er.classes_id
-                    left JOIN entity_classes as class_info_ed
-                              ON class_info_ed.id = stu_ed.classes_id
+                 left JOIN entity_classes as class_info_er
+                           ON class_info_er.id = stu_er.classes_id
+                 left JOIN entity_classes as class_info_ed
+                           ON class_info_ed.id = stu_ed.classes_id
 
-                    left JOIN entity_department as d_info_er
-                              ON d_info_er.id = tch_er.department_id
-                    left JOIN entity_department as d_info_ed
-                              ON d_info_ed.id = tch_ed.department_id
-        where
-            examin.activity_item_id = '${activityId}' and
-            examin.mark = '${mark}'
-        order by
-            examin.serial_num DESC
+                 left JOIN entity_department as d_info_er
+                           ON d_info_er.id = tch_er.department_id
+                 left JOIN entity_department as d_info_ed
+                           ON d_info_ed.id = tch_ed.department_id
+        where examin.activity_item_id = '${activityId}'
+          and examin.mark = '${mark}'
+        order by examin.serial_num DESC
+    </select>
+    <select id="getExamineListBySerial" resultType="com.withmore.activity.vo.activity.ActivityExamineVo">
+        SELECT examin.id,
+               examin.activity_item_id,
+               ainfo.title,
+               examin.serial_num,
+               examin.examiner_number,
+               examin.examiner_type,
+               if(examin.examiner_type = 'student', stu_er.real_name, tch_er.real_name) as examiner_name,
+               c_info_er.coll_name                                                      as examiner_college,
+               class_info_er.class_name                                                 as examiner_classes,
+               d_info_er.dep_name                                                       as examiner_department,
+               examin.examined_number,
+               examin.examined_type,
+               if(examin.examined_type = 'student', stu_ed.real_name, tch_ed.real_name) as examined_name,
+               c_info_ed.coll_name                                                      as examined_college,
+               class_info_ed.class_name                                                 as examined_classes,
+               d_info_ed.dep_name                                                       as examined_department,
+               examin.examine_time
+        FROM activity_examine AS examin
+                 left JOIN activity_item_info AS ainfo
+                           ON ainfo.id = examin.activity_item_id
+
+                 left JOIN user_student AS stu_er
+                           ON examin.examiner_type = 'student' AND stu_er.stu_number = examin.examiner_number
+                 left JOIN user_teacher AS tch_er
+                           ON examin.examiner_type = 'teacher' AND tch_er.tch_number = examin.examiner_number
+
+                 left JOIN user_student AS stu_ed
+                           ON examin.examined_type = 'student' AND stu_ed.stu_number = examin.examined_number
+                 left JOIN user_teacher AS tch_ed
+                           ON examin.examined_type = 'teacher' AND tch_ed.tch_number = examin.examined_number
+
+                 left JOIN entity_college as c_info_er
+                           ON c_info_er.id = if(examin.examiner_type = 'student', stu_er.college_id, tch_er.college_id)
+                 left JOIN entity_college as c_info_ed
+                           ON c_info_ed.id = if(examin.examined_type = 'student', stu_ed.college_id, tch_ed.college_id)
+
+                 left JOIN entity_classes as class_info_er
+                           ON class_info_er.id = stu_er.classes_id
+                 left JOIN entity_classes as class_info_ed
+                           ON class_info_ed.id = stu_ed.classes_id
+
+                 left JOIN entity_department as d_info_er
+                           ON d_info_er.id = tch_er.department_id
+                 left JOIN entity_department as d_info_ed
+                           ON d_info_ed.id = tch_ed.department_id
+        where examin.activity_item_id = '${activityId}' and
+              examin.mark = '${mark}' and
+              examin.serial_num > '${serialNum}'
+        order by examin.serial_num
     </select>
     <insert id="insertExamine" parameterType="com.withmore.activity.entity.ActivityExamine">
         INSERT INTO activity_examine (activity_item_id,
@@ -129,10 +177,11 @@
                                       examiner_type,
                                       mark)
         VALUES (#{activityItemId}, ifnull(
-                (SELECT max_num FROM (
-                  SELECT max(serial_num) + 1 AS max_num
-                  FROM activity_examine
-                  WHERE activity_item_id LIKE #{activityItemId}) t),1),
+                (SELECT max_num
+                 FROM (
+                          SELECT max(serial_num) + 1 AS max_num
+                          FROM activity_examine
+                          WHERE activity_item_id LIKE #{activityItemId}) t), 1),
                 #{examinedNumber},
                 #{examinedType},
                 #{examinerNumber},
@@ -141,42 +190,7 @@
     </insert>
     <select id="exportExamineByNode" resultType="com.withmore.activity.vo.activity.ActivityClassExamineExcelVo">
         <foreach collection="nodes" item="node" separator="UNION">
-        SELECT  item.title,
-                stu.real_name AS stu_name,
-                stu.stu_number AS stu_number,
-                cla.class_name AS class_name,
-                coll.coll_name AS college_name,
-                if(examine.serial_num is null,0,1) as is_examine,
-                examine.serial_num,
-                examine.examine_time,
-                if(examine.examiner_type = 'student',stu_er.real_name,tch_er.real_name) as examiner_name
-        FROM user_student AS stu
-                 INNER JOIN entity_major AS mj ON stu.major_id = mj.id
-                 INNER JOIN entity_college AS coll ON stu.college_id = coll.id
-                 INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
-                 left join activity_item_info as item on item.id = '${activityId}'
-                 left join activity_examine as examine on examine.activity_item_id = '${activityId}' and examine.examined_number = stu.stu_number
-
-                 left JOIN user_student AS stu_er
-                           ON examine.examiner_type = 'student' AND stu_er.stu_number = examine.examiner_number
-                 left JOIN user_teacher AS tch_er
-                           ON examine.examiner_type = 'teacher' AND tch_er.tch_number = examine.examiner_number
-            <where>
-                <if test='node.level1 != "*" '>
-                    AND coll.coll_name='${node.getLevel1()}'
-                </if>
-                <if test='node.level2 != "*" '>
-                    AND mj.maj_name='${node.getLevel2()}'
-                </if>
-                <if test='node.level3 != "*" '>
-                    AND cla.class_name like '${node.getLevel3()}'
-                </if>
-            </where>
-        </foreach>
-    </select>
-    <select id="queryExamineByNode" resultType="com.withmore.activity.vo.activity.ActivityClassExamineExcelVo">
-        <foreach collection="nodes" item="node" separator="UNION">
-            SELECT  item.title,
+            SELECT item.title,
             stu.real_name AS stu_name,
             stu.stu_number AS stu_number,
             cla.class_name AS class_name,
@@ -190,7 +204,8 @@
             INNER JOIN entity_college AS coll ON stu.college_id = coll.id
             INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
             left join activity_item_info as item on item.id = '${activityId}'
-            left join activity_examine as examine on examine.activity_item_id = '${activityId}' and examine.examined_number = stu.stu_number
+            left join activity_examine as examine on examine.activity_item_id = '${activityId}' and
+            examine.examined_number = stu.stu_number
 
             left JOIN user_student AS stu_er
             ON examine.examiner_type = 'student' AND stu_er.stu_number = examine.examiner_number
@@ -208,5 +223,131 @@
                 </if>
             </where>
         </foreach>
+    </select>
+    <select id="queryExamineByNode" resultType="com.withmore.activity.vo.activity.ActivityClassExamineExcelVo">
+        <foreach collection="nodes" item="node" separator="UNION">
+            SELECT item.title,
+            stu.real_name AS stu_name,
+            stu.stu_number AS stu_number,
+            cla.class_name AS class_name,
+            coll.coll_name AS college_name,
+            if(examine.serial_num is null,0,1) as is_examine,
+            examine.serial_num,
+            examine.examine_time,
+            if(examine.examiner_type = 'student',stu_er.real_name,tch_er.real_name) as examiner_name
+            FROM user_student AS stu
+            INNER JOIN entity_major AS mj ON stu.major_id = mj.id
+            INNER JOIN entity_college AS coll ON stu.college_id = coll.id
+            INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
+            left join activity_item_info as item on item.id = '${activityId}'
+            left join activity_examine as examine on examine.activity_item_id = '${activityId}' and
+            examine.examined_number = stu.stu_number
+
+            left JOIN user_student AS stu_er
+            ON examine.examiner_type = 'student' AND stu_er.stu_number = examine.examiner_number
+            left JOIN user_teacher AS tch_er
+            ON examine.examiner_type = 'teacher' AND tch_er.tch_number = examine.examiner_number
+            <where>
+                <if test='node.level1 != "*" '>
+                    AND coll.coll_name='${node.getLevel1()}'
+                </if>
+                <if test='node.level2 != "*" '>
+                    AND mj.maj_name='${node.getLevel2()}'
+                </if>
+                <if test='node.level3 != "*" '>
+                    AND cla.class_name like '${node.getLevel3()}'
+                </if>
+            </where>
+        </foreach>
+    </select>
+<!--用于获取活动单天的以小时分组统计的核销数量-->
+    <select id="queryDayHourExamine" resultType="com.withmore.activity.vo.activity.ActivityExamineHourVo">
+        SELECT date_format('${dateTime}', '%Y-%m-%d') as day ,
+               a.hour as hour,
+               ifnull(b.count, 0) as count
+        FROM (
+                  SELECT 0 hour UNION ALL SELECT 1 hour UNION ALL
+                  SELECT 2 hour UNION ALL SELECT 3 hour UNION ALL
+                  SELECT 4 hour UNION ALL SELECT 5 hour UNION ALL
+                  SELECT 6 hour UNION ALL SELECT 7 hour UNION ALL
+                  SELECT 8 hour UNION ALL SELECT 9 hour UNION ALL
+                  SELECT 10 hour UNION ALL SELECT 11 hour UNION ALL
+                  SELECT 12 hour UNION ALL SELECT 13 hour UNION ALL
+                  SELECT 14 hour UNION ALL SELECT 15 hour UNION ALL
+                  SELECT 16 hour UNION ALL SELECT 17 hour UNION ALL
+                  SELECT 18 hour UNION ALL SELECT 19 hour UNION ALL
+                  SELECT 20 hour UNION ALL SELECT 21 hour UNION ALL
+                  SELECT 22 hour UNION ALL SELECT 23 hour
+              ) a
+            LEFT JOIN (
+                  SELECT
+                      hour(examine_time)  hour,
+                      count(examine_time) count
+                  FROM activity_examine
+                  WHERE mark = 1 AND
+                        activity_item_id = '${activityId}' and
+                        date_format(examine_time, '%Y-%m-%d') = '${dateTime}'
+                  GROUP BY date_format(examine_time, '%Y-%m-%d %H'), hour
+              ) b
+              ON a.hour=b.hour
+        ORDER BY hour;
+    </select>
+<!--用于获取以班级为单位的学生核销数量-->
+    <select id="queryExamineNumByClass" resultType="com.withmore.activity.vo.activity.ActivityClassExamineVo">
+        select  class.id as class_id,
+                class_name,
+                count(IF(stu.classes_id = class.id, 1, null)) as class_num,
+                count(IF(stu.classes_id = class.id and examine.examined_number = stu.stu_number, 1, null)) as examine_num
+        from entity_classes as class
+            INNER join entity_college as college
+                on college.id = class.college_id
+            INNER JOIN entity_major AS major
+                ON major.id = class.major_id
+            left join user_student as stu
+                on stu.classes_id = class.id
+            left join activity_examine as examine
+                on examine.activity_item_id = '${activityId}'
+                and examine.examined_number = stu.stu_number
+                and examine.examined_type = 'student'
+
+        <where>
+            <if test='query.collegeName != "*"'>
+                AND college.coll_name='${query.getCollegeName()}'
+            </if>
+            <if test='query.majorName != "*"'>
+                AND major.maj_name = '${query.getMajorName()}'
+            </if>
+            <if test='query.className != "*"'>
+                AND class.class_name like '${query.getClassName()}'
+            </if>
+        </where>
+
+        GROUP BY class.id,class_name
+        order by class_name
+    </select>
+<!--用于获取以学院为单位的学生核销数量-->
+    <select id="queryExamineNumByCollege" resultType="com.withmore.activity.vo.activity.ActivityCollegeExamineVo">
+        select  college.id as college_id,
+                college.coll_name as college_name,
+                count(IF(stu.classes_id = class.id, 1, null)) as college_num,
+                count(IF(stu.classes_id = class.id and examine.examined_number = stu.stu_number, 1, null)) as examine_num
+        from entity_college as college
+                 left join entity_classes as class
+                           on class.college_id = college.id
+                 left join user_student as stu
+                           on stu.classes_id = class.id
+                 left join activity_examine as examine
+                           on examine.activity_item_id = '${activityId}'
+                               and examine.examined_number = stu.stu_number
+                               and examine.examined_type = 'student'
+        <where>
+            <if test='query.collegeName != "*"'>
+                AND college.coll_name='${query.getCollegeName()}'
+            </if>
+            <if test='query.className != "*"'>
+                AND class.class_name like '${query.getClassName()}'
+            </if>
+        </where>
+        GROUP BY college.id
     </select>
 </mapper>

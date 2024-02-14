@@ -1,6 +1,6 @@
 spring:
   profiles:
-#    active: dev
+    #    active: dev
     active: @package.environment@
 
   # 服务模块
@@ -24,4 +24,5 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     use-generated-keys: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

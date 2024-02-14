@@ -307,7 +307,7 @@ public class WechatServiceImpl extends BaseServiceImpl<WechatMapper, Wechat> imp
         } else if (!coverBind) { // 生产环境不允许覆盖绑定
             return JsonResultS.error(ResultCodeEnum.WECHAT_USER_IS_BIND);
         }
-
+        // TODO: 2021/9/13 待修改，绑定问题
         if (Constant.TOKEN_USER_TYPE_STUDENT.equals(dto.getType())) {
             QueryWrapper<Student> wrapper = new QueryWrapper<>();
             wrapper.eq("stu_number", dto.getNumber());

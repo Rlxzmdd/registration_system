@@ -24,17 +24,14 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 //@PropertySource("classpath:redis.properties")
 public class RedisConfig {
-        @Value("${spring.redis.host}")
-//    @Value("172.20.10.4")
-    private String host;
-        @Value("${spring.redis.port}")
-//    @Value("6379")
+
+    @Value("${spring.redis.host}")
+    private String hostName;
+    @Value("${spring.redis.port}")
     private Integer port;
-        @Value("${spring.redis.password}")
-//    @Value("123456")
+    @Value("${spring.redis.password}")
     private String password;
-        @Value("${spring.redis.timeout}")
-//    @Value("6000")
+    @Value("${spring.redis.timeout}")
     private Integer timeout;
     /*
     @Value("${redis.maxIdle}")

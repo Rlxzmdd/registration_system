@@ -19,6 +19,7 @@ import com.withmore.common.utils.JwtUtil;
 import com.withmore.user.student.entity.Student;
 import com.withmore.user.student.query.StudentListQuery;
 import com.withmore.user.student.query.StudentQuery;
+import com.withmore.user.student.query.StudentSimpleQuery;
 import com.withmore.user.student.service.IStudentService;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.utils.JsonResult;
@@ -149,14 +150,14 @@ public class StudentController extends BaseController {
     /**
      * 搜索指定学号的学生的简略信息
      *
-     * @param stuNumber 学生学号
+     * @param param 学生学号/学生姓名(模糊匹配)
      * @return
      */
-    @RequiresPermissions("sys:student:index")
-    @GetMapping("/find/simple/{stuNumber}")
-    public JsonResultS one(@PathVariable String stuNumber, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+    // @RequiresPermissions("sys:student:index")
+    @GetMapping("/find/simple")
+    public JsonResultS one(StudentSimpleQuery param, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
         AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
-        return studentService.simpleAuth(stuNumber, dto);
+        return studentService.simpleAuth(param, dto);
     }
 
     /**

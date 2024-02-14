@@ -71,12 +71,12 @@ public class PermissionNodeController extends BaseController {
     /**
      * 获取详情
      *
-     * @param permissionnodeId 记录ID
+     * @param Id 记录ID
      * @return
      */
     @GetMapping("/info/{Id}")
-    public JsonResult info(@PathVariable("Id") Integer permissionnodeId) {
-        return permissionNodeService.info(permissionnodeId);
+    public JsonResult info(@PathVariable("Id") Integer Id) {
+        return permissionNodeService.info(Id);
     }
 
     /**

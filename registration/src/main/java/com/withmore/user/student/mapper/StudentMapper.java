@@ -19,6 +19,7 @@ import com.withmore.user.student.dto.StudentPermissionDto;
 import com.withmore.user.student.entity.Student;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.withmore.user.student.query.StudentListQuery;
+import com.withmore.user.student.query.StudentSimpleQuery;
 import com.withmore.user.student.vo.student.StudentDetailsVo;
 import com.withmore.user.student.vo.student.StudentSimpleVo;
 import com.withmore.user.student.vo.student.UserSimpleVo;
@@ -56,6 +57,17 @@ public interface StudentMapper extends BaseMapper<Student> {
     StudentDetailsVo getStudentDetailsAuth(String stuNumber, List<PermissionNode> nodes);
 
     /**
+     * 根据鉴权身份信息匹配相关学生
+     *
+     * @param fuzzyName    模糊名称
+     * @param idCardPrefix 身份证前缀
+     * @param idCardSuffix 身份证后缀
+     * @param gradePrefix  所属年级匹配
+     * @return
+     */
+    Student getStudentIdentity(String fuzzyName, String idCardPrefix, String idCardSuffix, String gradePrefix);
+
+    /**
      * 获取学生简略信息
      *
      * @param stuNumber 学生学号
@@ -67,11 +79,11 @@ public interface StudentMapper extends BaseMapper<Student> {
      * 获取指定学号的学生的简略信息
      * 在权限范围内进行查询
      *
-     * @param stuNumber 学生学号
-     * @param nodes     权限节点
+     * @param param 学生学号
+     * @param nodes 权限节点
      * @return
      */
-    StudentSimpleVo getStudentSimpleAuth(@Param("stuNumber") String stuNumber, @Param("nodes") List<PermissionNode> nodes);
+    IPage<StudentSimpleVo> getStudentSimpleAuth(Page<StudentSimpleVo> page, @Param("param") StudentSimpleQuery param, @Param("nodes") List<PermissionNode> nodes);
 
     /**
      * 获取指定学号的学生的原子权限
@@ -87,7 +99,6 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @param nodes
      * @return
      */
-//    IPage<StudentSimpleVo> getStudentSimpleList(Page<StudentSimpleVo> page, @Param("nodes") List<PermissionNode> nodes);
     List<StudentSimpleVo> getStudentSimpleList(@Param("nodes") List<PermissionNode> nodes);
 
     /**
@@ -100,7 +111,6 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return
      */
     IPage<StudentSimpleVo> getStudentSimpleListFilter(Page<StudentSimpleVo> page, @Param("query") StudentListQuery query);
-
 
 
 }

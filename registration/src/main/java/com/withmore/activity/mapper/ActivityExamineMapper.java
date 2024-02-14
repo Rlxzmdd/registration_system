@@ -15,9 +15,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.withmore.activity.entity.ActivityExamine;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.withmore.activity.query.ActivityDataPermissionNodeQuery;
-import com.withmore.activity.vo.activity.ActivityClassExamineExcelVo;
-import com.withmore.activity.vo.activity.ActivityExamineVo;
+import com.withmore.activity.query.ActivityClassQuery;
+import com.withmore.activity.vo.activity.*;
 import com.withmore.activity.vo.activityexamine.ActivityExamineInfoVo;
 import com.withmore.user.permission.entity.PermissionNode;
 import org.apache.ibatis.annotations.Mapper;
@@ -50,13 +49,21 @@ public interface ActivityExamineMapper extends BaseMapper<ActivityExamine> {
             @Param("mark") Integer mark
     );
 
-    List<ActivityExamineVo> getExamineList(
+    IPage<ActivityExamineVo> getExamineList(
+            Page<ActivityExamineVo> page,
             @Param("activityId") Integer activityId,
             @Param("mark") Integer mark
     );
 
+    IPage<ActivityExamineVo> getExamineListBySerial(
+            Page<ActivityExamineVo> page,
+            @Param("activityId") Integer activityId,
+            @Param("serialNum") Integer serialNum,
+            @Param("mark") Integer mark
+    );
 
-    void insertExamine(ActivityExamine entity);
+
+    void insertExamine(ActivityExamine entigetExamineListBySerialty);
 
     List<ActivityClassExamineExcelVo> exportExamineByNode(Integer activityId, List<PermissionNode> nodes);
 
@@ -64,5 +71,20 @@ public interface ActivityExamineMapper extends BaseMapper<ActivityExamine> {
             Page<ActivityClassExamineExcelVo> page,
             Integer activityId,
             List<PermissionNode> nodes
+    );
+
+    List<ActivityExamineHourVo> queryDayHourExamine(
+            @Param("activityId")  Integer activityId,
+            @Param("dateTime") String dateTime
+    );
+
+    List<ActivityClassExamineVo> queryExamineNumByClass(
+            @Param("activityId")  Integer activityId,
+            @Param("query") ActivityClassQuery query
+    );
+
+    List<ActivityCollegeExamineVo> queryExamineNumByCollege(
+            @Param("activityId")  Integer activityId,
+            @Param("query") ActivityClassQuery query
     );
 }

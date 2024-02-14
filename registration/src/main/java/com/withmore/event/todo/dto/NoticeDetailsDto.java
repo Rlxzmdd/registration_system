@@ -13,7 +13,6 @@ import java.util.Date;
  * 需去重处理转TodoNoticeDetailsVo
  */
 @Data
-@Builder
 @Accessors(chain = true)
 public class NoticeDetailsDto {
 
@@ -32,4 +31,9 @@ public class NoticeDetailsDto {
 
     /*图片OSS链接*/
     private String url;
+    /*权限节点ID*/
+    private Integer permissionId;
+
+    /*图片UUID*/
+    private String uuid;
 }

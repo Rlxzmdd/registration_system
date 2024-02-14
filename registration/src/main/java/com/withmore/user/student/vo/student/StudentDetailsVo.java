@@ -52,4 +52,6 @@ public class StudentDetailsVo {
     private String qq;
     /*头像链接*/
     private String avatar;
+    /*宿舍*/
+    private String dormitory;
 }

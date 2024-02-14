@@ -11,7 +11,6 @@
 package com.withmore.event.todo.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
-import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.event.todo.dto.NoticeDetailsDto;
 import com.withmore.event.todo.entity.TodoNotice;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -37,8 +36,14 @@ public interface TodoNoticeMapper extends BaseMapper<TodoNotice> {
             @Param("stuType") String studentTypeConstant,
             @Param("tchType") String teacherTypeConstant);
 
-    List<NoticeDetailsDto> getTodoNoticeDetailsListByMyself(
-            @Param("node") AuthToken2CredentialDto node,
-            @Param("stuType") String studentTypeConstant,
-            @Param("tchType") String teacherTypeConstant);
+
+    /**
+     * 用户获取自己推送过的通知
+     *
+     * @param number 推送用户
+     * @param type   用户类型
+     * @return
+     */
+    List<NoticeDetailsDto> getTodoNoticeMyselfPush(@Param("number") String number,
+                                                   @Param("type") String type);
 }

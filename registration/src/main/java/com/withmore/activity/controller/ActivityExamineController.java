@@ -11,12 +11,15 @@
 package com.withmore.activity.controller;
 
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
+import com.withmore.activity.dto.UserIdentityDto;
 import com.withmore.activity.entity.ActivityExamine;
 import com.withmore.activity.query.ActivityExamineQuery;
 import com.withmore.activity.service.IActivityExamineService;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.utils.JsonResult;
+import com.withmore.common.utils.JwtUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,11 +33,14 @@ import org.springframework.web.bind.annotation.*;
  * @since 2021-08-07
  */
 @RestController
-@RequestMapping("/activityexamine")
+@RequestMapping("/activity_examine/")
 public class ActivityExamineController extends BaseController {
 
     @Autowired
     private IActivityExamineService activityExamineService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     /**
      * 获取数据列表
@@ -96,6 +102,32 @@ public class ActivityExamineController extends BaseController {
     @DeleteMapping("/delete/{activityexamineIds}")
     public JsonResult delete(@PathVariable("activityexamineIds") Integer[] activityexamineIds) {
         return activityExamineService.deleteByIds(activityexamineIds);
+    }
+
+    /**
+     * 身份信息核销
+     * 设备1 接口
+     * 对应活动ID=18
+     *
+     * @param param 请求参数
+     * @return
+     */
+    @PostMapping("/identity/DoorController/visitorRegistrationRecordTraffic")
+    public JsonResultS identity(@RequestBody UserIdentityDto param) {
+        return activityExamineService.identity(param, 18);
+    }
+
+    /**
+     * 身份信息核销
+     * 设备2 接口
+     * 对应活动ID=19
+     *
+     * @param param 请求参数
+     * @return
+     */
+    @PostMapping("/identity2/DoorController/visitorRegistrationRecordTraffic")
+    public JsonResultS identity2(@RequestBody UserIdentityDto param) {
+        return activityExamineService.identity(param, 19);
     }
 
 }

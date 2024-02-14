@@ -124,6 +124,19 @@ public class TodoNoticeController extends BaseController {
     }
 
     /**
+     * 小程序用户删除自己发布的通知
+     *
+     * @param id    通知ID
+     * @param token 用户Token
+     * @return
+     */
+    @DeleteMapping("/del/{id}")
+    public JsonResultS del(@PathVariable("id") Integer id, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
+        return todoNoticeService.delById(id, dto);
+    }
+
+    /**
      * 小程序用户查询通知
      *
      * @param baseQuery 分页参数
@@ -136,18 +149,31 @@ public class TodoNoticeController extends BaseController {
         return todoNoticeService.list(baseQuery, dto);
     }
 
-
     /**
-     * 小程序用户查询自己发布的通知
+     * 小程序用户获取我推送的通知
      *
      * @param baseQuery 分页参数
      * @param token     用户Token
      * @return
      */
-
     @GetMapping("/query/myself")
     public JsonResultS myself(BaseQuery baseQuery, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
         AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
         return todoNoticeService.myself(baseQuery, dto);
+    }
+
+    /**
+     * 小程序用户修改已推送的通知
+     *
+     * @param id    通知ID
+     * @param token 用户Token
+     * @return
+     */
+    @PutMapping("/edit/{id}")
+    public JsonResultS edit(@RequestBody NoticePushDto notice,
+                            @PathVariable Integer id,
+                            @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
+        return todoNoticeService.editById(id, notice, dto);
     }
 }

@@ -52,18 +52,14 @@ public class ShiroConfig {
     private final String CACHE_KEY = "shiro:cache:";
     private final String SESSION_KEY = "shiro:session:";
     private Integer EXPIRE = 86400 * 7;
-    // todo 查询该bug
+
     @Value("${spring.redis.host}")
-//    @Value("172.20.10.4")
     private String host;
     @Value("${spring.redis.port}")
-//    @Value("6379")
     private Integer port;
     @Value("${spring.redis.password}")
-//    @Value("123456")
     private String password;
     @Value("${spring.redis.timeout}")
-//    @Value("6000")
     private Integer timeout;
 
     @Bean
@@ -82,6 +78,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/wechat/login/**", "anon");
         filterChainDefinitionMap.put("/wechat/get_bind/**", "anon");
         filterChainDefinitionMap.put("/druid/**", "anon");
+        filterChainDefinitionMap.put("/activity_examine/identity*/DoorController/visitorRegistrationRecordTraffic", "anon");
         // 配置不会被拦截的链接 顺序判断，因为前端模板采用了thymeleaf，这里不能直接使用 ("/static/**", "anon")来配置匿名访问，必须配置到每个静态目录
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/fonts/**", "anon");

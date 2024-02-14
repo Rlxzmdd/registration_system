@@ -48,11 +48,30 @@ public interface ITodoNoticeService extends IBaseService<TodoNotice> {
     JsonResultS list(BaseQuery baseQuery, AuthToken2CredentialDto dto);
 
     /**
-     * 小程序用户获取自己发布的通知
-     * @param baseQuery
-     * @param dto
+     * 小程序用户获取自己推送的通知
+     *
+     * @param baseQuery 分页参数
+     * @param dto       用户凭据
      * @return
      */
     JsonResultS myself(BaseQuery baseQuery, AuthToken2CredentialDto dto);
 
+    /**
+     * 小程序用户删除通知
+     *
+     * @param id  通知ID
+     * @param dto 用户凭据
+     * @return
+     */
+    JsonResultS delById(Integer id, AuthToken2CredentialDto dto);
+
+    /**
+     * 小程序编辑自己已发布的通知
+     *
+     * @param id  通知ID
+     * @param dto 用户凭据
+     * @param notice
+     * @return
+     */
+    JsonResultS editById(Integer id, NoticePushDto notice, AuthToken2CredentialDto dto);
 }

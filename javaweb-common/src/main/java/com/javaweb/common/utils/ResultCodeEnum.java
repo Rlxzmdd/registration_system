@@ -9,6 +9,7 @@ public enum ResultCodeEnum {
     WECHAT_USER_NOT_BIND("V0100", "微信用户未绑定"),
     WECHAT_USER_IS_BIND("V0101", "微信用户已绑定"),
     NOTICE_REPEAT("V0200", "通知标题与权限节点记录重复"),
+    NOTICE_NOT_EXISTS("V0201", "通知记录不存在"),
     FORM_DATA_EXISTS("V0300", "表单数据已存在，并不可覆盖"),
     FORM_TEMPLATE_NOT_EXISTS("V0301", "表单模版不存在"),
     FORM_IS_NOT_IN_PROCESS("V0302", "表单不在填写时间段"),

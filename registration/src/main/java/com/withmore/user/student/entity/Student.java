@@ -112,6 +112,11 @@ public class Student extends BaseEntity {
     private Integer classesId;
 
     /**
+     * 宿舍信息索引
+     */
+    private Integer dormId;
+
+    /**
      * 所属专业索引
      */
     private Integer majorId;

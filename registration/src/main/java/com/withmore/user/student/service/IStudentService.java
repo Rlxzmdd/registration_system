@@ -6,6 +6,7 @@ import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.user.student.entity.Student;
 import com.javaweb.system.common.IBaseService;
 import com.withmore.user.student.query.StudentListQuery;
+import com.withmore.user.student.query.StudentSimpleQuery;
 
 /**
  * <p>
@@ -84,11 +85,11 @@ public interface IStudentService extends IBaseService<Student> {
     /**
      * 获取指定学号的学生信息
      *
-     * @param stuNumber 学生学号
+     * @param param 学生学号
      * @param dto       身份凭据
      * @return
      */
-    JsonResultS simpleAuth(String stuNumber, AuthToken2CredentialDto dto);
+    JsonResultS simpleAuth(StudentSimpleQuery param, AuthToken2CredentialDto dto);
 
     /**
      * 筛选指定参数获取学生简略信息列表

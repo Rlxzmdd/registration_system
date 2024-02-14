@@ -8,4 +8,5 @@ import lombok.EqualsAndHashCode;
 @Data
 public class ActivityExamineListQuery extends BaseQuery {
     private Integer activityId;
+    private Integer serialNum;
 }

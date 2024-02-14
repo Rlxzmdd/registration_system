@@ -6,6 +6,8 @@ import com.withmore.event.todo.entity.FormItem;
 import com.withmore.event.todo.mapper.FormAuditMapper;
 import com.withmore.event.todo.mapper.FormAuditNoticeMapper;
 import com.withmore.event.todo.mapper.FormItemMapper;
+import com.withmore.user.student.entity.Student;
+import com.withmore.user.student.mapper.StudentMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class MapperTest extends BaseTest {
 
     @Autowired
     private FormAuditMapper formAuditMapper;
+
+    @Autowired
+    private StudentMapper studentMapper;
 
     /**
      * 清除重复通知
@@ -87,7 +92,31 @@ public class MapperTest extends BaseTest {
                 }
             }
         }
+    }
 
+    @Test
+    public void addAuditNotice(){
+        String formKey= "zo2I8y5H1lq";
+        QueryWrapper<FormItem> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("mark" , 1);
+        queryWrapper.eq( "form_key" , formKey);
+        List<FormItem> items = formItemMapper.selectList(queryWrapper);
+        for (FormItem item : items) {
+            String submitNumber = item.getSubmitNumber();
+            QueryWrapper<Student> studentQueryWrapper = new QueryWrapper<>();
+            studentQueryWrapper.eq("mark" ,1 );
+            studentQueryWrapper.eq("stu_number" , submitNumber);
+            Student student = studentMapper.selectOne(studentQueryWrapper);
+            if (student.getClassesId().equals(893)){
+                FormAuditNotice notice = new FormAuditNotice();
+                notice.setFormKey(formKey);
+                notice.setItemUuid(item.getItemUuid());
+                notice.setReviewerNumber("20680364");
+                notice.setReviewerType("student");
+                formAuditNoticeMapper.insert(notice);
+            }
+
+        }
     }
 
 }

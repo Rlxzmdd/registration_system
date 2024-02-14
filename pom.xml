@@ -11,7 +11,7 @@
 
     <groupId>com.javaweb</groupId>
     <artifactId>javaweb</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <!--父模块打包类型必须为pom-->
     <packaging>pom</packaging>
     <name>javaweb</name>
@@ -31,7 +31,7 @@
         <!-- 表示打包时跳过mvn test -->
         <maven.test.skip>true</maven.test.skip>
         <!--全局配置项目版本号-->
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -41,22 +41,22 @@
             <dependency>
                 <groupId>com.javaweb</groupId>
                 <artifactId>javaweb-common</artifactId>
-                <version>${version}</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.javaweb</groupId>
                 <artifactId>javaweb-generator</artifactId>
-                <version>${version}</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.javaweb</groupId>
                 <artifactId>javaweb-system</artifactId>
-                <version>${version}</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.javaweb</groupId>
                 <artifactId>javaweb-admin</artifactId>
-                <version>${version}</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <!-- 自定义模块  -->
             <dependency>
@@ -79,6 +79,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <finalName>hey-szpt-backend-${version}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

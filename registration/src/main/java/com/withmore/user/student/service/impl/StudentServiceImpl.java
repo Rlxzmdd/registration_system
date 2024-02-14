@@ -28,6 +28,7 @@ import com.withmore.user.student.mapper.StudentMapper;
 import com.withmore.user.student.mapper.StudentPermissionMapper;
 import com.withmore.user.student.query.StudentListQuery;
 import com.withmore.user.student.query.StudentQuery;
+import com.withmore.user.student.query.StudentSimpleQuery;
 import com.withmore.user.student.service.IStudentService;
 import com.withmore.user.student.vo.student.*;
 import org.springframework.beans.BeanUtils;
@@ -225,9 +226,12 @@ public class StudentServiceImpl extends BaseServiceImpl<StudentMapper, Student> 
     }
 
     @Override
-    public JsonResultS simpleAuth(String stuNumber, AuthToken2CredentialDto dto) {
+    public JsonResultS simpleAuth(StudentSimpleQuery param, AuthToken2CredentialDto dto) {
+        if (StringUtils.isEmpty(param.getName()) && StringUtils.isEmpty(param.getNumber())) {
+            return JsonResultS.error(ResultCodeEnum.USER_ERROR_A0410);
+        }
         List<PermissionNode> nodes = PermissionConvert.convert2Nodes(dto);
-        StudentSimpleVo simpleAuth = studentMapper.getStudentSimpleAuth(stuNumber, nodes);
+        IPage<StudentSimpleVo> simpleAuth = studentMapper.getStudentSimpleAuth(new Page<>(param.getPage(), param.getLimit()), param, nodes);
         return JsonResultS.success(simpleAuth);
     }
 

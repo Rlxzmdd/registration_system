@@ -6,7 +6,7 @@ COPY ./javaweb-admin/target/registration_system.jar /tmp/app.jar
 WORKDIR /tmp
 EXPOSE 9031
 # 执行命令
-ENTRYPOINT ["java" , "-jar" , "app.jar","--spring.config.name=application-dev_zhousic"]
+ENTRYPOINT ["java" , "-jar" , "app.jar","--spring.profiles.active=release"]
 
 # 第一阶段：使用Maven构建Spring Boot应用
 #FROM maven:3.8.4 AS builder

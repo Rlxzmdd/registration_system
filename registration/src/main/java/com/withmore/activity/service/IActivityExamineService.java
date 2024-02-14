@@ -12,13 +12,12 @@ package com.withmore.activity.service;
 
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseQuery;
-import com.javaweb.system.query.LevelQuery;
-import com.javaweb.system.vo.level.LevelInfoVo;
+import com.withmore.activity.dto.UserIdentityDto;
 import com.withmore.activity.entity.ActivityExamine;
 import com.javaweb.system.common.IBaseService;
+import com.withmore.activity.query.ActivityClassQuery;
 import com.withmore.activity.query.ActivityDataPermissionNodeQuery;
 import com.withmore.activity.query.ActivityExamineListQuery;
-import com.withmore.activity.vo.activity.ActivityExamineVo;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.user.permission.entity.PermissionNode;
 
@@ -37,6 +36,7 @@ public interface IActivityExamineService extends IBaseService<ActivityExamine> {
     JsonResultS examine(AuthToken2CredentialDto dto, Integer activityId, AuthToken2CredentialDto examinedDto);
 
     JsonResultS getExamineList(AuthToken2CredentialDto dto, ActivityExamineListQuery query);
+    JsonResultS getExamineListBySerial(AuthToken2CredentialDto dto, ActivityExamineListQuery query);
 
     JsonResultS getExamineListSelf(AuthToken2CredentialDto dto, BaseQuery query);
 
@@ -46,4 +46,18 @@ public interface IActivityExamineService extends IBaseService<ActivityExamine> {
 
     JsonResultS queryExamineExcelFilter(AuthToken2CredentialDto dto, ActivityDataPermissionNodeQuery query, List<PermissionNode> nodes);
 
+    JsonResultS queryExamineNumByClass(AuthToken2CredentialDto dto, Integer activityId, ActivityClassQuery query);
+
+    JsonResultS queryExamineNumByCollege(AuthToken2CredentialDto dto, Integer activityId, ActivityClassQuery query);
+
+    JsonResultS queryDayHourExamine(AuthToken2CredentialDto dto, Integer activityId, String dateTime);
+
+    /**
+     * 身份认证机器身份鉴权核销方法
+     *
+     * @param param 鉴权参数
+     * @param activityID
+     * @return
+     */
+    JsonResultS identity(UserIdentityDto param, Integer activityID);
 }

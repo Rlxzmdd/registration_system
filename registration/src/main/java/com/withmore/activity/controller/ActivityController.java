@@ -136,6 +136,14 @@ public class ActivityController extends BaseController {
         return activityExamineService.getExamineList(dto, query);
     }
 
+    @GetMapping("/examine/query/list/serial")
+    public JsonResultS getExamineListBySerial(ActivityExamineListQuery query,
+                                      @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
+        return activityExamineService.getExamineListBySerial(dto, query);
+    }
+
+
     /**
      * 查询活动当前用户的核销列表
      */
@@ -169,8 +177,6 @@ public class ActivityController extends BaseController {
         AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
         return activityItemManageListService.getManageListSelf(dto, query);
     }
-
-
 
     /**
      * 添加活动的管理员
@@ -212,6 +218,33 @@ public class ActivityController extends BaseController {
         AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
         List<PermissionNode> nodes = PermissionConvert.convert2Nodes(dto);
         return activityExamineService.queryExamineExcelFilter(dto, query, nodes);
+
+    }
+
+    @PostMapping("/data/examine/class/num/{activityId}")
+    public JsonResultS queryClassExamine(@PathVariable("activityId") Integer activityId,
+                                         ActivityClassQuery query,
+                                         @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
+        return activityExamineService.queryExamineNumByClass(dto, activityId, query);
+
+    }
+
+    @PostMapping("/data/examine/college/num/{activityId}")
+    public JsonResultS queryCollegeExamine(@PathVariable("activityId") Integer activityId,
+                                         ActivityClassQuery query,
+                                         @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
+        return activityExamineService.queryExamineNumByCollege(dto, activityId, query);
+
+    }
+
+    @GetMapping("/data/examine/hour/num/{activityId}")
+    public JsonResultS queryDayHourExamine(@PathVariable("activityId") Integer activityId,
+                                         @RequestParam("dateTime") String date,
+                                         @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
+        return activityExamineService.queryDayHourExamine(dto, activityId, date);
 
     }
 }

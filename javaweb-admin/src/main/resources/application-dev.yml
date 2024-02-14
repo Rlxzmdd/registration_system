@@ -1,4 +1,5 @@
-## 样式配置文件，实际需要修改部分文件
+debug: false
+
 # 端口配置
 server:
   port: 9031
@@ -184,8 +185,6 @@ generate:
   autoRemovePre: true
   # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）
   tablePrefix: sys_
-
-debug: true
 
 jwt:
   # JWT 签名秘钥

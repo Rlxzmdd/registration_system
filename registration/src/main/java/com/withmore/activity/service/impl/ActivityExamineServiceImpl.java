@@ -18,44 +18,39 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.common.utils.*;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
-import com.javaweb.system.entity.Level;
-import com.javaweb.system.query.LevelQuery;
-import com.javaweb.system.vo.level.LevelInfoVo;
+import com.withmore.activity.dto.UserIdentityDto;
 import com.withmore.activity.entity.ActivityExamine;
 import com.withmore.activity.mapper.ActivityExamineMapper;
 import com.withmore.activity.mapper.ActivityItemInfoMapper;
+import com.withmore.activity.query.ActivityClassQuery;
 import com.withmore.activity.query.ActivityDataPermissionNodeQuery;
 import com.withmore.activity.query.ActivityExamineListQuery;
 import com.withmore.activity.query.ActivityExamineQuery;
 import com.withmore.activity.service.IActivityExamineService;
-import com.withmore.activity.vo.activity.ActivityClassExamineExcelVo;
-import com.withmore.activity.vo.activity.ActivityExamineVo;
-import com.withmore.activity.vo.activity.ActivityInfoManageVo;
+import com.withmore.activity.vo.activity.*;
 import com.withmore.activity.vo.activityexamine.ActivityExamineInfoVo;
 import com.withmore.activity.vo.activityexamine.ActivityExamineListVo;
 import com.withmore.common.constant.Constant;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.user.permission.entity.PermissionNode;
-import com.withmore.user.permission.utils.PermissionConvert;
-import com.withmore.user.permission.utils.PermissionJudge;
-import com.withmore.user.student.vo.student.StudentDetailsVo;
+import com.withmore.user.student.entity.Student;
+import com.withmore.user.student.mapper.StudentMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
-  * <p>
-  * 活动核销表 服务类实现
-  * </p>
-  *
-  * @author Zhous
-  * @since 2021-08-07
-  */
+ * <p>
+ * 活动核销表 服务类实现
+ * </p>
+ *
+ * @author Zhous
+ * @since 2021-08-07
+ */
 @Service
 public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineMapper, ActivityExamine> implements IActivityExamineService {
 
@@ -64,6 +59,11 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
 
     @Autowired
     private ActivityItemInfoMapper activityItemInfoMapper;
+
+    @Autowired
+    private StudentMapper studentMapper;
+
+
     /**
      * 获取数据列表
      *
@@ -135,12 +135,13 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
 
     @DS("registration") /*使用事务的方法必须单独指定方法查询的DataBase*/
     @Transactional
-    public void insert(ActivityExamine entity){
+    public void insert(ActivityExamine entity) {
         activityExamineMapper.insertExamine(entity);
     }
 
     /**
      * 添加一条核销记录
+     *
      * @param dto
      * @param activityId
      * @param examinedDto
@@ -148,26 +149,26 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
      */
     @Override
     public JsonResultS examine(AuthToken2CredentialDto dto, Integer activityId, AuthToken2CredentialDto examinedDto) {
-        ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(activityId,dto.getNumber(),dto.getType(),
+        ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(activityId, dto.getNumber(), dto.getType(),
                 Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
-        if (ac == null){
+        if (ac == null) {
             return JsonResultS.error("活动不存在或权限不足");
         }
-        if (ac.getIsExamine()!=1)
+        if (ac.getIsExamine() != 1)
             return JsonResultS.error("权限不足");
 
-        if (ac.getIsApply()==1){
-            ActivityInfoManageVo examinedAc = activityItemInfoMapper.getActivity(activityId,dto.getNumber(),dto.getType(),
+        if (ac.getIsApply() == 1) {
+            ActivityInfoManageVo examinedAc = activityItemInfoMapper.getActivity(activityId, dto.getNumber(), dto.getType(),
                     Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
-            if(examinedAc.getIsSignup() != 1)
+            if (examinedAc.getIsSignup() != 1)
                 return JsonResultS.error("当前用户未报名");
-            if(examinedAc.getIsApproval() != 1)
+            if (examinedAc.getIsApproval() != 1)
                 return JsonResultS.error("当前用户报名未通过");
         }
-        ActivityExamineInfoVo ae = activityExamineMapper.selectOneExamine(activityId,examinedDto.getNumber(),examinedDto.getType(),1);
+        ActivityExamineInfoVo ae = activityExamineMapper.selectOneExamine(activityId, examinedDto.getNumber(), examinedDto.getType(), 1);
         // 已核销过 并且当前活动不允许重新核销
-        if(ac.getIsRepeat() != 1)
-            if(ae != null)
+        if (ac.getIsRepeat() != 1)
+            if (ae != null)
                 return JsonResultS.error("当前用户已核销");
         ActivityExamine entity = (new ActivityExamine())
                 .setActivityItemId(activityId)
@@ -182,12 +183,13 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
 
     /**
      * 获取核销情况列表
+     *
      * @param dto
      * @param query
      * @return
      */
     @Override
-    public JsonResultS getExamineList(AuthToken2CredentialDto dto, ActivityExamineListQuery query){
+    public JsonResultS getExamineList(AuthToken2CredentialDto dto, ActivityExamineListQuery query) {
         ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(query.getActivityId(), dto.getNumber(), dto.getType(),
                 Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
         if (ac == null) {
@@ -195,50 +197,113 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
         }
         if (ac.getIsManager() == 0 && ac.getIsOwner() == 0)
             return JsonResultS.error("权限不足");
-        List<ActivityExamineVo> result = activityExamineMapper.getExamineList(query.getActivityId(),1);
-        return JsonResultS.success(result);
+        Page<ActivityExamineVo> page = new Page<>(query.getPage(), query.getLimit());
+        IPage<ActivityExamineVo> pageData = activityExamineMapper.getExamineList(page, query.getActivityId(), 1);
+        return JsonResultS.success(pageData);
+    }
+
+//    根据顺序获取之后的核销记录
+    @Override
+    public JsonResultS getExamineListBySerial(AuthToken2CredentialDto dto, ActivityExamineListQuery query) {
+        // todo 添加权限判断
+//        ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(query.getActivityId(), dto.getNumber(), dto.getType(),
+//                Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
+//        if (ac == null) {
+//            return JsonResultS.error("活动不存在或权限不足");
+//        }
+//        if (ac.getIsManager() == 0 && ac.getIsOwner() == 0)
+//            return JsonResultS.error("权限不足");
+
+        Page<ActivityExamineVo> page = new Page<>(query.getPage(), query.getLimit());
+        IPage<ActivityExamineVo> pageData = activityExamineMapper.getExamineListBySerial(page, query.getActivityId(),query.getSerialNum(),1);
+        return JsonResultS.success(pageData);
     }
 
 
     /**
      * 获取核销情况列表
+     *
      * @param dto
      * @param query
      * @return
      */
     @Override
-    public JsonResultS getExamineListSelf(AuthToken2CredentialDto dto, BaseQuery query){
+    public JsonResultS getExamineListSelf(AuthToken2CredentialDto dto, BaseQuery query) {
         // 获取数据列表
         Page<ActivityExamineVo> page = new Page<>(query.getPage(), query.getLimit());
         IPage<ActivityExamineVo> pageData = activityExamineMapper.getExamineListSelf(
                 page,
-                dto.getNumber(), dto.getType(),1);
+                dto.getNumber(), dto.getType(), 1);
         return JsonResultS.success(pageData);
     }
 
     @Override
     public JsonResultS exportExamineExcelFilter(AuthToken2CredentialDto dto, ActivityDataPermissionNodeQuery query, List<PermissionNode> nodes) {
-        ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(query.getActivityId(),dto.getNumber(),dto.getType(),
+        ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(query.getActivityId(), dto.getNumber(), dto.getType(),
                 Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
-        if (ac == null){
+        if (ac == null) {
             return JsonResultS.error("活动不存在或权限不足");
         }
-        if (ac.getIsRead()!=1)
+        if (ac.getIsRead() != 1)
             return JsonResultS.error("权限不足");
         List<ActivityClassExamineExcelVo> vo = activityExamineMapper.exportExamineByNode(query.getActivityId(), nodes);
         return JsonResultS.success(vo);
     }
+
     @Override
     public JsonResultS queryExamineExcelFilter(AuthToken2CredentialDto dto, ActivityDataPermissionNodeQuery query, List<PermissionNode> nodes) {
-        ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(query.getActivityId(),dto.getNumber(),dto.getType(),
+        ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(query.getActivityId(), dto.getNumber(), dto.getType(),
                 Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
-        if (ac == null){
+        if (ac == null) {
             return JsonResultS.error("活动不存在或权限不足");
         }
-        if (ac.getIsRead()!=1)
+        if (ac.getIsRead() != 1)
             return JsonResultS.error("权限不足");
         Page<ActivityClassExamineExcelVo> page = new Page<>(query.getPage(), query.getLimit());
         IPage<ActivityClassExamineExcelVo> pageData = activityExamineMapper.queryExamineByNode(page, query.getActivityId(), nodes);
         return JsonResultS.success(pageData);
+    }
+
+    @Override
+    public JsonResultS queryExamineNumByClass(AuthToken2CredentialDto dto, Integer activityId, ActivityClassQuery query) {
+        // todo 加入权限判断
+        List<ActivityClassExamineVo> list = activityExamineMapper.queryExamineNumByClass(activityId, query);
+        return JsonResultS.success(list);
+    }
+
+    @Override
+    public JsonResultS queryExamineNumByCollege(AuthToken2CredentialDto dto, Integer activityId, ActivityClassQuery query) {
+        // todo 加入权限判断
+        List<ActivityCollegeExamineVo> list = activityExamineMapper.queryExamineNumByCollege(activityId, query);
+        return JsonResultS.success(list);
+    }
+
+    @Override
+    public JsonResultS queryDayHourExamine(AuthToken2CredentialDto dto, Integer activityId, String dateTime) {
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        String nowDate = format.format(new Date());
+        // todo 加入权限判断
+        List<ActivityExamineHourVo> list = activityExamineMapper.queryDayHourExamine(activityId, dateTime);
+        return JsonResultS.success(list);
+    }
+
+    @Override
+    public JsonResultS identity(UserIdentityDto param, Integer activityID) {
+        String name = "\\" + param.getName().replace("*", "");
+        name = StringUtils.unicode2String(name) + "%";
+        String idPrefix = StringUtils.substring(param.getIdCard(), 0, 3) + "%";
+        String idSuffix = "%" + StringUtils.substring(param.getIdCard(), param.getIdCard().length() - 4, param.getIdCard().length());
+        Student student = studentMapper.getStudentIdentity(name, idPrefix, idSuffix, "21%");
+        // 直接返回给审核机200 即使未找到该学生
+        if (student == null) {
+            return JsonResultS.success();
+        }
+
+        examine(new AuthToken2CredentialDto("20190161", Constant.TOKEN_USER_TYPE_TEACHER),
+                activityID
+                , new AuthToken2CredentialDto(student.getStuNumber(), Constant.TOKEN_USER_TYPE_STUDENT));
+
+        return JsonResultS.success();
+
     }
 }

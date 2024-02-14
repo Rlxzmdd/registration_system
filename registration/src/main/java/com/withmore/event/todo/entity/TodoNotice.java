@@ -46,7 +46,8 @@ public class TodoNotice extends BaseEntity {
     /**
      * 是否在客户端显示此通知
      */
-    private Integer isShow;
+    // private Integer isShow;
+    private Boolean isShow;
 
     /**
      * 发起者工号/学号

@@ -14,11 +14,13 @@
                stu.politic,
                cla.class_name AS classes,
                coll.coll_name AS college,
-               img.url        AS avatar
+               img.url        AS avatar,
+               dorm.abbr      AS dormitory
         FROM user_student AS stu
                  INNER JOIN entity_college AS coll ON stu.college_id = coll.id
                  INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
                  LEFT JOIN resource_img AS img ON img.uuid = stu.avatar AND img.create_number = '${stuNumber}'
+                 LEFT JOIN entity_dormitory AS dorm ON stu.dorm_id = dorm.id
         WHERE stu.stu_number = #{stuNumber}
     </select>
     <select id="getStudentSimple" resultType="com.withmore.user.student.vo.student.StudentSimpleVo">
@@ -78,7 +80,15 @@
             INNER JOIN entity_college AS coll ON stu.college_id = coll.id
             INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
             <where>
-                stu.stu_number = #{stuNumber}
+                <if test="param.getName() != null">
+                    stu.real_name like '${param.getName()}'
+                </if>
+                <if test="param.getNumber() != null">
+                    <if test="param.getName() != null">
+                        AND
+                    </if>
+                    stu.stu_number like '${param.getNumber()}'
+                </if>
                 <if test='node.level1 != "*" '>
                     AND coll.coll_name='${node.getLevel1()}'
                 </if>
@@ -122,12 +132,14 @@
             stu.politic,
             cla.class_name AS classes,
             coll.coll_name AS college,
-            img.url AS avatar
+            img.url AS avatar,
+            dorm.abbr      AS dormitory
             FROM user_student AS stu
             INNER JOIN entity_major AS mj ON stu.major_id = mj.id
             INNER JOIN entity_college AS coll ON stu.college_id = coll.id
             INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
             LEFT JOIN resource_img AS img ON img.uuid = stu.avatar AND img.create_number = '${stuNumber}'
+            LEFT JOIN entity_dormitory AS dorm ON stu.dorm_id = dorm.id
             <where>
                 stu.stu_number = #{stuNumber}
                 <if test='node.level1 != "*" '>
@@ -153,5 +165,14 @@
                  INNER JOIN entity_college AS coll ON stu.college_id = coll.id
                  INNER JOIN entity_classes AS cla ON stu.classes_id = cla.id
         WHERE stu.stu_number = #{stuNumber}
+    </select>
+    <select id="getStudentIdentity" resultType="com.withmore.user.student.entity.Student">
+        SELECT us.*
+        FROM user_student AS us
+                 INNER JOIN entity_classes AS cla ON cla.id = us.classes_id
+        WHERE us.real_name like '${fuzzyName}'
+          AND us.id_card like '${idCardPrefix}'
+          AND us.id_card like '${idCardSuffix}'
+          AND cla.class_name like '${gradePrefix}'
     </select>
 </mapper>

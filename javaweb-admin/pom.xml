@@ -6,7 +6,7 @@
     <parent>
         <artifactId>javaweb</artifactId>
         <groupId>com.javaweb</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -112,7 +112,7 @@
     </profiles>
 
     <build>
-        <finalName>registration_system</finalName>
+<!--        <finalName>registration_system</finalName>-->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

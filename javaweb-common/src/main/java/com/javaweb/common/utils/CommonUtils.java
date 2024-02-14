@@ -284,4 +284,8 @@ public class CommonUtils {
         return arrayList;
     }
 
+    public static void main(String[] args) {
+        System.out.println( password("20220051").toUpperCase());
+    }
+
 }

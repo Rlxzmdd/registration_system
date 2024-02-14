@@ -3,6 +3,7 @@ package com.withmore.event.todo.service.impl;
 import cn.hutool.core.convert.Convert;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.common.utils.JsonResultS;
@@ -27,6 +28,7 @@ import com.withmore.event.todo.vo.todonotice.TodoNoticeInfoVo;
 import com.withmore.event.todo.vo.todonotice.TodoNoticeListVo;
 import com.javaweb.common.utils.DateUtils;
 import com.javaweb.common.utils.JsonResult;
+import com.withmore.resource.img.vo.resourceimg.ImagePair;
 import com.withmore.user.permission.entity.PermissionNode;
 import com.withmore.user.permission.utils.PermissionConvert;
 import org.springframework.beans.BeanUtils;
@@ -79,7 +81,10 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
         // 获取数据列表
         IPage<TodoNotice> page = new Page<>(todoNoticeQuery.getPage(), todoNoticeQuery.getLimit());
         IPage<TodoNotice> pageData = todoNoticeMapper.selectPage(page, queryWrapper);
-        pageData.convert(x -> Convert.convert(TodoNoticeListVo.class, x));
+        pageData.convert(x -> {
+            TodoNoticeListVo todoNoticeListVo = Convert.convert(TodoNoticeListVo.class, x);
+            return todoNoticeListVo;
+        });
         return JsonResult.success(pageData);
     }
 
@@ -189,25 +194,32 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
                                 .publisher(dto.getPublisher())
                                 .releaseTime(dto.getReleaseTime())
                                 .images(new ArrayList<>())
+                                .permissionId(new HashSet<>())
                                 .id(dto.getId())
                                 .build()
                 );
             }
-            filter.get(dto.getId())
-                    .getImages()
-                    .add(dto.getUrl());
+            if (dto.getUrl() != null) {
+                filter.get(dto.getId())
+                        .getImages()
+                        .add(ImagePair
+                                .builder()
+                                .url(dto.getUrl())
+                                .uuid(dto.getUuid())
+                                .build());
+                filter.get(dto.getId())
+                        .getPermissionId()
+                        .add(dto.getPermissionId());
+            }
         }
         List<TodoNoticeDetailsVo> values = new ArrayList<>(filter.values());
-        values.sort(new Comparator<TodoNoticeDetailsVo>() {
-            @Override
-            public int compare(TodoNoticeDetailsVo o1, TodoNoticeDetailsVo o2) {
-                if (o1.getReleaseTime().before(o2.getReleaseTime())) {
-                    return 1;
-                } else if (o1.getReleaseTime().equals(o2.getReleaseTime())) {
-                    return 0;
-                }
-                return -1;
+        values.sort((o1, o2) -> {
+            if (o1.getReleaseTime().before(o2.getReleaseTime())) {
+                return 1;
+            } else if (o1.getReleaseTime().equals(o2.getReleaseTime())) {
+                return 0;
             }
+            return -1;
         });
         return PageUtil.getPages(baseQuery, values);
     }
@@ -226,13 +238,85 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
 
     @Override
     public JsonResultS myself(BaseQuery baseQuery, AuthToken2CredentialDto dto) {
-        //PermissionNode node = PermissionConvert.convert2Node(dto);
-//        if (node == null) {
-//            return JsonResultS.error(ResultCodeEnum.USER_ERROR_A0305);
-//        }
-        List<NoticeDetailsDto> detailsList = todoNoticeMapper.getTodoNoticeDetailsListByMyself(dto, Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
-        IPage<TodoNoticeDetailsVo> details = filterDetails(detailsList, baseQuery);
+        List<NoticeDetailsDto> details = todoNoticeMapper.getTodoNoticeMyselfPush(dto.getNumber(), dto.getType());
+        IPage<TodoNoticeDetailsVo> detailsVoIPage = filterDetails(details, baseQuery);
+        return JsonResultS.success(detailsVoIPage);
+    }
 
-        return JsonResultS.success(details);
+    @Override
+    public JsonResultS delById(Integer id, AuthToken2CredentialDto dto) {
+        UpdateWrapper<TodoNotice> wrapper = new UpdateWrapper<>();
+        wrapper.eq("mark", 1);
+        wrapper.eq("id", id);
+        wrapper.eq("initiator_number", dto.getNumber());
+        wrapper.eq("initiator_type", dto.getType());
+        wrapper.set("mark", 0);
+        int row = todoNoticeMapper.update(new TodoNotice(), wrapper);
+        if (row > 0) {
+            return JsonResultS.success();
+        } else {
+            return JsonResultS.error("通知可能已被删除");
+        }
+    }
+
+    @Override
+    @DS("registration") /*使用事务的方法必须单独指定方法查询的DataBase*/
+    @Transactional
+    public JsonResultS editById(Integer id, NoticePushDto notice, AuthToken2CredentialDto dto) {
+        QueryWrapper<TodoNotice> wrapper = new QueryWrapper<>();
+        wrapper.eq("mark", 1);
+        wrapper.eq("id", id);
+        wrapper.eq("initiator_number", dto.getNumber());
+        wrapper.eq("initiator_type", dto.getType());
+        TodoNotice todoNotice = todoNoticeMapper.selectOne(wrapper);
+        if (todoNotice == null) {
+            return JsonResultS.error(ResultCodeEnum.NOTICE_NOT_EXISTS);
+        }
+        todoNotice
+                .setContent(notice.getContent())
+                .setIsShow(notice.getIsShow())
+                .setTitle(notice.getTitle())
+                .setUpdateTime(new Date());
+
+        QueryWrapper<TodoNoticeImg> todoNoticeImgQueryWrapper = new QueryWrapper<>();
+        todoNoticeImgQueryWrapper.eq("mark", 1);
+        todoNoticeImgQueryWrapper.eq("notice_id", todoNotice.getId());
+        List<TodoNoticeImg> imgList = todoNoticeImgMapper.selectList(todoNoticeImgQueryWrapper);
+
+        List<String> source = new ArrayList<>();
+        for (TodoNoticeImg img : imgList) {
+            source.add(img.getUuid());
+        }
+
+        // 若是图片索引有出现修改
+        if (!source.equals(notice.getImages())) {
+            /*
+            失效通知素材索引
+             */
+            for (TodoNoticeImg img : imgList) {
+                UpdateWrapper<TodoNoticeImg> excludeUUIDWrapper = new UpdateWrapper<>();
+                excludeUUIDWrapper.eq("notice_id", todoNotice.getId());
+                excludeUUIDWrapper.eq("mark", 1);
+                excludeUUIDWrapper.eq("uuid", img.getUuid());
+                excludeUUIDWrapper.set("mark", 0);
+                todoNoticeImgMapper.update(new TodoNoticeImg(), excludeUUIDWrapper);
+            }
+            /*
+            为新修改的图片增加索引
+             */
+            for (String imgUUID : notice.getImages()) {
+                todoNoticeImgMapper.insert(new TodoNoticeImg()
+                        .setNoticeId(todoNotice.getId())
+                        .setUuid(imgUUID)
+                );
+            }
+        }
+
+        int row = todoNoticeMapper.updateById(todoNotice);
+        if (row > 0) {
+            return JsonResultS.success();
+        } else {
+            return JsonResultS.error("通知更新失败");
+        }
     }
 }

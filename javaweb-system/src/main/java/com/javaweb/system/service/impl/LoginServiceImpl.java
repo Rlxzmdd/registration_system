@@ -200,14 +200,14 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.not.exists")));
             throw new UserNotExistsException();
         }
-//        // 判断用户状态
-//        if (user.getStatus() != 1) {
-//            AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.blocked")));
-//            throw new LockedAccountException();
-//        }
+        // 判断用户状态
+        if (user.getStatus() != 1) {
+            AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.blocked")));
+            throw new LockedAccountException();
+        }
+
         // 创建登录日志
-//        AsyncManager.me().execute(AsyncFactory.recordLogininfor("admin", Constants.LOGIN_SUCCESS, MessageUtils.message("user.login.success")));
-        AsyncManager.me().execute(AsyncFactory.recordLogininfor("admin", Constants.LOGIN_SUCCESS, "user.login.success"));
+        AsyncManager.me().execute(AsyncFactory.recordLogininfor("admin", Constants.LOGIN_SUCCESS, MessageUtils.message("user.login.success")));
         return user;
     }
 
