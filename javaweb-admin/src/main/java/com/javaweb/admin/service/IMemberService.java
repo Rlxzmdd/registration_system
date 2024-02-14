@@ -23,5 +23,4 @@ import com.javaweb.system.common.IBaseService;
  * @since 2020-11-04
  */
 public interface IMemberService extends IBaseService<Member> {
-
 }

@@ -79,10 +79,7 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
         // 获取数据列表
         IPage<TodoNotice> page = new Page<>(todoNoticeQuery.getPage(), todoNoticeQuery.getLimit());
         IPage<TodoNotice> pageData = todoNoticeMapper.selectPage(page, queryWrapper);
-        pageData.convert(x -> {
-            TodoNoticeListVo todoNoticeListVo = Convert.convert(TodoNoticeListVo.class, x);
-            return todoNoticeListVo;
-        });
+        pageData.convert(x -> Convert.convert(TodoNoticeListVo.class, x));
         return JsonResult.success(pageData);
     }
 
@@ -222,6 +219,18 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
             return JsonResultS.error(ResultCodeEnum.USER_ERROR_A0305);
         }
         List<NoticeDetailsDto> detailsList = todoNoticeMapper.getTodoNoticeDetailsList(node, Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
+        IPage<TodoNoticeDetailsVo> details = filterDetails(detailsList, baseQuery);
+
+        return JsonResultS.success(details);
+    }
+
+    @Override
+    public JsonResultS myself(BaseQuery baseQuery, AuthToken2CredentialDto dto) {
+        //PermissionNode node = PermissionConvert.convert2Node(dto);
+//        if (node == null) {
+//            return JsonResultS.error(ResultCodeEnum.USER_ERROR_A0305);
+//        }
+        List<NoticeDetailsDto> detailsList = todoNoticeMapper.getTodoNoticeDetailsListByMyself(dto, Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
         IPage<TodoNoticeDetailsVo> details = filterDetails(detailsList, baseQuery);
 
         return JsonResultS.success(details);

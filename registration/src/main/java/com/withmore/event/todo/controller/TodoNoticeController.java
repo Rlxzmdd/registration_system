@@ -136,4 +136,18 @@ public class TodoNoticeController extends BaseController {
         return todoNoticeService.list(baseQuery, dto);
     }
 
+
+    /**
+     * 小程序用户查询自己发布的通知
+     *
+     * @param baseQuery 分页参数
+     * @param token     用户Token
+     * @return
+     */
+
+    @GetMapping("/query/myself")
+    public JsonResultS myself(BaseQuery baseQuery, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
+        return todoNoticeService.myself(baseQuery, dto);
+    }
 }

@@ -46,4 +46,13 @@ public interface ITodoNoticeService extends IBaseService<TodoNotice> {
      * @return
      */
     JsonResultS list(BaseQuery baseQuery, AuthToken2CredentialDto dto);
+
+    /**
+     * 小程序用户获取自己发布的通知
+     * @param baseQuery
+     * @param dto
+     * @return
+     */
+    JsonResultS myself(BaseQuery baseQuery, AuthToken2CredentialDto dto);
+
 }
