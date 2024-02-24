@@ -8,16 +8,16 @@
 // | 作者: 鲲鹏 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
-package com.withmore.event.form.constan;
+package com.withmore.event.form.constant;
 
 /**
  * <p>
- * 审核通知表 模块常量
+ * 待办事项-表单审核状态表 模块常量
  * </p>
  *
  * @author Cheney
- * @since 2021-08-07
+ * @since 2021-07-20
  */
-public class FormAuditNoticeConstant {
+public class FormAuditConstant {
 
 }

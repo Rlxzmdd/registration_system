@@ -23,7 +23,7 @@ import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.common.utils.PageUtil;
-import com.withmore.event.form.constan.FormCurrentStatus;
+import com.withmore.event.form.constant.FormCurrentStatus;
 import com.withmore.event.form.dto.FormPushParamDto;
 import com.withmore.event.form.dto.FormSpecifiedUserDto;
 import com.withmore.event.form.entity.Form;

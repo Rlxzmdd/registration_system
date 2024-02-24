@@ -13,11 +13,10 @@ package com.withmore.event.form.entity;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.javaweb.system.common.BaseEntity;
-import com.withmore.event.form.constan.FormAvailableStatus;
+import com.withmore.event.form.constant.FormAvailableStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

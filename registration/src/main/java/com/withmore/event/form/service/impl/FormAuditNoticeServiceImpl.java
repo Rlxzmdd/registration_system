@@ -21,7 +21,7 @@ import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.common.utils.PageUtil;
-import com.withmore.event.form.constan.FormAuditNoticeStatus;
+import com.withmore.event.form.constant.FormAuditNoticeStatus;
 import com.withmore.event.form.dto.FormAuditNoticeParamDto;
 import com.withmore.event.form.entity.FormAuditNotice;
 import com.withmore.event.form.mapper.FormAuditNoticeMapper;

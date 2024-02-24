@@ -2,7 +2,7 @@ package com.withmore.event.form.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.withmore.event.form.constan.FormAuditNoticeStatus;
+import com.withmore.event.form.constant.FormAuditNoticeStatus;
 import com.withmore.event.form.entity.FormItem;
 import com.withmore.event.form.vo.formItem.FormDataItemStatusVO;
 import com.withmore.event.form.vo.formItem.FormDataItemVo;

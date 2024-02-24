@@ -1,7 +1,7 @@
 package com.withmore.event.form.vo.form;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.withmore.event.form.constan.FormAvailableStatus;
+import com.withmore.event.form.constant.FormAvailableStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;

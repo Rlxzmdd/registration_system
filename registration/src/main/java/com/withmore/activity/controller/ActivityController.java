@@ -155,7 +155,7 @@ public class ActivityController extends BaseController {
             return result;
         }
         List<ActivityExamineVo> ExamineInfoVoList = (List<ActivityExamineVo>) result.getData();
-        ExcelUtils<ActivityExamineVo> excelUtils = new ExcelUtils<ActivityExamineVo>(ActivityExamineVo.class);
+        ExcelUtils<ActivityExamineVo> excelUtils = new ExcelUtils<>(ActivityExamineVo.class);
         return JsonResultS.success(excelUtils.exportExcel(ExamineInfoVoList, "核销名单").getData());
 
     }

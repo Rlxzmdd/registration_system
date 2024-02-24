@@ -77,13 +77,13 @@
         LEFT JOIN user_teacher AS tch ON tch.tch_number=notice.reviewer_number AND notice.reviewer_type='teacher'
         <where>
             item.submit_number='${number}' AND item.user_type='${type}'
-            <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_WAIT">
+            <if test="status == @com.withmore.event.form.constant.FormAuditNoticeStatus@FORM_AUDIT_WAIT">
                 AND notice.audit_id IS NULL
             </if>
-            <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_EXCEPTION">
+            <if test="status == @com.withmore.event.form.constant.FormAuditNoticeStatus@FORM_AUDIT_EXCEPTION">
                 AND (notice.audit_id IS NOT NULL AND audit.is_through = 0)
             </if>
-            <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_OTHER">
+            <if test="status == @com.withmore.event.form.constant.FormAuditNoticeStatus@FORM_AUDIT_OTHER">
                 AND (notice.audit_id IS NOT NULL AND audit.is_through = 1)
             </if>
         </where>

@@ -14,7 +14,7 @@ import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.withmore.event.form.constan.FormAuditNoticeStatus;
+import com.withmore.event.form.constant.FormAuditNoticeStatus;
 import com.withmore.event.form.dto.FormAuditNoticeTranDto;
 import com.withmore.event.form.entity.FormAuditNotice;
 import com.withmore.event.form.vo.formAuditNotice.FormAuditNoticeSimpleVo;

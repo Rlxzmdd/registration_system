@@ -1,4 +1,4 @@
-package com.withmore.event.form.constan;
+package com.withmore.event.form.constant;
 
 import java.util.Date;
 

@@ -62,7 +62,7 @@ public class JwtUtil {
     /**
      * 获取Token Payload 中的用户类型
      *
-     * @param token
+     * @param token 用户Token
      */
     public String getUserType(String token) {
         if (StringUtils.startsWithIgnoreCase(token, "Bearer ")) {

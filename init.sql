@@ -1109,7 +1109,7 @@ values (2101001, 'student'), #1
        (2101002, 'student'), #2
        (2101003, 'student'), #3
        ('COUNS001', 'teacher'), #4
-       ('COUNS001', 'teacher'); #4
+       ('COUNS001', 'teacher'); #5
 
 -- 审核策略
 insert into event_reviewer_strategy(form_key, strategy, strategy_value, reviewer_id)

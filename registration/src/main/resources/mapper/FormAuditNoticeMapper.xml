@@ -26,13 +26,13 @@
         LEFT JOIN entity_classes AS cla ON cla.id = stu.classes_id
         WHERE an.reviewer_number = '${number}'
         AND an.reviewer_type = '${type}'
-        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_WAIT">
+        <if test="status == @com.withmore.event.form.constant.FormAuditNoticeStatus@FORM_AUDIT_WAIT">
             AND an.audit_id IS NULL
         </if>
-        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_EXCEPTION">
+        <if test="status == @com.withmore.event.form.constant.FormAuditNoticeStatus@FORM_AUDIT_EXCEPTION">
             AND (an.audit_id IS NOT NULL AND fa.is_through = 0)
         </if>
-        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_OTHER">
+        <if test="status == @com.withmore.event.form.constant.FormAuditNoticeStatus@FORM_AUDIT_OTHER">
             AND (an.audit_id IS NOT NULL AND fa.is_through = 1)
         </if>
         )
@@ -70,13 +70,13 @@
         WHERE an.reviewer_number = '${number}'
         AND an.reviewer_type = '${type}'
         AND an.form_key = '${formKey}'
-        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_WAIT">
+        <if test="status == @com.withmore.event.form.constant.FormAuditNoticeStatus@FORM_AUDIT_WAIT">
             AND an.audit_id IS NULL
         </if>
-        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_EXCEPTION">
+        <if test="status == @com.withmore.event.form.constant.FormAuditNoticeStatus@FORM_AUDIT_EXCEPTION">
             AND (an.audit_id IS NOT NULL AND fa.is_through = 0)
         </if>
-        <if test="status == @com.withmore.event.todo.constant.FormAuditNoticeStatus@FORM_AUDIT_OTHER">
+        <if test="status == @com.withmore.event.form.constant.FormAuditNoticeStatus@FORM_AUDIT_OTHER">
             AND (an.audit_id IS NOT NULL AND fa.is_through = 1)
         </if>
     </select>

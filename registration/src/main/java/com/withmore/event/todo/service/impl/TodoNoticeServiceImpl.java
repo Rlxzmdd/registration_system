@@ -155,7 +155,7 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
         if (isExists(notice.getTitle(), notice.getInitiatorNumber(), notice.getInitiatorType())) {
             return JsonResultS.error(ResultCodeEnum.NOTICE_REPEAT);
         }
-        todoNoticeMapper.insert((TodoNotice) notice);
+        todoNoticeMapper.insert(notice);
         // 创建公告图片关联
         for (String uuid :
                 notice.getImages()) {

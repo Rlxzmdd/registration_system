@@ -1,7 +1,7 @@
 package com.withmore.event.form.vo.formItem;
 
 import com.javaweb.system.common.BaseQuery;
-import com.withmore.event.form.constan.FormAuditNoticeStatus;
+import com.withmore.event.form.constant.FormAuditNoticeStatus;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

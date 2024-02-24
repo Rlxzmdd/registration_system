@@ -8,7 +8,7 @@
 // | 作者: 鲲鹏 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
-package com.withmore.event.form.constan;
+package com.withmore.event.form.constant;
 
 /**
  * <p>

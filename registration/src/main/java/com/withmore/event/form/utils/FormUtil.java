@@ -2,8 +2,8 @@ package com.withmore.event.form.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.withmore.common.dto.AuthToken2CredentialDto;
-import com.withmore.event.form.constan.FormAvailableStatus;
-import com.withmore.event.form.constan.FormCurrentStatus;
+import com.withmore.event.form.constant.FormAvailableStatus;
+import com.withmore.event.form.constant.FormCurrentStatus;
 import com.withmore.event.form.dto.FormSubmitStatusDto;
 import com.withmore.event.form.mapper.FormMapper;
 import com.withmore.event.form.vo.form.FormSimpleListVo;
