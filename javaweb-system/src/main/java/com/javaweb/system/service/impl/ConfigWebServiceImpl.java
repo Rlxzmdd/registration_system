@@ -16,7 +16,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 @Service
@@ -30,7 +29,6 @@ public class ConfigWebServiceImpl implements IConfigWebService {
     /**
      * 获取配置列表
      *
-     * @return
      */
     @Override
     public JsonResult getList() {
@@ -98,7 +96,6 @@ public class ConfigWebServiceImpl implements IConfigWebService {
      * 保存表单信息
      *
      * @param info 表单信息
-     * @return
      */
     @Override
     public JsonResult edit(Map<String, Object> info) {

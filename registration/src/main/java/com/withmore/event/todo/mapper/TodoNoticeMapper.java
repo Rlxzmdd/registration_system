@@ -11,9 +11,9 @@
 package com.withmore.event.todo.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.withmore.event.todo.dto.NoticeDetailsDto;
 import com.withmore.event.todo.entity.TodoNotice;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.withmore.user.permission.entity.PermissionNode;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -42,7 +42,6 @@ public interface TodoNoticeMapper extends BaseMapper<TodoNotice> {
      *
      * @param number 推送用户
      * @param type   用户类型
-     * @return
      */
     List<NoticeDetailsDto> getTodoNoticeMyselfPush(@Param("number") String number,
                                                    @Param("type") String type);

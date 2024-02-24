@@ -10,8 +10,8 @@
 
 package com.javaweb.generator.mapper;
 
-import com.javaweb.generator.entity.GenTableColumn;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.javaweb.generator.entity.GenTableColumn;
 
 import java.util.List;
 
@@ -29,7 +29,6 @@ public interface GenTableColumnMapper extends BaseMapper<GenTableColumn> {
      * 根据表名查询列信息
      *
      * @param tableName 数据表名
-     * @return
      */
     List<GenTableColumn> selectDbTableColumnsByName(String tableName);
 
@@ -37,7 +36,6 @@ public interface GenTableColumnMapper extends BaseMapper<GenTableColumn> {
      * 插入数据表列
      *
      * @param TableColumn 数据表列
-     * @return
      */
     int insertGenTableColumn(GenTableColumn TableColumn);
 
@@ -45,7 +43,6 @@ public interface GenTableColumnMapper extends BaseMapper<GenTableColumn> {
      * 获取表字段列表
      *
      * @param tableId 表ID
-     * @return
      */
     List<GenTableColumn> selectGenTableColumnListByTableId(Integer tableId);
 
@@ -53,7 +50,6 @@ public interface GenTableColumnMapper extends BaseMapper<GenTableColumn> {
      * 修改业务表字段
      *
      * @param TableColumn 表字段
-     * @return
      */
     int updateGenTableColumn(GenTableColumn TableColumn);
 

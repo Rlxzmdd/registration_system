@@ -10,7 +10,9 @@
 
 package com.withmore.user.student.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.javaweb.system.common.BaseQuery;
@@ -21,8 +23,6 @@ import com.withmore.user.student.query.StudentListQuery;
 import com.withmore.user.student.query.StudentQuery;
 import com.withmore.user.student.query.StudentSimpleQuery;
 import com.withmore.user.student.service.IStudentService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -50,7 +50,6 @@ public class StudentController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:student:index")
     @GetMapping("/index")
@@ -62,7 +61,6 @@ public class StudentController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "学生信息表", logType = LogType.INSERT)
     @RequiresPermissions("sys:student:add")
@@ -75,7 +73,6 @@ public class StudentController extends BaseController {
      * 获取详情
      *
      * @param studentId 记录ID
-     * @return
      */
     @GetMapping("/info/{studentId}")
     public JsonResult info(@PathVariable("studentId") Integer studentId) {
@@ -86,7 +83,6 @@ public class StudentController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "学生信息表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:student:edit")
@@ -99,7 +95,6 @@ public class StudentController extends BaseController {
      * 删除记录
      *
      * @param studentIds 记录ID
-     * @return
      */
     @Log(title = "学生信息表", logType = LogType.DELETE)
     @RequiresPermissions("sys:student:drop")
@@ -112,7 +107,6 @@ public class StudentController extends BaseController {
      * 获取学生详情信息
      *
      * @param token 用户Token
-     * @return
      */
     @GetMapping("/query/detail")
     public JsonResultS detail(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -124,7 +118,6 @@ public class StudentController extends BaseController {
      * 获取学生简略信息
      *
      * @param token
-     * @return
      */
     @GetMapping("/query/simple")
     public JsonResultS simple(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -138,7 +131,6 @@ public class StudentController extends BaseController {
      *
      * @param baseQuery 分页参数
      * @param token     用户Token
-     * @return
      */
     @RequiresPermissions("sys:student:index")
     @GetMapping("/query/list")
@@ -151,7 +143,6 @@ public class StudentController extends BaseController {
      * 搜索指定学号的学生的简略信息
      *
      * @param param 学生学号/学生姓名(模糊匹配)
-     * @return
      */
     // @RequiresPermissions("sys:student:index")
     @GetMapping("/find/simple")
@@ -165,7 +156,6 @@ public class StudentController extends BaseController {
      *
      * @param baseQuery 筛选参数
      * @param token     用户Token
-     * @return
      */
     @RequiresPermissions("sys:student:index")
     @GetMapping("/find/list")
@@ -179,7 +169,6 @@ public class StudentController extends BaseController {
      *
      * @param stuNumber 学生学号
      * @param token     用户Token
-     * @return
      */
     @RequiresPermissions("sys:student:index")
     @GetMapping("/find/detail/{stuNumber}")

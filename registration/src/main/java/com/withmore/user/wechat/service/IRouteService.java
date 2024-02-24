@@ -10,10 +10,9 @@
 
 package com.withmore.user.wechat.service;
 
-import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
-import com.withmore.user.wechat.entity.Route;
 import com.javaweb.system.common.IBaseService;
+import com.withmore.user.wechat.entity.Route;
 import com.withmore.user.wechat.query.RoleRouteQuery;
 
 /**
@@ -28,9 +27,6 @@ public interface IRouteService extends IBaseService<Route> {
 
     /**
      * 查询角色路由
-     *
-     * @param role 角色名称
-     * @return
      */
     JsonResultS queryRoleRoute(RoleRouteQuery query);
 }

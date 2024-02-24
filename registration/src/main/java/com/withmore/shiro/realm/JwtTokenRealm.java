@@ -4,10 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.javaweb.common.utils.ResultCodeEnum;
 import com.javaweb.common.utils.StringUtils;
 import com.javaweb.system.shiro.Token.WechatUserRequestToken;
-import com.withmore.shiro.principal.WechatProgramUserPrincipal;
-import com.withmore.user.role.mapper.WechatMiniProgramRoleMapper;
 import com.withmore.common.constant.Constant;
 import com.withmore.common.utils.JwtUtil;
+import com.withmore.shiro.principal.WechatProgramUserPrincipal;
+import com.withmore.user.role.mapper.WechatMiniProgramRoleMapper;
 import com.withmore.user.student.entity.Student;
 import com.withmore.user.student.service.IStudentService;
 import com.withmore.user.teacher.entity.Teacher;
@@ -47,7 +47,6 @@ public class JwtTokenRealm extends AuthorizingRealm {
      * 授权
      *
      * @param principals
-     * @return
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -68,7 +67,6 @@ public class JwtTokenRealm extends AuthorizingRealm {
      * 认证用户的Token
      *
      * @param token 用户认证Token ，类型为WechatStudentUserRequestToken
-     * @return
      * @throws AuthenticationException
      */
     @Override

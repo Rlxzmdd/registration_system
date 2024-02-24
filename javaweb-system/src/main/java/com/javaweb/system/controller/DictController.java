@@ -41,7 +41,6 @@ public class DictController extends BaseController {
      * 获取字典列表
      *
      * @param dictQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:dictionary:index")
     @GetMapping("/index")
@@ -53,7 +52,6 @@ public class DictController extends BaseController {
      * 添加字典
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "字典分组", logType = LogType.INSERT)
     @RequiresPermissions("sys:dictionary:add")
@@ -66,7 +64,6 @@ public class DictController extends BaseController {
      * 编辑字典
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "字典分组", logType = LogType.UPDATE)
     @RequiresPermissions("sys:dictionary:edit")
@@ -79,7 +76,6 @@ public class DictController extends BaseController {
      * 删除字典
      *
      * @param dicTypeId 字典ID
-     * @return
      */
     @Log(title = "字典分组", logType = LogType.DELETE)
     @RequiresPermissions("sys:dictionary:delete")

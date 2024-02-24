@@ -15,6 +15,7 @@ import com.javaweb.common.annotation.Log;
 import com.javaweb.common.config.CommonConfig;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.dto.ResetPwdDto;
 import com.javaweb.system.entity.User;
 import com.javaweb.system.query.UserQuery;
@@ -22,8 +23,6 @@ import com.javaweb.system.service.IUserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -44,7 +43,6 @@ public class UserController extends BaseController {
      * 获取用户列表
      *
      * @param userQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:user:index")
     @GetMapping("/index")
@@ -56,7 +54,6 @@ public class UserController extends BaseController {
      * 添加用户
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "用户管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:user:add")
@@ -69,7 +66,6 @@ public class UserController extends BaseController {
      * 编辑用户
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "用户管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:user:edit")
@@ -82,7 +78,6 @@ public class UserController extends BaseController {
      * 删除用户
      *
      * @param userIds 用户ID
-     * @return
      */
     @Log(title = "用户管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:user:delete")
@@ -98,7 +93,6 @@ public class UserController extends BaseController {
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "用户管理", logType = LogType.STATUS)
     @RequiresPermissions("sys:user:status")
@@ -114,7 +108,6 @@ public class UserController extends BaseController {
      * 重置密码
      *
      * @param resetPwdDto 参数
-     * @return
      */
     @Log(title = "用户管理", logType = LogType.RESETPWD)
     @RequiresPermissions("sys:user:resetPwd")

@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.Link;
 import com.javaweb.system.query.LinkQuery;
 import com.javaweb.system.service.ILinkService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class LinkController extends BaseController {
      * 获取友链列表
      *
      * @param linkQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:link:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class LinkController extends BaseController {
      * 添加友链
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "友链管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:link:add")
@@ -67,7 +64,6 @@ public class LinkController extends BaseController {
      * 编辑友链
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "友链管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:link:edit")
@@ -80,7 +76,6 @@ public class LinkController extends BaseController {
      * 删除友链
      *
      * @param linkIds 友链ID
-     * @return
      */
     @Log(title = "友链管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:link:delete")
@@ -93,7 +88,6 @@ public class LinkController extends BaseController {
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "友链管理", logType = LogType.STATUS)
     @RequiresPermissions("sys:link:status")

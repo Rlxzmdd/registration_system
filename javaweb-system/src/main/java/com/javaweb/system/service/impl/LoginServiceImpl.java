@@ -13,7 +13,10 @@ package com.javaweb.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.javaweb.common.exception.user.UserNotExistsException;
-import com.javaweb.common.utils.*;
+import com.javaweb.common.utils.JsonResult;
+import com.javaweb.common.utils.MessageUtils;
+import com.javaweb.common.utils.RedisUtils;
+import com.javaweb.common.utils.VerifyUtil;
 import com.javaweb.system.constant.Constants;
 import com.javaweb.system.dto.LoginDto;
 import com.javaweb.system.entity.User;
@@ -32,7 +35,9 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * <p>
@@ -56,7 +61,6 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
      * 获取验证码
      *
      * @param response 请求响应
-     * @return
      */
     @Override
     public JsonResult captcha(HttpServletResponse response) {
@@ -87,7 +91,6 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
      * 用户登录
      *
      * @param loginDto 登录Dto
-     * @return
      */
     @Override
     public JsonResult login(LoginDto loginDto, HttpServletRequest request) {
@@ -138,7 +141,6 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
     /**
      * 退出登录
      *
-     * @return
      */
     @Override
     public JsonResult logout() {
@@ -155,7 +157,6 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
      * 根据用户名获取用户对象
      *
      * @param username 名称
-     * @return
      */
     @Override
     public User getUserByName(String username) {
@@ -171,7 +172,6 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
      *
      * @param username 用户名
      * @param password 密码
-     * @return
      */
     @Override
     public User login(String username, String password) {

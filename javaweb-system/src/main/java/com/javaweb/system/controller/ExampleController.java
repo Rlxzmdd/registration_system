@@ -10,13 +10,13 @@
 
 package com.javaweb.system.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.Example;
 import com.javaweb.system.query.ExampleQuery;
 import com.javaweb.system.service.IExampleService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +40,6 @@ public class ExampleController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:example:index")
     @GetMapping("/index")
@@ -52,7 +51,6 @@ public class ExampleController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "演示案例表", logType = LogType.INSERT)
     @RequiresPermissions("sys:example:add")
@@ -65,7 +63,6 @@ public class ExampleController extends BaseController {
      * 获取详情
      *
      * @param exampleId 记录ID
-     * @return
      */
     @GetMapping("/info/{exampleId}")
     public JsonResult info(@PathVariable("exampleId") Integer exampleId) {
@@ -76,7 +73,6 @@ public class ExampleController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "演示案例表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:example:edit")
@@ -89,7 +85,6 @@ public class ExampleController extends BaseController {
      * 删除记录
      *
      * @param exampleIds 记录ID
-     * @return
      */
     @Log(title = "演示案例表", logType = LogType.DELETE)
     @RequiresPermissions("sys:example:drop")
@@ -102,7 +97,6 @@ public class ExampleController extends BaseController {
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "演示案例表", logType = LogType.STATUS)
     @RequiresPermissions("sys:example:status")

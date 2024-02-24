@@ -11,7 +11,6 @@
 package com.javaweb.admin.service;
 
 import com.javaweb.admin.entity.MemberLevel;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.IBaseService;
 
@@ -28,7 +27,6 @@ public interface IMemberLevelService extends IBaseService<MemberLevel> {
     /**
      * 获取会员等级列表
      *
-     * @return
      */
     JsonResult getMemberLevelList();
 

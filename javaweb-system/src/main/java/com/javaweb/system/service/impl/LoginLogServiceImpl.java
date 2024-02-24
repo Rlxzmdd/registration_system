@@ -42,7 +42,6 @@ public class LoginLogServiceImpl extends BaseServiceImpl<LoginLogMapper, LoginLo
      * 获取登录日志列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {

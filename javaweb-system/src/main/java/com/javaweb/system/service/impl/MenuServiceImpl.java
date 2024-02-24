@@ -51,7 +51,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
      * 获取菜单列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -92,7 +91,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
      * 获取菜单详情
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -121,7 +119,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
      * 添加或编辑菜单
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Menu entity) {
@@ -366,7 +363,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
      * 获取导航菜单
      *
      * @param userId 用户ID
-     * @return
      */
     @Override
     public List<Menu> getMenuList(Integer userId) {
@@ -389,7 +385,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
      * 根据父级ID获取子级菜单
      *
      * @param pid 上级ID
-     * @return
      */
     public List<Menu> getChildrenMenuAll(Integer pid) {
         QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
@@ -414,7 +409,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
      *
      * @param userId 用户ID
      * @param pid    上级ID
-     * @return
      */
     public List<Menu> getChildrenMenuByPid(Integer userId, Integer pid) {
         List<Menu> menuList = menuMapper.getPermissionsListByUserId(userId, pid);
@@ -430,7 +424,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
     /**
      * 获取所有菜单列表
      *
-     * @return
      */
     @Override
     public List<Menu> getMenuAll() {
@@ -447,7 +440,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
      * 获取权限节点列表
      *
      * @param userId 用户ID
-     * @return
      */
     @Override
     public List<String> getPermissionList(Integer userId) {

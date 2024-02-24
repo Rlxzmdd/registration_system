@@ -24,8 +24,6 @@ import com.javaweb.system.common.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * <p>
  * 会员级别表 服务实现类
@@ -44,7 +42,6 @@ public class MemberLevelServiceImpl extends BaseServiceImpl<MemberLevelMapper, M
      * 获取会员等级列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -67,7 +64,6 @@ public class MemberLevelServiceImpl extends BaseServiceImpl<MemberLevelMapper, M
     /**
      * 获取会员等级列表
      *
-     * @return
      */
     @Override
     public JsonResult getMemberLevelList() {

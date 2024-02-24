@@ -11,8 +11,8 @@
 package com.withmore.user.wechat.service;
 
 import com.javaweb.common.utils.JsonResultS;
-import com.withmore.user.wechat.entity.Mapper;
 import com.javaweb.system.common.IBaseService;
+import com.withmore.user.wechat.entity.Mapper;
 
 /**
  * <p>
@@ -26,7 +26,6 @@ public interface IMapperService extends IBaseService<Mapper> {
     /**
      * 获取KV 映射表
      *
-     * @return
      */
     JsonResultS simple();
 }

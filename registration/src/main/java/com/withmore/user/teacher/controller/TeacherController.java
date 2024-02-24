@@ -10,13 +10,13 @@
 
 package com.withmore.user.teacher.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.BaseController;
 import com.withmore.user.teacher.entity.Teacher;
 import com.withmore.user.teacher.query.TeacherQuery;
 import com.withmore.user.teacher.service.ITeacherService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +40,6 @@ public class TeacherController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:teacher:index")
     @GetMapping("/index")
@@ -52,7 +51,6 @@ public class TeacherController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "教师信息表", logType = LogType.INSERT)
     @RequiresPermissions("sys:teacher:add")
@@ -65,7 +63,6 @@ public class TeacherController extends BaseController {
      * 获取详情
      *
      * @param teacherId 记录ID
-     * @return
      */
     @GetMapping("/info/{teacherId}")
     public JsonResult info(@PathVariable("teacherId") Integer teacherId) {
@@ -76,7 +73,6 @@ public class TeacherController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "教师信息表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:teacher:edit")
@@ -89,7 +85,6 @@ public class TeacherController extends BaseController {
      * 删除记录
      *
      * @param teacherIds 记录ID
-     * @return
      */
     @Log(title = "教师信息表", logType = LogType.DELETE)
     @RequiresPermissions("sys:teacher:drop")

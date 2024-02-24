@@ -4,11 +4,9 @@ import cn.hutool.core.io.FastByteArrayOutputStream;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.StrUtil;
-import com.aliyun.oss.ClientConfiguration;
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
-import com.aliyun.oss.common.auth.DefaultCredentialProvider;
 import com.aliyun.oss.model.*;
 import com.withmore.common.dto.AliYunOSSDto;
 import lombok.Data;
@@ -94,7 +92,6 @@ public class AliYunOSSUtil {
      * @param file     上传文件
      * @param fileName 上传至OSS的文件完整路径，例：cf/abc.png
      *                 上传至根目录，例：abc.png
-     * @return
      */
     public AliYunOSSDto uploadFile(File file, String dirPath, String fileName) {
         // 文件流
@@ -113,7 +110,6 @@ public class AliYunOSSUtil {
      * @param file     上传文件
      * @param fileName 上传至OSS的文件完整路径，例：cf/abc.png
      *                 上传至根目录，例：abc.png
-     * @return
      */
     public AliYunOSSDto uploadFile(MultipartFile file, String dirPath, String fileName) {
         // 文件流
@@ -139,7 +135,6 @@ public class AliYunOSSUtil {
      * @param fileType    文件类型，例：png
      * @param fileName    上传至OSS的文件完整路径，例：cf/abc.png
      *                    上传至根目录，例：abc.png
-     * @return
      */
     public AliYunOSSDto uploadInputStream(InputStream inputStream, String fileType, String fileName) {
         if (inputStream == null) {
@@ -170,7 +165,6 @@ public class AliYunOSSUtil {
      * @param input
      * @param fileType
      * @param fileName
-     * @return
      */
     private AliYunOSSDto putFile(InputStream input, String fileType, String fileName) {
 
@@ -197,7 +191,6 @@ public class AliYunOSSUtil {
      * 根据文件名生成文件的访问地址（带过期时间）
      *
      * @param fileName
-     * @return
      */
     public String getOssUrl(String fileName) {
         // 生成过期时间
@@ -252,8 +245,7 @@ public class AliYunOSSUtil {
     /**
      * 根据文件名删除文件
      *
-     * @param fileName 需要删除的文件名
-     * @return boolean 是否删除成功
+     * @param fileName 需要删除的文件名 boolean 是否删除成功
      * 例如：4DB049D0604047989183CB68D76E969D.jpg
      */
     public boolean deleteFile(String fileName) {

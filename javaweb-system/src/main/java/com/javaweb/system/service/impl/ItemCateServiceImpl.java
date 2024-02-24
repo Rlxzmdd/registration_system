@@ -44,7 +44,6 @@ public class ItemCateServiceImpl extends BaseServiceImpl<ItemCateMapper, ItemCat
      * 获取栏目列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -71,7 +70,6 @@ public class ItemCateServiceImpl extends BaseServiceImpl<ItemCateMapper, ItemCat
      * 添加或编辑栏目
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(ItemCate entity) {

@@ -44,7 +44,6 @@ public class LinkServiceImpl extends BaseServiceImpl<LinkMapper, Link> implement
      * 获取友链列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -75,7 +74,6 @@ public class LinkServiceImpl extends BaseServiceImpl<LinkMapper, Link> implement
      * 添加或编辑
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Link entity) {
@@ -90,7 +88,6 @@ public class LinkServiceImpl extends BaseServiceImpl<LinkMapper, Link> implement
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult setStatus(Link entity) {

@@ -24,7 +24,6 @@ public class GlobalExceptionHandler {
      *
      * @param e
      * @param response
-     * @return
      */
     @ExceptionHandler(value = AuthenticationException.class)
     @ResponseBody
@@ -38,7 +37,6 @@ public class GlobalExceptionHandler {
      *
      * @param e
      * @param response
-     * @return
      */
     @ExceptionHandler(value = AuthorizationException.class)
     @ResponseBody
@@ -51,7 +49,6 @@ public class GlobalExceptionHandler {
      *
      * @param e
      * @param response
-     * @return
      */
     @ExceptionHandler(value = NullPointerException.class)
     @ResponseBody
@@ -65,7 +62,6 @@ public class GlobalExceptionHandler {
      *
      * @param e
      * @param response
-     * @return
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseBody

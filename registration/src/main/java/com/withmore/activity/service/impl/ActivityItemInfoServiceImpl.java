@@ -15,32 +15,28 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.javaweb.common.utils.*;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
+import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
-import com.withmore.activity.constant.ActivityItemInfoConstant;
 import com.withmore.activity.entity.ActivityItemInfo;
 import com.withmore.activity.entity.ActivityItemManageList;
 import com.withmore.activity.mapper.ActivityItemInfoMapper;
 import com.withmore.activity.mapper.ActivityItemManageListMapper;
 import com.withmore.activity.query.ActivityItemInfoQuery;
-import com.withmore.activity.query.ActivityManageListQuery;
 import com.withmore.activity.service.IActivityItemInfoService;
-import com.javaweb.system.utils.ShiroUtils;
 import com.withmore.activity.vo.activity.ActivityInfoManageVo;
-import com.withmore.activity.vo.activity.ActivityInfoVo;
 import com.withmore.activity.vo.activityiteminfo.ActivityItemInfoInfoVo;
 import com.withmore.activity.vo.activityiteminfo.ActivityItemInfoListVo;
 import com.withmore.common.constant.Constant;
 import com.withmore.common.dto.AuthToken2CredentialDto;
-import com.withmore.event.todo.entity.TodoNotice;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
-import java.util.*;
 
 /**
   * <p>
@@ -63,7 +59,6 @@ public class ActivityItemInfoServiceImpl extends BaseServiceImpl<ActivityItemInf
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -91,7 +86,6 @@ public class ActivityItemInfoServiceImpl extends BaseServiceImpl<ActivityItemInf
      * 获取跟用户有关的活动列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResultS getActivityList(AuthToken2CredentialDto dto, BaseQuery query) {
@@ -115,7 +109,6 @@ public class ActivityItemInfoServiceImpl extends BaseServiceImpl<ActivityItemInf
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -131,7 +124,6 @@ public class ActivityItemInfoServiceImpl extends BaseServiceImpl<ActivityItemInf
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(ActivityItemInfo entity) {
@@ -147,7 +139,6 @@ public class ActivityItemInfoServiceImpl extends BaseServiceImpl<ActivityItemInf
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(ActivityItemInfo entity) {
@@ -178,7 +169,6 @@ public class ActivityItemInfoServiceImpl extends BaseServiceImpl<ActivityItemInf
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     public JsonResultS push(AuthToken2CredentialDto dto, ActivityItemInfo entity) {
         if (entity.getId() != null && entity.getId() > 0) {

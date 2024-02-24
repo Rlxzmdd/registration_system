@@ -29,7 +29,6 @@ public class FormUtil {
 
     /**
      * 设置表单集合的填写状态,以及通过状态
-     *
      * @param simples 表单事项列表
      * @param dto     用户凭据
      */
@@ -55,7 +54,6 @@ public class FormUtil {
 
     /**
      * 设置表单状态至Vo 中
-     *
      * @param vo     VO
      * @param mapper 状态DTO映射对象
      */
@@ -73,8 +71,6 @@ public class FormUtil {
 
     /**
      * 设置TodoFormSimpleListVo 当前时间段所在的状态
-     *
-     * @param vo
      */
     public static void setFormStatus2Vo(FormSimpleListVo vo) {
         FormCurrentStatus status = getFormCurrentStatus(vo);
@@ -83,9 +79,7 @@ public class FormUtil {
 
     /**
      * 获取Form 当前时间段所在的状态
-     *
      * @param form 表单实体
-     * @return
      */
     public static <T extends FormAvailableStatus> FormCurrentStatus getFormCurrentStatus(T form) {
         Date date = new Date();

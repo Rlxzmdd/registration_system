@@ -10,8 +10,8 @@
 
 package com.javaweb.system.controller;
 
-import com.javaweb.system.common.BaseController;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.dto.LoginDto;
 import com.javaweb.system.service.ILoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,6 @@ public class LoginController extends BaseController {
      * 获取验证码
      *
      * @param response 网络请求
-     * @return
      */
     @GetMapping("/captcha")
     public JsonResult captcha(HttpServletResponse response) {
@@ -52,7 +51,6 @@ public class LoginController extends BaseController {
      *
      * @param loginDto 参数
      * @param request  网络请求
-     * @return
      */
     @PostMapping("/login")
     public JsonResult login(@RequestBody LoginDto loginDto, HttpServletRequest request) {
@@ -62,7 +60,6 @@ public class LoginController extends BaseController {
     /**
      * 退出登录
      *
-     * @return
      */
     @GetMapping("/logout")
     public JsonResult logout() {
@@ -72,7 +69,6 @@ public class LoginController extends BaseController {
     /**
      * 用户未登录
      *
-     * @return
      */
     @GetMapping("/un_auth")
     public JsonResult unAuth() {
@@ -82,7 +78,6 @@ public class LoginController extends BaseController {
     /**
      * 用户无权限
      *
-     * @return
      */
     @GetMapping("/unauthorized")
     public JsonResult unauthorized() {

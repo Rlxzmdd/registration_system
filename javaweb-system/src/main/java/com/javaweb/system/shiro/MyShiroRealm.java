@@ -12,11 +12,9 @@ package com.javaweb.system.shiro;
 
 import com.javaweb.common.exception.user.CaptchaException;
 import com.javaweb.common.exception.user.UserNotExistsException;
-import com.javaweb.system.entity.Menu;
 import com.javaweb.system.entity.User;
 import com.javaweb.system.mapper.MenuMapper;
 import com.javaweb.system.service.ILoginService;
-import com.javaweb.system.service.IMenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -46,7 +44,6 @@ public class MyShiroRealm extends AuthorizingRealm {
      * 授权权限
      *
      * @param principalCollection
-     * @return
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -76,7 +73,6 @@ public class MyShiroRealm extends AuthorizingRealm {
      * 身份认证
      *
      * @param authenticationToken
-     * @return
      * @throws AuthenticationException
      */
     @Override

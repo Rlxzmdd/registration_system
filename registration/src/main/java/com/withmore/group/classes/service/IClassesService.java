@@ -12,9 +12,9 @@ package com.withmore.group.classes.service;
 
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseQuery;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.group.classes.entity.Classes;
-import com.javaweb.system.common.IBaseService;
 
 /**
  * <p>
@@ -30,7 +30,6 @@ public interface IClassesService extends IBaseService<Classes> {
      *
      * @param baseQuery 分页参数
      * @param dto       用户凭据
-     * @return
      */
     JsonResultS list(BaseQuery baseQuery, AuthToken2CredentialDto dto);
 
@@ -39,7 +38,6 @@ public interface IClassesService extends IBaseService<Classes> {
      *
      * @param classesId 班级ID
      * @param dto       用户凭据
-     * @return
      */
     JsonResultS simple(Integer classesId, AuthToken2CredentialDto dto);
 
@@ -47,13 +45,11 @@ public interface IClassesService extends IBaseService<Classes> {
      * 根据班级ID 查询班级负责人联系方式
      *
      * @param id 班级ID
-     * @return
      */
     JsonResultS contact(String id);
 
     /**
      * 获取所有学院、专业、班级的字典
-     * @return
      */
     JsonResultS dict();
 }

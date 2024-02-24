@@ -12,7 +12,6 @@ package com.javaweb.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.javaweb.common.utils.JsonResult;
-import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.dto.ResetPwdDto;
 import com.javaweb.system.dto.UpdatePwdDto;
 import com.javaweb.system.dto.UpdateUserInfoDto;
@@ -33,7 +32,6 @@ public interface IUserService extends IService<User> {
      * 根据查询条件获取数据列表
      *
      * @param userQuery 查询条件
-     * @return
      */
     JsonResult getList(UserQuery userQuery);
 
@@ -41,7 +39,6 @@ public interface IUserService extends IService<User> {
      * 根据实体对象添加、编辑记录
      *
      * @param entity 实体对象
-     * @return
      */
     JsonResult edit(User entity);
 
@@ -49,7 +46,6 @@ public interface IUserService extends IService<User> {
      * 根据ID删除记录
      *
      * @param ids 记录ID
-     * @return
      */
     JsonResult deleteByIds(Integer[] ids);
 
@@ -57,14 +53,12 @@ public interface IUserService extends IService<User> {
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     JsonResult setStatus(User entity);
 
     /**
      * 获取用户信息
      *
-     * @return
      */
     JsonResult getUserInfo();
 
@@ -72,7 +66,6 @@ public interface IUserService extends IService<User> {
      * 修改密码
      *
      * @param updatePwdDto 参数
-     * @return
      */
     JsonResult updatePwd(UpdatePwdDto updatePwdDto);
 
@@ -80,7 +73,6 @@ public interface IUserService extends IService<User> {
      * 更新个人资料
      *
      * @param updateUserInfoDto 参数
-     * @return
      */
     JsonResult updateUserInfo(UpdateUserInfoDto updateUserInfoDto);
 
@@ -88,7 +80,6 @@ public interface IUserService extends IService<User> {
      * 重置密码
      *
      * @param resetPwdDto 参数
-     * @return
      */
     JsonResult resetPwd(ResetPwdDto resetPwdDto);
 }

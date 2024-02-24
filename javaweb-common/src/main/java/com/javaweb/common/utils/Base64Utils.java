@@ -11,6 +11,7 @@
 package com.javaweb.common.utils;
 
 import com.javaweb.common.config.UploadFileConfig;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,7 +30,6 @@ public class Base64Utils {
      *
      * @param baseImg Base64字符串
      * @param name    目录名称
-     * @return
      */
     public static String saveImg(String baseImg, String name) {
         //定义一个正则表达式的筛选规则，为了获取图片的类型
@@ -86,7 +86,6 @@ public class Base64Utils {
      *
      * @param baseImg base64字符串
      * @param rgex
-     * @return
      */
     public static String getSubUtilSimple(String baseImg, String rgex) {
         Pattern pattern = Pattern.compile(rgex);

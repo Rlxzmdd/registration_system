@@ -12,8 +12,8 @@ package com.javaweb.system.controller;
 
 
 import com.javaweb.common.config.CommonConfig;
-import com.javaweb.system.common.BaseController;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.dto.UpdatePwdDto;
 import com.javaweb.system.dto.UpdateUserInfoDto;
 import com.javaweb.system.entity.Menu;
@@ -45,7 +45,6 @@ public class IndexController extends BaseController {
     /**
      * 获取导航菜单
      *
-     * @return
      */
     @GetMapping("/getMenuList")
     public JsonResult getMenuList() {
@@ -56,7 +55,6 @@ public class IndexController extends BaseController {
     /**
      * 获取用户信息
      *
-     * @return
      */
     @GetMapping("/getUserInfo")
     public JsonResult getUserInfo() {
@@ -67,7 +65,6 @@ public class IndexController extends BaseController {
      * 修改密码
      *
      * @param updatePwdDto 参数
-     * @return
      */
     @PutMapping("/updatePwd")
     public JsonResult updatePwd(@RequestBody UpdatePwdDto updatePwdDto) {
@@ -81,7 +78,6 @@ public class IndexController extends BaseController {
      * 更新个人资料
      *
      * @param updateUserInfoDto 参数
-     * @return
      */
     @PutMapping("/updateUserInfo")
     public JsonResult updateUserInfo(@RequestBody UpdateUserInfoDto updateUserInfoDto) {

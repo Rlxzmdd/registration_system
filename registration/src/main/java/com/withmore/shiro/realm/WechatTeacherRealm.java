@@ -22,7 +22,6 @@ public class WechatTeacherRealm extends AuthorizingRealm {
      * 支持Token 适配
      *
      * @param token
-     * @return
      */
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -34,7 +33,6 @@ public class WechatTeacherRealm extends AuthorizingRealm {
      * 授权操作在TokenRealm中实现
      *
      * @param principalCollection
-     * @return
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -45,7 +43,6 @@ public class WechatTeacherRealm extends AuthorizingRealm {
      * 认证
      *
      * @param authenticationToken
-     * @return
      * @throws AuthenticationException
      */
     @Override

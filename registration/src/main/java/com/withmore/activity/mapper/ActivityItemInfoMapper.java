@@ -11,18 +11,13 @@
 package com.withmore.activity.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.withmore.activity.entity.ActivityItemInfo;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.withmore.activity.vo.activity.ActivityInfoManageVo;
-import com.withmore.activity.vo.activity.ActivityInfoVo;
-import com.withmore.activity.vo.activityiteminfo.ActivityItemInfoInfoVo;
-import com.withmore.activity.vo.activitysignup.ActivitySignUpListVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * <p>
@@ -48,7 +43,6 @@ public interface ActivityItemInfoMapper extends BaseMapper<ActivityItemInfo> {
      * @param type
      * @param studentTypeConstant
      * @param teacherTypeConstant
-     * @return
      */
     ActivityInfoManageVo getActivity(
             @Param("activityId") Integer activityId,

@@ -23,7 +23,6 @@ public interface IStudentService extends IBaseService<Student> {
      *
      * @param stuNumber 学号
      * @param realName  真实姓名
-     * @return
      */
     Student login(String stuNumber, String realName);
 
@@ -33,7 +32,6 @@ public interface IStudentService extends IBaseService<Student> {
      *
      * @param examNumber 考生号
      * @param realName   真实姓名
-     * @return
      */
     Student loginByExamNumber(String examNumber, String realName);
 
@@ -44,7 +42,6 @@ public interface IStudentService extends IBaseService<Student> {
      *
      * @param serialNumber 通知书编号
      * @param realName     真实姓名
-     * @return
      */
     Student loginBySerialNumber(String serialNumber, String realName);
 
@@ -52,7 +49,6 @@ public interface IStudentService extends IBaseService<Student> {
      * 获取学生详情信息
      *
      * @param dto 用户凭据
-     * @return
      */
     JsonResultS details(AuthToken2CredentialDto dto);
 
@@ -61,7 +57,6 @@ public interface IStudentService extends IBaseService<Student> {
      *
      * @param stuNumber 学生学号
      * @param dto       用户凭据
-     * @return
      */
     JsonResultS details(String stuNumber, AuthToken2CredentialDto dto);
 
@@ -69,7 +64,6 @@ public interface IStudentService extends IBaseService<Student> {
      * 获取学生简略信息
      *
      * @param dto Token转化对象
-     * @return
      */
     JsonResultS simple(AuthToken2CredentialDto dto);
 
@@ -78,7 +72,6 @@ public interface IStudentService extends IBaseService<Student> {
      *
      * @param baseQuery 分页参数
      * @param dto       身份凭据
-     * @return
      */
     JsonResultS list(BaseQuery baseQuery, AuthToken2CredentialDto dto);
 
@@ -87,7 +80,6 @@ public interface IStudentService extends IBaseService<Student> {
      *
      * @param param 学生学号
      * @param dto       身份凭据
-     * @return
      */
     JsonResultS simpleAuth(StudentSimpleQuery param, AuthToken2CredentialDto dto);
 
@@ -96,7 +88,6 @@ public interface IStudentService extends IBaseService<Student> {
      *
      * @param baseQuery 查询参数
      * @param dto       身份凭据
-     * @return
      */
     JsonResultS listQuery(StudentListQuery baseQuery, AuthToken2CredentialDto dto);
 

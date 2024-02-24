@@ -40,7 +40,6 @@ public class ShiroSessionManager extends DefaultWebSessionManager {
      *
      * @param request
      * @param response
-     * @return
      */
     @Override
     protected Serializable getSessionId(ServletRequest request, ServletResponse response) {

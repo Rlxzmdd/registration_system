@@ -1,9 +1,9 @@
 package com.withmore.event.form.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.withmore.event.form.constan.FormAuditNoticeStatus;
 import com.withmore.event.form.entity.FormItem;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.withmore.event.form.vo.formItem.FormDataItemStatusVO;
 import com.withmore.event.form.vo.formItem.FormDataItemVo;
 import com.withmore.user.permission.entity.PermissionNode;
@@ -30,7 +30,6 @@ public interface FormItemMapper extends BaseMapper<FormItem> {
      * @param specifiedNumber 指定用户学号，工号
      * @param specifiedType   指定用户类型
      * @param nodes           权限节点
-     * @return
      */
     FormDataItemVo getFormDataItemByKey(@Param("formKey") String formKey,
                                         @Param("number") String specifiedNumber,
@@ -41,7 +40,6 @@ public interface FormItemMapper extends BaseMapper<FormItem> {
      * 查询用户提交的表单及其表单审核状态
      *
      * @param status 表单审核状态
-     * @return
      */
     List<FormDataItemStatusVO> getFormDataItemStatusList(@Param("status") FormAuditNoticeStatus status,
                                                          @Param("number") String submitNumber,

@@ -32,7 +32,6 @@ public interface ILoginService extends IService<User> {
      * 获取验证码
      *
      * @param response 请求响应
-     * @return
      */
     JsonResult captcha(HttpServletResponse response);
 
@@ -40,14 +39,12 @@ public interface ILoginService extends IService<User> {
      * 用户登录
      *
      * @param loginDto 登录Dto
-     * @return
      */
     JsonResult login(LoginDto loginDto, HttpServletRequest request);
 
     /**
      * 退出登录
      *
-     * @return
      */
     JsonResult logout();
 
@@ -55,7 +52,6 @@ public interface ILoginService extends IService<User> {
      * 根据名称获取对象
      *
      * @param username 名称
-     * @return
      */
     User getUserByName(String username);
 
@@ -64,7 +60,6 @@ public interface ILoginService extends IService<User> {
      *
      * @param username 用户名
      * @param password 密码
-     * @return
      */
     User login(String username, String password);
 

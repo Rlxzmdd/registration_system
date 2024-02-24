@@ -60,7 +60,6 @@ public class PermissionJudge {
      *
      * @param stuNumber 查询学生学号
      * @param nodes     权限节点
-     * @return
      */
     public static boolean judge(String stuNumber, List<PermissionNode> nodes) {
         List<Integer> exclude = new ArrayList<>();

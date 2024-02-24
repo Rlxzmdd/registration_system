@@ -28,7 +28,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 根据查询条件获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -39,7 +38,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 根据ID获取记录信息
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public JsonResult info(Integer id) {
@@ -54,7 +52,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 根据ID获取记录信息
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -66,7 +63,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 传入实体对象添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult add(T entity) {
@@ -87,7 +83,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 传入实体对象更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult update(T entity) {
@@ -107,7 +102,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 根据实体对象添加、编辑记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(T entity) {
@@ -130,7 +124,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(T entity) {
@@ -151,7 +144,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 根据ID删除记录
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public JsonResult deleteById(Integer id) {
@@ -176,7 +168,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 根据ID删除记录
      *
      * @param ids 记录ID
-     * @return
      */
     @Override
     public JsonResult deleteByIds(Integer[] ids) {
@@ -202,7 +193,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult setStatus(T entity) {
@@ -215,7 +205,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
     /**
      * 导出Excel
      *
-     * @return
      */
     @Override
     public List<T> exportExcel() {

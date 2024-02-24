@@ -40,7 +40,6 @@ public class ${entityName}Controller extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:${entityName?lower_case}:index")
     @GetMapping("/index")
@@ -52,7 +51,6 @@ public class ${entityName}Controller extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "${tableAnnotation}", logType = LogType.INSERT)
     @RequiresPermissions("sys:${entityName?lower_case}:add")
@@ -65,7 +63,6 @@ public class ${entityName}Controller extends BaseController {
      * 获取详情
      *
      * @param ${entityName?lower_case}Id 记录ID
-     * @return
      */
     @GetMapping("/info/{${entityName?lower_case}Id}")
     public JsonResult info(@PathVariable("${entityName?lower_case}Id") Integer ${entityName?lower_case}Id) {
@@ -76,7 +73,6 @@ public class ${entityName}Controller extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "${tableAnnotation}", logType = LogType.UPDATE)
     @RequiresPermissions("sys:${entityName?lower_case}:edit")
@@ -89,7 +85,6 @@ public class ${entityName}Controller extends BaseController {
      * 删除记录
      *
      * @param ${entityName?lower_case}Ids 记录ID
-     * @return
      */
     @Log(title = "${tableAnnotation}", logType = LogType.DELETE)
     @RequiresPermissions("sys:${entityName?lower_case}:drop")
@@ -105,7 +100,6 @@ public class ${entityName}Controller extends BaseController {
      * 设置${model.columnCommentName}
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "${tableAnnotation}", logType = LogType.STATUS)
     @RequiresPermissions("sys:${entityName?lower_case}:${model.columnName}")

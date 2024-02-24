@@ -13,7 +13,6 @@ package com.javaweb.system.service;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.IBaseService;
 import com.javaweb.system.entity.AdSort;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -28,7 +27,6 @@ public interface IAdSortService extends IBaseService<AdSort> {
     /**
      * 获取广告位列表
      *
-     * @return
      */
     JsonResult getAdSortList();
 

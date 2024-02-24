@@ -14,7 +14,6 @@ import com.javaweb.common.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -60,7 +59,6 @@ public class RedisConfig {
     */
     /**
      * JedisPoolConfig 连接池
-     * @return
 
      @Bean public JedisPoolConfig jedisPoolConfig() {
      JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
@@ -87,8 +85,7 @@ public class RedisConfig {
       * 单机版配置
       * @Title: JedisConnectionFactory
      * @param @param jedisPoolConfig
-     * @param @return
-     * @return JedisConnectionFactory
+     * @param @return JedisConnectionFactory
      * @autor lpl
      * @date 2018年2月24日
      * @throws
@@ -110,7 +107,6 @@ public class RedisConfig {
     /**
      * 实例化 RedisTemplate 对象 jredis实现方式，springboot2.x以后使用下面的方法
      *
-     * @return
      @Bean public RedisTemplate<String, Object> functionDomainRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
      RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
      initDomainRedisTemplate(redisTemplate, redisConnectionFactory);
@@ -121,7 +117,6 @@ public class RedisConfig {
      * lettuce实现redis方式
      *
      * @param redisConnectionFactory
-     * @return
      */
     @Bean
     public RedisTemplate<String, Object> redisCacheTemplate(LettuceConnectionFactory redisConnectionFactory) {
@@ -149,8 +144,7 @@ public class RedisConfig {
 
     /**
      * 注入封装RedisTemplate
-     *
-     * @return RedisUtil
+     * RedisUtil
      * @throws
      * @Title: redisUtil
      * @autor lpl

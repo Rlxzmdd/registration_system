@@ -50,7 +50,6 @@ public class GenTableController {
      * 获取业务表列表
      *
      * @param genTableQuery 查询条件
-     * @return
      */
     @GetMapping("/index")
     public JsonResult index(GenTableQuery genTableQuery) {
@@ -61,7 +60,6 @@ public class GenTableController {
      * 获取数据库表
      *
      * @param query 查询条件
-     * @return
      */
     @GetMapping("/genDbTableList")
     public JsonResult genDbTableList(GenTableQuery query) {
@@ -73,7 +71,6 @@ public class GenTableController {
      * 导入表
      *
      * @param tableNames 数据表
-     * @return
      */
     @PostMapping("/importTable")
     public JsonResult importTable(@RequestBody String[] tableNames) {
@@ -87,7 +84,6 @@ public class GenTableController {
      * 获取表详情信息
      *
      * @param tableId 表ID
-     * @return
      */
     @GetMapping("/getTableInfo/{tableId}")
     public JsonResult getTableInfo(@PathVariable("tableId") String tableId) {
@@ -103,7 +99,6 @@ public class GenTableController {
      * 更新代码生成表信息
      *
      * @param genTable 生成表
-     * @return
      */
     @PutMapping("/updateGenTable")
     public JsonResult updateGenTable(@Validated @RequestBody GenTable genTable) {
@@ -119,7 +114,6 @@ public class GenTableController {
      * 删除业务表
      *
      * @param tableIds 业务表ID
-     * @return
      */
     @DeleteMapping("/delete/{tableIds}")
     public JsonResult delete(@PathVariable("tableIds") Integer[] tableIds) {

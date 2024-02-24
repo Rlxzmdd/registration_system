@@ -42,7 +42,6 @@ public class DictServiceImpl extends BaseServiceImpl<DictMapper, Dict> implement
      * 获取字典列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {

@@ -25,7 +25,6 @@ public class FileUtils {
      * 验证文件名是否含有特殊字符
      *
      * @param filename
-     * @return
      */
     public static boolean isValidFilename(String filename) {
         return filename.matches(FILENAME_PATTERN);
@@ -36,7 +35,6 @@ public class FileUtils {
      *
      * @param request  网络请求
      * @param fileName 文件名
-     * @return
      * @throws UnsupportedEncodingException
      */
     public static String setFileDownloadHeader(HttpServletRequest request, String fileName)
@@ -104,7 +102,6 @@ public class FileUtils {
      * 删除文件
      *
      * @param filePath 文件路径
-     * @return
      */
     public static boolean deleteFile(String filePath) {
         boolean flag = false;

@@ -10,8 +10,8 @@
 
 package com.javaweb.generator.service;
 
-import com.javaweb.generator.entity.GenTableColumn;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.javaweb.generator.entity.GenTableColumn;
 
 import java.util.List;
 
@@ -29,7 +29,6 @@ public interface IGenTableColumnService extends IService<GenTableColumn> {
      * 查询表字段信息
      *
      * @param tableId 表ID
-     * @return
      */
     List<GenTableColumn> selectGenTableColumnListByTableId(Integer tableId);
 

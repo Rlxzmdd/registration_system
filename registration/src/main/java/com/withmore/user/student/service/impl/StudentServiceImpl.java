@@ -15,7 +15,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.common.exception.user.UserNotExistsException;
-import com.javaweb.common.utils.*;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
+import com.javaweb.common.utils.JsonResultS;
+import com.javaweb.common.utils.ResultCodeEnum;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
 import com.withmore.common.dto.AuthToken2CredentialDto;
@@ -30,14 +33,17 @@ import com.withmore.user.student.query.StudentListQuery;
 import com.withmore.user.student.query.StudentQuery;
 import com.withmore.user.student.query.StudentSimpleQuery;
 import com.withmore.user.student.service.IStudentService;
-import com.withmore.user.student.vo.student.*;
+import com.withmore.user.student.vo.student.StudentDetailsVo;
+import com.withmore.user.student.vo.student.StudentInfoVo;
+import com.withmore.user.student.vo.student.StudentListVo;
+import com.withmore.user.student.vo.student.StudentSimpleVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.List;
 
 /**
  * <p>
@@ -60,7 +66,6 @@ public class StudentServiceImpl extends BaseServiceImpl<StudentMapper, Student> 
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -84,7 +89,6 @@ public class StudentServiceImpl extends BaseServiceImpl<StudentMapper, Student> 
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -100,7 +104,6 @@ public class StudentServiceImpl extends BaseServiceImpl<StudentMapper, Student> 
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Student entity) {
@@ -118,7 +121,6 @@ public class StudentServiceImpl extends BaseServiceImpl<StudentMapper, Student> 
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(Student entity) {

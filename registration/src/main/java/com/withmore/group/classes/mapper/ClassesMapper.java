@@ -11,11 +11,11 @@
 package com.withmore.group.classes.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.withmore.group.classes.dto.DictDto;
 import com.withmore.group.classes.entity.Classes;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.withmore.group.classes.vo.classes.ClassesContactVo;
 import com.withmore.group.classes.vo.classes.ClassesSimpleVo;
 import com.withmore.user.permission.entity.PermissionNode;
@@ -40,7 +40,6 @@ public interface ClassesMapper extends BaseMapper<Classes> {
      *
      * @param objectPage 分页对象
      * @param nodes      权限节点
-     * @return
      */
     IPage<ClassesSimpleVo> list(Page<ClassesSimpleVo> objectPage, @Param("nodes") List<PermissionNode> nodes);
 
@@ -49,7 +48,6 @@ public interface ClassesMapper extends BaseMapper<Classes> {
      *
      * @param classesId 班级ID
      * @param nodes     权限节点
-     * @return
      */
     ClassesSimpleVo simple(@Param("classesId") Integer classesId, @Param("nodes") List<PermissionNode> nodes);
 
@@ -57,13 +55,11 @@ public interface ClassesMapper extends BaseMapper<Classes> {
      * 获取班级负责人联系方式
      *
      * @param id 班级ID
-     * @return
      */
     List<ClassesContactVo> contact(@Param("id") String id);
 
     /**
      * 获取所有班级列表
-     * @return
      */
     List<DictDto> dict();
 }

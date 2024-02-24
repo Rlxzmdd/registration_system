@@ -42,7 +42,6 @@ public class AdSortServiceImpl extends BaseServiceImpl<AdSortMapper, AdSort> imp
      * 获取广告位列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -65,7 +64,6 @@ public class AdSortServiceImpl extends BaseServiceImpl<AdSortMapper, AdSort> imp
     /**
      * 获取广告位列表
      *
-     * @return
      */
     @Override
     public JsonResult getAdSortList() {

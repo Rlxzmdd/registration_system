@@ -14,13 +14,12 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.query.LoginLogQuery;
 import com.javaweb.system.service.ILoginLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -41,7 +40,6 @@ public class LoginLogController extends BaseController {
      * 获取登录日志列表
      *
      * @param loginLogQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:loginlog:index")
     @GetMapping("/index")
@@ -53,7 +51,6 @@ public class LoginLogController extends BaseController {
      * 删除登录日志
      *
      * @param loginLogIds 登录日志ID
-     * @return
      */
     @Log(title = "登录日志", logType = LogType.DELETE)
     @RequiresPermissions("sys:loginlog:delete")

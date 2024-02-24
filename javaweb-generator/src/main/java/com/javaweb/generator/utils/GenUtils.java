@@ -110,8 +110,7 @@ public class GenUtils {
      * 校验数组是否包含指定值
      *
      * @param arr         数组
-     * @param targetValue 值
-     * @return 是否包含
+     * @param targetValue 值 是否包含
      */
     public static boolean arraysContains(String[] arr, String targetValue) {
         return Arrays.asList(arr).contains(targetValue);
@@ -120,8 +119,7 @@ public class GenUtils {
     /**
      * 获取模块名
      *
-     * @param packageName 包名
-     * @return 模块名
+     * @param packageName 包名 模块名
      */
     public static String getModuleName(String packageName) {
         int lastIndex = packageName.lastIndexOf(".");
@@ -133,8 +131,7 @@ public class GenUtils {
     /**
      * 获取业务名
      *
-     * @param tableName 表名
-     * @return 业务名
+     * @param tableName 表名 业务名
      */
     public static String getBusinessName(String tableName) {
         int lastIndex = tableName.lastIndexOf("_");
@@ -146,8 +143,7 @@ public class GenUtils {
     /**
      * 表名转换成Java类名
      *
-     * @param tableName 表名称
-     * @return 类名
+     * @param tableName 表名称 类名
      */
     public static String convertClassName(String tableName) {
         boolean autoRemovePre = GenConfig.getAutoRemovePre();
@@ -164,7 +160,6 @@ public class GenUtils {
      *
      * @param replacementm 替换值
      * @param searchList   替换列表
-     * @return
      */
     public static String replaceFirst(String replacementm, String[] searchList) {
         String text = replacementm;
@@ -180,8 +175,7 @@ public class GenUtils {
     /**
      * 关键字替换
      *
-     * @param text 需要被替换的名字
-     * @return 替换后的名字
+     * @param text 需要被替换的名字 替换后的名字
      */
     public static String replaceText(String text) {
         return RegExUtils.replaceAll(text, "(?:表|若依)", "");
@@ -190,8 +184,7 @@ public class GenUtils {
     /**
      * 获取数据库类型字段
      *
-     * @param columnType 列类型
-     * @return 截取后的列类型
+     * @param columnType 列类型 截取后的列类型
      */
     public static String getDbType(String columnType) {
         if (StringUtils.indexOf(columnType, "(") > 0) {
@@ -204,8 +197,7 @@ public class GenUtils {
     /**
      * 获取字段长度
      *
-     * @param columnType 列类型
-     * @return 截取后的列类型
+     * @param columnType 列类型 截取后的列类型
      */
     public static Integer getColumnLength(String columnType) {
         if (StringUtils.indexOf(columnType, "(") > 0) {

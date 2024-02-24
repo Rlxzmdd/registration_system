@@ -12,10 +12,10 @@ package com.withmore.event.todo.service;
 
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseQuery;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.event.todo.dto.NoticePushDto;
 import com.withmore.event.todo.entity.TodoNotice;
-import com.javaweb.system.common.IBaseService;
 
 /**
  * <p>
@@ -33,7 +33,6 @@ public interface ITodoNoticeService extends IBaseService<TodoNotice> {
      *
      * @param notice 通知详情
      * @param dto    用户凭据
-     * @return
      */
     JsonResultS release(NoticePushDto notice, AuthToken2CredentialDto dto);
 
@@ -43,7 +42,6 @@ public interface ITodoNoticeService extends IBaseService<TodoNotice> {
      *
      * @param baseQuery 分页参数
      * @param dto       用户凭据
-     * @return
      */
     JsonResultS list(BaseQuery baseQuery, AuthToken2CredentialDto dto);
 
@@ -52,7 +50,6 @@ public interface ITodoNoticeService extends IBaseService<TodoNotice> {
      *
      * @param baseQuery 分页参数
      * @param dto       用户凭据
-     * @return
      */
     JsonResultS myself(BaseQuery baseQuery, AuthToken2CredentialDto dto);
 
@@ -61,7 +58,6 @@ public interface ITodoNoticeService extends IBaseService<TodoNotice> {
      *
      * @param id  通知ID
      * @param dto 用户凭据
-     * @return
      */
     JsonResultS delById(Integer id, AuthToken2CredentialDto dto);
 
@@ -71,7 +67,6 @@ public interface ITodoNoticeService extends IBaseService<TodoNotice> {
      * @param id  通知ID
      * @param dto 用户凭据
      * @param notice
-     * @return
      */
     JsonResultS editById(Integer id, NoticePushDto notice, AuthToken2CredentialDto dto);
 }

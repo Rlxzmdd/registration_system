@@ -42,7 +42,6 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implement
      * 获取部门列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -64,7 +63,6 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implement
     /**
      * 获取部门列表
      *
-     * @return
      */
     @Override
     public JsonResult getDeptList() {

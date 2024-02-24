@@ -10,10 +10,10 @@
 
 package com.javaweb.generator.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.javaweb.generator.entity.GenTableColumn;
 import com.javaweb.generator.mapper.GenTableColumnMapper;
 import com.javaweb.generator.service.IGenTableColumnService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +37,6 @@ public class GenTableColumnServiceImpl extends ServiceImpl<GenTableColumnMapper,
      * 获取表字段信息
      *
      * @param tableId 表ID
-     * @return
      */
     @Override
     public List<GenTableColumn> selectGenTableColumnListByTableId(Integer tableId) {

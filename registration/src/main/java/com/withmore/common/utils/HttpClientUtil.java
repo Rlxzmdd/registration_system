@@ -32,8 +32,7 @@ public class HttpClientUtil {
      *
      * @param url      目标接口
      * @param map      表单参数
-     * @param encoding 字符编码
-     * @return response result
+     * @param encoding 字符编码 response result
      */
     public static String sendPostDataByMap(String url, Map<String, String> map, String encoding) throws ClientProtocolException, IOException {
         String result = "";
@@ -76,8 +75,7 @@ public class HttpClientUtil {
      * 作为客户端发起HTTP GET请求
      *
      * @param url      目标接口
-     * @param encoding 字符编码
-     * @return response result
+     * @param encoding 字符编码 response result
      */
     public Map<String, Object> sendGetData(String url, String encoding) {
         String result = "";

@@ -40,7 +40,6 @@ public class CollegeController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:college:index")
     @GetMapping("/index")
@@ -52,7 +51,6 @@ public class CollegeController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "学院信息表", logType = LogType.INSERT)
     @RequiresPermissions("sys:college:add")
@@ -65,7 +63,6 @@ public class CollegeController extends BaseController {
      * 获取详情
      *
      * @param collegeId 记录ID
-     * @return
      */
     @GetMapping("/info/{collegeId}")
     public JsonResult info(@PathVariable("collegeId") Integer collegeId) {
@@ -76,7 +73,6 @@ public class CollegeController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "学院信息表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:college:edit")
@@ -89,7 +85,6 @@ public class CollegeController extends BaseController {
      * 删除记录
      *
      * @param collegeIds 记录ID
-     * @return
      */
     @Log(title = "学院信息表", logType = LogType.DELETE)
     @RequiresPermissions("sys:college:drop")

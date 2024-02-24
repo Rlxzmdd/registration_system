@@ -10,7 +10,9 @@
 
 package com.withmore.user.role.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.withmore.common.dto.AuthToken2CredentialDto;
@@ -18,8 +20,6 @@ import com.withmore.common.utils.JwtUtil;
 import com.withmore.user.role.entity.WechatMiniProgramRole;
 import com.withmore.user.role.query.RoleQuery;
 import com.withmore.user.role.service.IWechatMiniProgramRoleService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -47,7 +47,6 @@ public class WechatMiniProgramRoleController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:role:index")
     @GetMapping("/index")
@@ -59,7 +58,6 @@ public class WechatMiniProgramRoleController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "用户权限表", logType = LogType.INSERT)
     @RequiresPermissions("sys:role:add")
@@ -72,7 +70,6 @@ public class WechatMiniProgramRoleController extends BaseController {
      * 获取详情
      *
      * @param roleId 记录ID
-     * @return
      */
     @GetMapping("/info/{roleId}")
     public JsonResult info(@PathVariable("roleId") Integer roleId) {
@@ -83,7 +80,6 @@ public class WechatMiniProgramRoleController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "用户权限表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:role:edit")
@@ -96,7 +92,6 @@ public class WechatMiniProgramRoleController extends BaseController {
      * 删除记录
      *
      * @param roleIds 记录ID
-     * @return
      */
     @Log(title = "用户权限表", logType = LogType.DELETE)
     @RequiresPermissions("sys:role:drop")
@@ -110,7 +105,6 @@ public class WechatMiniProgramRoleController extends BaseController {
      * 获取用户具有的角色
      *
      * @param token 用户Token
-     * @return
      */
     @GetMapping("/query/role")
     public JsonResultS role(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {

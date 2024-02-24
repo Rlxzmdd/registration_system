@@ -13,6 +13,7 @@ package com.javaweb.generator.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.javaweb.common.exception.CustomException;
 import com.javaweb.common.utils.DateUtils;
 import com.javaweb.common.utils.JsonResult;
@@ -24,7 +25,6 @@ import com.javaweb.generator.mapper.GenTableColumnMapper;
 import com.javaweb.generator.mapper.GenTableMapper;
 import com.javaweb.generator.query.GenTableQuery;
 import com.javaweb.generator.service.IGenTableService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.javaweb.generator.utils.CodeGenerateUtils;
 import com.javaweb.generator.utils.GenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +57,6 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> i
      * 获取业务表列表
      *
      * @param genTableQuery 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(GenTableQuery genTableQuery) {
@@ -70,7 +69,6 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> i
      * 获取数据库表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public IPage<GenTable> genDbTableList(GenTableQuery query) {
@@ -82,7 +80,6 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> i
      * 查询据库列表
      *
      * @param tableNames 表数组
-     * @return
      */
     @Override
     public List<GenTable> selectDbTableListByNames(String[] tableNames) {
@@ -121,7 +118,6 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> i
      * 根据表ID获取表信息
      *
      * @param tableId 表ID
-     * @return
      */
     @Override
     public GenTable selectGenTableById(Integer tableId) {
@@ -188,7 +184,6 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> i
      * 生成数据表
      *
      * @param tableNames 数据表
-     * @return
      */
     @Override
     public JsonResult generatorCode(String[] tableNames) {
@@ -211,7 +206,6 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> i
      * 删除业务表
      *
      * @param ids 业务表ID
-     * @return
      */
     @Override
     public JsonResult delete(Integer[] ids) {

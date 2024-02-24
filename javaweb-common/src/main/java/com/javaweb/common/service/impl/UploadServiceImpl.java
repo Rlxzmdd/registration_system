@@ -41,7 +41,6 @@ public class UploadServiceImpl implements IUploadService {
      *
      * @param request 网络请求
      * @param name    目录名
-     * @return
      */
     @Override
     public JsonResult uploadImage(HttpServletRequest request, String name) {
@@ -57,7 +56,6 @@ public class UploadServiceImpl implements IUploadService {
      *
      * @param request 网络请求
      * @param name    目录名
-     * @return
      */
     @Override
     public JsonResult uploadFile(HttpServletRequest request, String name) {

@@ -50,7 +50,6 @@ public class AdServiceImpl extends BaseServiceImpl<AdMapper, Ad> implements IAdS
      * 获取广告列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -87,7 +86,6 @@ public class AdServiceImpl extends BaseServiceImpl<AdMapper, Ad> implements IAdS
      * 添加或编辑
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Ad entity) {

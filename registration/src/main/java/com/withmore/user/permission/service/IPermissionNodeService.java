@@ -11,9 +11,9 @@
 package com.withmore.user.permission.service;
 
 import com.javaweb.common.utils.JsonResultS;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.user.permission.entity.PermissionNode;
-import com.javaweb.system.common.IBaseService;
 
 /**
  * <p>
@@ -28,14 +28,12 @@ public interface IPermissionNodeService extends IBaseService<PermissionNode> {
      * 获取用户自身权限节点
      *
      * @param dto 用户凭据
-     * @return
      */
     JsonResultS list(AuthToken2CredentialDto dto);
 
     /**
      * 获取权限下可访问的所有节点筛选列表
      * @param dto 用户凭据
-     * @return
      */
     JsonResultS filter(AuthToken2CredentialDto dto);
 }

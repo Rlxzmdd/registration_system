@@ -42,7 +42,6 @@ public class ItemCateController extends BaseController {
      * 获取栏目列表
      *
      * @param itemCateQuery 查询条件
-     * @return
      */
     @Log(title = "栏目管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:itemcate:index")
@@ -55,7 +54,6 @@ public class ItemCateController extends BaseController {
      * 添加栏目
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "栏目管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:itemcate:add")
@@ -68,7 +66,6 @@ public class ItemCateController extends BaseController {
      * 编辑栏目
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "栏目管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:itemcate:edit")
@@ -81,7 +78,6 @@ public class ItemCateController extends BaseController {
      * 删除栏目
      *
      * @param itemCateId 栏目ID
-     * @return
      */
     @Log(title = "栏目管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:itemcate:delete")

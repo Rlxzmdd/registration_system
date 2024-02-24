@@ -14,6 +14,8 @@ import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.common.utils.ResultCodeEnum;
 import com.javaweb.system.common.BaseQuery;
@@ -27,8 +29,6 @@ import com.withmore.user.permission.service.IPermissionNodeService;
 import com.withmore.user.permission.utils.PermissionConvert;
 import com.withmore.user.permission.vo.permissionnode.PermissionNodeInfoVo;
 import com.withmore.user.permission.vo.permissionnode.PermissionNodeListVo;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
 import com.withmore.user.student.mapper.StudentPermissionMapper;
 import com.withmore.user.teacher.mapper.TeacherPermissionMapper;
 import org.springframework.beans.BeanUtils;
@@ -36,7 +36,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -62,7 +63,6 @@ public class PermissionNodeServiceImpl extends BaseServiceImpl<PermissionNodeMap
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -86,7 +86,6 @@ public class PermissionNodeServiceImpl extends BaseServiceImpl<PermissionNodeMap
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -102,7 +101,6 @@ public class PermissionNodeServiceImpl extends BaseServiceImpl<PermissionNodeMap
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(PermissionNode entity) {
@@ -120,7 +118,6 @@ public class PermissionNodeServiceImpl extends BaseServiceImpl<PermissionNodeMap
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(PermissionNode entity) {

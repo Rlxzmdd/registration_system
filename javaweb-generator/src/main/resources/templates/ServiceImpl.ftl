@@ -54,7 +54,6 @@ public class ${entityName}ServiceImpl extends BaseServiceImpl<${entityName}Mappe
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -134,7 +133,6 @@ public class ${entityName}ServiceImpl extends BaseServiceImpl<${entityName}Mappe
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -160,7 +158,6 @@ public class ${entityName}ServiceImpl extends BaseServiceImpl<${entityName}Mappe
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(${entityName} entity) {
@@ -204,7 +201,6 @@ public class ${entityName}ServiceImpl extends BaseServiceImpl<${entityName}Mappe
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(${entityName} entity) {
@@ -229,7 +225,6 @@ public class ${entityName}ServiceImpl extends BaseServiceImpl<${entityName}Mappe
      * 设置${model.columnCommentName}
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult set${model.changeColumnName?cap_first}(${entityName} entity) {

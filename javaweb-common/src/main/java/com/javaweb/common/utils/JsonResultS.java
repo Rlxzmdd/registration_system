@@ -89,7 +89,6 @@ public class JsonResultS<T> implements Serializable {
     /**
      * 覆盖lombok的Getter 方法
      *
-     * @return
      */
     public Object getData() {
         if (this.data == null) {
@@ -101,7 +100,6 @@ public class JsonResultS<T> implements Serializable {
     /**
      * 获取真实的Data对象
      *
-     * @return
      */
     @JsonIgnore
     public T getRealData() {

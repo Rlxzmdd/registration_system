@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.Position;
 import com.javaweb.system.query.PositionQuery;
 import com.javaweb.system.service.IPositionService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class PositionController extends BaseController {
      * 获取岗位列表
      *
      * @param positionQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:position:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class PositionController extends BaseController {
      * 添加岗位
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "岗位管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:position:add")
@@ -67,7 +64,6 @@ public class PositionController extends BaseController {
      * 编辑岗位
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "岗位管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:position:edit")
@@ -80,7 +76,6 @@ public class PositionController extends BaseController {
      * 删除岗位
      *
      * @param positionIds 岗位ID
-     * @return
      */
     @Log(title = "岗位管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:position:delete")
@@ -93,7 +88,6 @@ public class PositionController extends BaseController {
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "岗位管理", logType = LogType.STATUS)
     @RequiresPermissions("sys:position:status")
@@ -105,7 +99,6 @@ public class PositionController extends BaseController {
     /**
      * 获取岗位列表
      *
-     * @return
      */
     @GetMapping("/getPositionList")
     public JsonResult getPositionList() {

@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.Menu;
 import com.javaweb.system.query.MenuQuery;
 import com.javaweb.system.service.IMenuService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 import java.util.List;
 
@@ -44,7 +43,6 @@ public class MenuController extends BaseController {
      * 获取菜单列表
      *
      * @param menuQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:menu:index")
     @GetMapping("/index")
@@ -56,7 +54,6 @@ public class MenuController extends BaseController {
      * 获取菜单详情
      *
      * @param menuId 菜单ID
-     * @return
      */
     @GetMapping("/info/{menuId}")
     public JsonResult info(@PathVariable("menuId") Integer menuId) {
@@ -67,7 +64,6 @@ public class MenuController extends BaseController {
      * 添加菜单
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "菜单管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:menu:add")
@@ -80,7 +76,6 @@ public class MenuController extends BaseController {
      * 编辑菜单
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "菜单管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:menu:edit")
@@ -93,7 +88,6 @@ public class MenuController extends BaseController {
      * 删除菜单
      *
      * @param menuId 菜单ID
-     * @return
      */
     @Log(title = "菜单管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:menu:delete")
@@ -105,7 +99,6 @@ public class MenuController extends BaseController {
     /**
      * 获取所有菜单列表
      *
-     * @return
      */
     @GetMapping("/getMenuAll")
     public JsonResult getMenuAll() {

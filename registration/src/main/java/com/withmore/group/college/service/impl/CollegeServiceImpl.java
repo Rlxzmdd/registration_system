@@ -54,7 +54,6 @@ public class CollegeServiceImpl extends BaseServiceImpl<CollegeMapper, College> 
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -78,7 +77,6 @@ public class CollegeServiceImpl extends BaseServiceImpl<CollegeMapper, College> 
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -94,7 +92,6 @@ public class CollegeServiceImpl extends BaseServiceImpl<CollegeMapper, College> 
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(College entity) {
@@ -112,7 +109,6 @@ public class CollegeServiceImpl extends BaseServiceImpl<CollegeMapper, College> 
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(College entity) {

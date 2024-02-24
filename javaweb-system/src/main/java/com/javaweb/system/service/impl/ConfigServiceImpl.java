@@ -42,7 +42,6 @@ public class ConfigServiceImpl extends BaseServiceImpl<ConfigMapper, Config> imp
      * 获取配置列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {

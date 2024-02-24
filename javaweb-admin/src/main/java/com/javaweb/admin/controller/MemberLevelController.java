@@ -17,11 +17,10 @@ import com.javaweb.admin.service.IMemberLevelService;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class MemberLevelController extends BaseController {
      * 获取会员等级列表
      *
      * @param memberLevelQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:memberlevel:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class MemberLevelController extends BaseController {
      * 添加会员等级
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "会员等级", logType = LogType.INSERT)
     @RequiresPermissions("sys:memberlevel:add")
@@ -67,7 +64,6 @@ public class MemberLevelController extends BaseController {
      * 编辑会员等级
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "会员等级", logType = LogType.UPDATE)
     @RequiresPermissions("sys:memberlevel:edit")
@@ -80,7 +76,6 @@ public class MemberLevelController extends BaseController {
      * 删除会员等级
      *
      * @param memberLevelIds 会员ID
-     * @return
      */
     @Log(title = "会员等级", logType = LogType.DELETE)
     @RequiresPermissions("sys:memberlevel:delete")
@@ -92,7 +87,6 @@ public class MemberLevelController extends BaseController {
     /**
      * 获取会员等级列表
      *
-     * @return
      */
     @GetMapping("/getMemberLevelList")
     public JsonResult getMemberLevelList() {

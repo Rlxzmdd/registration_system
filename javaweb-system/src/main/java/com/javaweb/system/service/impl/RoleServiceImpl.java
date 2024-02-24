@@ -15,11 +15,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.common.config.CommonConfig;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.RedisUtils;
 import com.javaweb.common.utils.StringUtils;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
-import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.entity.Menu;
 import com.javaweb.system.entity.Role;
 import com.javaweb.system.entity.RoleMenu;
@@ -65,7 +65,6 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
      * 获取角色列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -93,7 +92,6 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     /**
      * 获取角色列表
      *
-     * @return
      */
     @Override
     public JsonResult getRoleList() {
@@ -108,7 +106,6 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
      * 获取菜单列表
      *
      * @param roleId 角色ID
-     * @return
      */
     @Override
     public JsonResult getMenuList(Integer roleId) {
@@ -145,7 +142,6 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
      *
      * @param roleId  角色ID
      * @param menuIds 菜单ID几个
-     * @return
      */
     @Override
     public JsonResult savePermission(Integer roleId, String[] menuIds) {

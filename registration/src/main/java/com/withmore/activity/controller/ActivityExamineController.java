@@ -10,15 +10,15 @@
 
 package com.withmore.activity.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.withmore.activity.dto.UserIdentityDto;
 import com.withmore.activity.entity.ActivityExamine;
 import com.withmore.activity.query.ActivityExamineQuery;
 import com.withmore.activity.service.IActivityExamineService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import com.withmore.common.utils.JwtUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,6 @@ public class ActivityExamineController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     //@RequiresPermissions("sys:activityexamine:index")
     @GetMapping("/index")
@@ -58,7 +57,6 @@ public class ActivityExamineController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "活动核销表", logType = LogType.INSERT)
     @RequiresPermissions("sys:activityexamine:add")
@@ -71,7 +69,6 @@ public class ActivityExamineController extends BaseController {
      * 获取详情
      *
      * @param activityexamineId 记录ID
-     * @return
      */
     @GetMapping("/info/{activityexamineId}")
     public JsonResult info(@PathVariable("activityexamineId") Integer activityexamineId) {
@@ -82,7 +79,6 @@ public class ActivityExamineController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "活动核销表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:activityexamine:edit")
@@ -95,7 +91,6 @@ public class ActivityExamineController extends BaseController {
      * 删除记录
      *
      * @param activityexamineIds 记录ID
-     * @return
      */
     @Log(title = "活动核销表", logType = LogType.DELETE)
     @RequiresPermissions("sys:activityexamine:drop")
@@ -110,7 +105,6 @@ public class ActivityExamineController extends BaseController {
      * 对应活动ID=18
      *
      * @param param 请求参数
-     * @return
      */
     @PostMapping("/identity/DoorController/visitorRegistrationRecordTraffic")
     public JsonResultS identity(@RequestBody UserIdentityDto param) {
@@ -123,7 +117,6 @@ public class ActivityExamineController extends BaseController {
      * 对应活动ID=19
      *
      * @param param 请求参数
-     * @return
      */
     @PostMapping("/identity2/DoorController/visitorRegistrationRecordTraffic")
     public JsonResultS identity2(@RequestBody UserIdentityDto param) {

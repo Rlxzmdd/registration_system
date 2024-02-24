@@ -52,7 +52,6 @@ public class LayoutServiceImpl extends BaseServiceImpl<LayoutMapper, Layout> imp
      * 获取布局描述
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -91,7 +90,6 @@ public class LayoutServiceImpl extends BaseServiceImpl<LayoutMapper, Layout> imp
      * 获取布局详情
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -107,7 +105,6 @@ public class LayoutServiceImpl extends BaseServiceImpl<LayoutMapper, Layout> imp
      * 添加或编辑
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Layout entity) {

@@ -32,7 +32,6 @@ public class RoleMenuServiceImpl extends BaseServiceImpl<RoleMenuMapper, RoleMen
      * 根据角色ID删除角色菜单关系数据
      *
      * @param roleId 角色ID
-     * @return
      */
     @Override
     public boolean deleteRoleMenus(Integer roleId) {

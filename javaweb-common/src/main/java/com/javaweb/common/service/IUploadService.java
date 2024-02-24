@@ -29,7 +29,6 @@ public interface IUploadService {
      *
      * @param request 网络请求
      * @param name    目录名
-     * @return
      */
     JsonResult uploadImage(HttpServletRequest request, String name);
 
@@ -38,7 +37,6 @@ public interface IUploadService {
      *
      * @param request 网络请求
      * @param name    目录名
-     * @return
      */
     JsonResult uploadFile(HttpServletRequest request, String name);
 

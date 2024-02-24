@@ -13,7 +13,6 @@ package com.javaweb.system.service;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.IBaseService;
 import com.javaweb.system.entity.Position;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -28,7 +27,6 @@ public interface IPositionService extends IBaseService<Position> {
     /**
      * 获取岗位列表
      *
-     * @return
      */
     JsonResult getPositionList();
 

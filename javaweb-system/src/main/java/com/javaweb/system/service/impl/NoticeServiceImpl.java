@@ -47,7 +47,6 @@ public class NoticeServiceImpl extends BaseServiceImpl<NoticeMapper, Notice> imp
      * 获取通知公告列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -75,7 +74,6 @@ public class NoticeServiceImpl extends BaseServiceImpl<NoticeMapper, Notice> imp
      * 获取通知公告详情
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -93,7 +91,6 @@ public class NoticeServiceImpl extends BaseServiceImpl<NoticeMapper, Notice> imp
      * 添加或编辑
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Notice entity) {
@@ -105,7 +102,6 @@ public class NoticeServiceImpl extends BaseServiceImpl<NoticeMapper, Notice> imp
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult setStatus(Notice entity) {
@@ -119,7 +115,6 @@ public class NoticeServiceImpl extends BaseServiceImpl<NoticeMapper, Notice> imp
      * 设置是否置顶
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult setIsTop(Notice entity) {

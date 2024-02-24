@@ -10,7 +10,9 @@
 
 package com.withmore.group.classes.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.javaweb.system.common.BaseQuery;
@@ -19,8 +21,6 @@ import com.withmore.common.utils.JwtUtil;
 import com.withmore.group.classes.entity.Classes;
 import com.withmore.group.classes.query.ClassesQuery;
 import com.withmore.group.classes.service.IClassesService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,6 @@ public class ClassesController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:classes:index")
     @GetMapping("/index")
@@ -62,7 +61,6 @@ public class ClassesController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "班级信息表", logType = LogType.INSERT)
     @RequiresPermissions("sys:classes:add")
@@ -76,7 +74,6 @@ public class ClassesController extends BaseController {
      * 获取详情
      *
      * @param classesId 记录ID
-     * @return
      */
     @GetMapping("/info/{classesId}")
     public JsonResult info(@PathVariable("classesId") Integer classesId) {
@@ -87,7 +84,6 @@ public class ClassesController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "班级信息表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:classes:edit")
@@ -100,7 +96,6 @@ public class ClassesController extends BaseController {
      * 删除记录
      *
      * @param classesIds 记录ID
-     * @return
      */
     @Log(title = "班级信息表", logType = LogType.DELETE)
     @RequiresPermissions("sys:classes:drop")
@@ -114,7 +109,6 @@ public class ClassesController extends BaseController {
      *
      * @param baseQuery 分页参数
      * @param token     用户token
-     * @return
      */
     @RequiresPermissions("sys:classes:index")
     @GetMapping("/query/list")
@@ -128,7 +122,6 @@ public class ClassesController extends BaseController {
      *
      * @param id    班级ID
      * @param token 用户token
-     * @return
      */
     @RequiresPermissions("sys:classes:index")
     @GetMapping("/query/simple/{id}")
@@ -142,7 +135,6 @@ public class ClassesController extends BaseController {
      *
      * @param id    班级ID
      * @param token 用户Token
-     * @return
      */
     @GetMapping("/query/contact/{id}")
     public JsonResultS contact(@PathVariable String id, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -153,7 +145,6 @@ public class ClassesController extends BaseController {
     /**
      * 获取班级、专业、学院字典
      *
-     * @return
      */
     @GetMapping("/query/dict")
     public JsonResultS dict() {

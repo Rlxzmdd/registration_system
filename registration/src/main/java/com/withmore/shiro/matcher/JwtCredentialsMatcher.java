@@ -16,7 +16,6 @@ public class JwtCredentialsMatcher extends SimpleCredentialsMatcher {
      *
      * @param token
      * @param info
-     * @return
      */
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {

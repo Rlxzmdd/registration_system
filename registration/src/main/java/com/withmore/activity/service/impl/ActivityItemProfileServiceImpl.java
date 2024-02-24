@@ -14,29 +14,21 @@ import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.javaweb.common.config.CommonConfig;
-import com.javaweb.common.utils.CommonUtils;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
-import com.withmore.activity.constant.ActivityItemProfileConstant;
 import com.withmore.activity.entity.ActivityItemProfile;
 import com.withmore.activity.mapper.ActivityItemProfileMapper;
 import com.withmore.activity.query.ActivityItemProfileQuery;
 import com.withmore.activity.service.IActivityItemProfileService;
-import com.javaweb.system.utils.ShiroUtils;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
 import com.withmore.activity.vo.activityitemprofile.ActivityItemProfileInfoVo;
 import com.withmore.activity.vo.activityitemprofile.ActivityItemProfileListVo;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
-import java.util.*;
 
 /**
   * <p>
@@ -56,7 +48,6 @@ public class ActivityItemProfileServiceImpl extends BaseServiceImpl<ActivityItem
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -80,7 +71,6 @@ public class ActivityItemProfileServiceImpl extends BaseServiceImpl<ActivityItem
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -96,7 +86,6 @@ public class ActivityItemProfileServiceImpl extends BaseServiceImpl<ActivityItem
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(ActivityItemProfile entity) {
@@ -112,7 +101,6 @@ public class ActivityItemProfileServiceImpl extends BaseServiceImpl<ActivityItem
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(ActivityItemProfile entity) {

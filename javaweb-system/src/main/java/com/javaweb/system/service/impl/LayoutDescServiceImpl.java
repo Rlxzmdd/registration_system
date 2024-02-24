@@ -48,7 +48,6 @@ public class LayoutDescServiceImpl extends BaseServiceImpl<LayoutDescMapper, Lay
      * 获取布局描述列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {

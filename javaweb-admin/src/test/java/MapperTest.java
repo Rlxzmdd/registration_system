@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class MapperTest extends BaseTest {
 
             List<FormAudit> audits = new ArrayList<>();
 
-            if (ids.size() != 0) {
+            if (!ids.isEmpty()) {
                 QueryWrapper<FormAudit> formAuditQueryWrapper = new QueryWrapper<>();
                 formAuditQueryWrapper.eq("mark", 1);
                 formAuditQueryWrapper.in("id", ids);

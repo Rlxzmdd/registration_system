@@ -46,7 +46,6 @@ public class MemberServiceImpl extends BaseServiceImpl<MemberMapper, Member> imp
      * 获取会员等级
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -89,7 +88,6 @@ public class MemberServiceImpl extends BaseServiceImpl<MemberMapper, Member> imp
      * 添加或编辑用户
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Member entity) {
@@ -114,7 +112,6 @@ public class MemberServiceImpl extends BaseServiceImpl<MemberMapper, Member> imp
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult setStatus(Member entity) {

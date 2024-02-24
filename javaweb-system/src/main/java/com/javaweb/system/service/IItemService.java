@@ -28,7 +28,6 @@ public interface IItemService extends IBaseService<Item> {
     /**
      * 获取站点列表
      *
-     * @return
      */
     List<Item> getItemList();
 

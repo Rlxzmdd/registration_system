@@ -12,8 +12,7 @@ public class PageUtil {
      * 分页函数
      *
      * @param baseQuery 分页参数
-     * @param list      要进行分页的数据列表
-     * @return 当前页要展示的数据
+     * @param list      要进行分页的数据列表 当前页要展示的数据
      */
     public static <T> IPage<T> getPages(BaseQuery baseQuery, List<T> list) {
         if(list.size() == 0){

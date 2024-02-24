@@ -24,7 +24,6 @@ public class TeacherCredentialsMatcher extends SimpleCredentialsMatcher {
      *
      * @param token 认证Token
      * @param info  用户信息
-     * @return
      */
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {

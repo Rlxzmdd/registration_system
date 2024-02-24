@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.Ad;
 import com.javaweb.system.query.AdQuery;
 import com.javaweb.system.service.IAdService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class AdController extends BaseController {
      * 获取广告列表
      *
      * @param adQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:ad:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class AdController extends BaseController {
      * 添加广告
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "广告管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:ad:add")
@@ -67,7 +64,6 @@ public class AdController extends BaseController {
      * 编辑广告
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "广告管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:ad:edit")
@@ -80,7 +76,6 @@ public class AdController extends BaseController {
      * 删除广告
      *
      * @param adIds 广告ID
-     * @return
      */
     @Log(title = "广告管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:ad:delete")

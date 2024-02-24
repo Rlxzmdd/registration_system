@@ -14,13 +14,11 @@ import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.javaweb.common.config.CommonConfig;
-import com.javaweb.common.utils.CommonUtils;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
-import com.withmore.activity.constant.ActivityItemManageListConstant;
-import com.withmore.activity.entity.ActivityItemInfo;
 import com.withmore.activity.entity.ActivityItemManageList;
 import com.withmore.activity.mapper.ActivityItemInfoMapper;
 import com.withmore.activity.mapper.ActivityItemManageListMapper;
@@ -28,22 +26,17 @@ import com.withmore.activity.query.ActivityItemManageListQuery;
 import com.withmore.activity.query.ActivityManageAddQuery;
 import com.withmore.activity.query.ActivityManageListQuery;
 import com.withmore.activity.service.IActivityItemManageListService;
-import com.javaweb.system.utils.ShiroUtils;
 import com.withmore.activity.vo.activity.ActivityInfoManageVo;
 import com.withmore.activity.vo.activity.ActivityManageVo;
 import com.withmore.activity.vo.activityitemmanagelist.ActivityItemManageListInfoVo;
 import com.withmore.activity.vo.activityitemmanagelist.ActivityItemManageListListVo;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
 import com.withmore.common.constant.Constant;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
-import java.util.*;
 
 /**
  * <p>
@@ -66,7 +59,6 @@ public class ActivityItemManageListServiceImpl extends BaseServiceImpl<ActivityI
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -90,7 +82,6 @@ public class ActivityItemManageListServiceImpl extends BaseServiceImpl<ActivityI
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -106,7 +97,6 @@ public class ActivityItemManageListServiceImpl extends BaseServiceImpl<ActivityI
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(ActivityItemManageList entity) {
@@ -124,7 +114,6 @@ public class ActivityItemManageListServiceImpl extends BaseServiceImpl<ActivityI
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(ActivityItemManageList entity) {

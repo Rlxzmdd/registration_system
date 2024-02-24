@@ -130,7 +130,6 @@ public class PermissionConvert {
      * @param level2
      * @param level3
      * @param level4
-     * @return
      */
     private PermissionNode builder(String level1, String level2, String level3, String level4) {
         Integer id = permissionMap.get(level1).get(level2).get(level3).get(level4);
@@ -141,8 +140,7 @@ public class PermissionConvert {
 
     /**
      * 过滤重复权限，以及覆盖权限
-     *
-     * @return 单一权限，如去重已覆盖的权限
+     * 单一权限，如去重已覆盖的权限
      */
     private List<PermissionNode> filter() {
         List<PermissionNode> ps = new ArrayList<>();
@@ -197,7 +195,6 @@ public class PermissionConvert {
     /**
      * 获取过滤后的覆盖权限
      *
-     * @return
      */
     public List<PermissionNode> handler() {
         sort();
@@ -209,7 +206,6 @@ public class PermissionConvert {
      * 自动根据Dto中的Type 决定DAO Mapper
      *
      * @param dto 身份凭据
-     * @return
      */
     public static List<PermissionNode> convert2Nodes(AuthToken2CredentialDto dto) {
         if (Constant.TOKEN_USER_TYPE_STUDENT.equals(dto.getType())) {
@@ -227,7 +223,6 @@ public class PermissionConvert {
      *
      * @param dto    身份凭据
      * @param mapper
-     * @return
      */
     public static List<PermissionNode> convert2Nodes(AuthToken2CredentialDto dto, StudentPermissionMapper mapper) {
         List<StudentPermissionDto> viewPermission = mapper.getStudentViewPermission(dto.getNumber());
@@ -242,7 +237,6 @@ public class PermissionConvert {
      *
      * @param dto    身份凭据
      * @param mapper
-     * @return
      */
     public static List<PermissionNode> convert2Nodes(AuthToken2CredentialDto dto, TeacherPermissionMapper mapper) {
         List<TeacherPermissionDto> viewPermission = mapper.getTeacherViewPermission(dto.getNumber());
@@ -254,7 +248,6 @@ public class PermissionConvert {
      * 自动推断dto类型转化用户默认的原子数据权限节点
      *
      * @param dto 身份凭据
-     * @return
      */
     public static PermissionNode convert2Node(AuthToken2CredentialDto dto) {
         if (Constant.TOKEN_USER_TYPE_STUDENT.equals(dto.getType())) {
@@ -271,7 +264,6 @@ public class PermissionConvert {
      *
      * @param dto    身份凭据
      * @param mapper
-     * @return
      */
     public static PermissionNode convert2Node(AuthToken2CredentialDto dto, StudentMapper mapper) {
         return mapper.getStudentAtomPermissionNode(dto.getNumber());
@@ -283,7 +275,6 @@ public class PermissionConvert {
      *
      * @param dto    身份凭据
      * @param mapper
-     * @return
      */
     public static PermissionNode convert2Node(AuthToken2CredentialDto dto, TeacherMapper mapper) {
         return mapper.getTeacherAtomPermissionNode(dto.getNumber());
@@ -293,7 +284,6 @@ public class PermissionConvert {
      * 将PermissionNode 转换转为 PermissionNodeSimpleVo
      *
      * @param nodes 权限节点
-     * @return
      */
     public static List<PermissionNodeSimpleVo> permissionNode2PermissionSimpleVo(List<PermissionNode> nodes) {
         List<PermissionNodeSimpleVo> list = new ArrayList<>();
@@ -313,7 +303,6 @@ public class PermissionConvert {
      *
      * @param dtoList 原子节点DTO
      * @param nodes
-     * @return
      */
     public static Map<String, Map<String, List<String>>> permissionNode2FilterDict(List<PermissionNodeFilterDto> dtoList, List<PermissionNode> nodes) {
         Map<String, Map<String, List<String>>> dict = new HashMap<>();

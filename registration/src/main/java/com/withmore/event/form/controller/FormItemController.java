@@ -1,6 +1,8 @@
 package com.withmore.event.form.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.withmore.common.dto.AuthToken2CredentialDto;
@@ -10,8 +12,6 @@ import com.withmore.event.form.dto.FormSpecifiedUserDto;
 import com.withmore.event.form.entity.FormItem;
 import com.withmore.event.form.query.FormItemQuery;
 import com.withmore.event.form.service.IFormItemService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import com.withmore.event.form.vo.formItem.FormItemStatusDto;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,6 @@ public class FormItemController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:form_item:index")
     @GetMapping("/index")
@@ -52,7 +51,6 @@ public class FormItemController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "待办事项-用户提交的表单", logType = LogType.INSERT)
     @RequiresPermissions("sys:form_item:add")
@@ -65,7 +63,6 @@ public class FormItemController extends BaseController {
      * 获取详情
      *
      * @param Id 记录ID
-     * @return
      */
     @GetMapping("/info/{Id}")
     public JsonResult info(@PathVariable("Id") Integer Id) {
@@ -76,7 +73,6 @@ public class FormItemController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "待办事项-用户提交的表单", logType = LogType.UPDATE)
     @RequiresPermissions("sys:form_item:edit")
@@ -89,7 +85,6 @@ public class FormItemController extends BaseController {
      * 删除记录
      *
      * @param Ids 记录ID
-     * @return
      */
     @Log(title = "待办事项-用户提交的表单", logType = LogType.DELETE)
     @RequiresPermissions("sys:form_item:drop")
@@ -105,7 +100,6 @@ public class FormItemController extends BaseController {
      * @param formKey 表单Key
      * @param param   查询参数
      * @param token   用户Token
-     * @return
      */
     @RequiresPermissions("sys:todo_form:index")
     @GetMapping("/query/specified/{formKey}")
@@ -120,7 +114,6 @@ public class FormItemController extends BaseController {
      * 获取我提交的表单数据
      *
      * @param formKey 表单Key
-     * @return
      */
     @GetMapping("/query/data/{formKey}")
     public JsonResultS query(@PathVariable String formKey,
@@ -135,7 +128,6 @@ public class FormItemController extends BaseController {
      * @param formKey  表单Key
      * @param formData 表单数据
      * @param token    用户Token
-     * @return
      */
     @PostMapping("/push/{formKey}")
     public JsonResultS push(@PathVariable String formKey,
@@ -148,7 +140,6 @@ public class FormItemController extends BaseController {
     /**
      * 获取用户提交过的表单及其表单的审核状态
      *
-     * @return
      */
     @GetMapping("/query/status")
     public JsonResultS status(FormItemStatusDto param,

@@ -11,8 +11,8 @@
 package com.withmore.user.role.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
-import com.withmore.user.role.entity.WechatMiniProgramRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.withmore.user.role.entity.WechatMiniProgramRole;
 import com.withmore.user.role.vo.role.RoleSimpleVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -38,7 +38,6 @@ public interface WechatMiniProgramRoleMapper extends BaseMapper<WechatMiniProgra
      *
      * @param userNumber 用户学号、工号
      * @param userType   用户类型
-     * @return
      */
     List<String> getPermissionList(@Param("userNumber") String userNumber, @Param("userType") String userType);
 
@@ -46,7 +45,6 @@ public interface WechatMiniProgramRoleMapper extends BaseMapper<WechatMiniProgra
      * 查询指定学号、工号的用户具有的角色
      *
      * @param number 学号、工号
-     * @return
      */
     List<RoleSimpleVo> role(@Param("number") String number);
 }

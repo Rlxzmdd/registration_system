@@ -11,9 +11,9 @@
 package com.withmore.user.role.service;
 
 import com.javaweb.common.utils.JsonResultS;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.user.role.entity.WechatMiniProgramRole;
-import com.javaweb.system.common.IBaseService;
 
 /**
  * <p>
@@ -28,7 +28,6 @@ public interface IWechatMiniProgramRoleService extends IBaseService<WechatMiniPr
      * 查询用户具有角色
      *
      * @param dto 用户凭据
-     * @return
      */
     JsonResultS role(AuthToken2CredentialDto dto);
 }

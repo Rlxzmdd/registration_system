@@ -10,8 +10,8 @@
 
 package com.javaweb.system.mapper;
 
-import com.javaweb.system.entity.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.javaweb.system.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,14 +33,12 @@ public interface MenuMapper extends BaseMapper<Menu> {
      *
      * @param userId 用户ID
      * @param pid    上级ID
-     * @return
      */
     List<Menu> getPermissionsListByUserId(@RequestParam("userId") Integer userId, @RequestParam("pid") Integer pid);
 
     /**
      * 获取所有权限
      *
-     * @return
      */
     List<Menu> getPermissionsAll();
 
@@ -48,7 +46,6 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * 获取用户权限节点
      *
      * @param userId 用户ID
-     * @return
      */
     List<String> getPermissionList(Integer userId);
 

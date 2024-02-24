@@ -2,10 +2,10 @@
 package com.withmore.event.form.service;
 
 import com.javaweb.common.utils.JsonResultS;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.event.form.dto.FormAuditNoticeParamDto;
 import com.withmore.event.form.entity.FormAuditNotice;
-import com.javaweb.system.common.IBaseService;
 
 /**
  * <p>
@@ -22,7 +22,6 @@ public interface IFormAuditNoticeService extends IBaseService<FormAuditNotice> {
      *
      * @param param 分页参数
      * @param dto   用户凭据
-     * @return
      */
     JsonResultS list(FormAuditNoticeParamDto param, AuthToken2CredentialDto dto);
 
@@ -32,7 +31,6 @@ public interface IFormAuditNoticeService extends IBaseService<FormAuditNotice> {
      * @param formKey 表单类型
      * @param param   分页参数
      * @param dto     用户凭据
-     * @return
      */
     JsonResultS list(String formKey, FormAuditNoticeParamDto param, AuthToken2CredentialDto dto);
 }

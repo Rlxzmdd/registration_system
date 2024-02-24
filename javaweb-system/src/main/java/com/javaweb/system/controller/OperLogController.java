@@ -14,13 +14,12 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.query.OperLogQuery;
 import com.javaweb.system.service.IOperLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -41,7 +40,6 @@ public class OperLogController extends BaseController {
      * 获取操作日志列表
      *
      * @param operLogQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:operlog:index")
     @GetMapping("/index")
@@ -53,7 +51,6 @@ public class OperLogController extends BaseController {
      * 删除操作日志
      *
      * @param operLogId 操作日志ID
-     * @return
      */
     @Log(title = "操作日志", logType = LogType.DELETE)
     @RequiresPermissions("sys:operlog:delete")

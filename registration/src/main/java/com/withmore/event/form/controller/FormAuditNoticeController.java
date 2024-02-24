@@ -10,7 +10,9 @@
 
 package com.withmore.event.form.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.withmore.common.dto.AuthToken2CredentialDto;
@@ -19,8 +21,6 @@ import com.withmore.event.form.dto.FormAuditNoticeParamDto;
 import com.withmore.event.form.entity.FormAuditNotice;
 import com.withmore.event.form.query.FormAuditNoticeQuery;
 import com.withmore.event.form.service.IFormAuditNoticeService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -48,7 +48,6 @@ public class FormAuditNoticeController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:form_audit_notice:index")
     @GetMapping("/index")
@@ -60,7 +59,6 @@ public class FormAuditNoticeController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "审核通知表", logType = LogType.INSERT)
     @RequiresPermissions("sys:form_audit_notice:add")
@@ -73,7 +71,6 @@ public class FormAuditNoticeController extends BaseController {
      * 获取详情
      *
      * @param Id 记录ID
-     * @return
      */
     @GetMapping("/info/{Id}")
     public JsonResult info(@PathVariable("Id") Integer Id) {
@@ -84,7 +81,6 @@ public class FormAuditNoticeController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "审核通知表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:form_audit_notice:edit")
@@ -97,7 +93,6 @@ public class FormAuditNoticeController extends BaseController {
      * 删除记录
      *
      * @param Ids 记录ID
-     * @return
      */
     @Log(title = "审核通知表", logType = LogType.DELETE)
     @RequiresPermissions("sys:form_audit_notice:drop")
@@ -110,7 +105,6 @@ public class FormAuditNoticeController extends BaseController {
      * 查询表单审核通知信息
      *
      * @param token 用户Token
-     * @return
      */
     @GetMapping("/query/list")
     public JsonResultS list(FormAuditNoticeParamDto param, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -123,7 +117,6 @@ public class FormAuditNoticeController extends BaseController {
      *
      * @param formKey 表单Key
      * @param token   用户Token
-     * @return
      */
     @GetMapping("/query/subList/{formKey}")
     public JsonResultS list(@PathVariable String formKey,

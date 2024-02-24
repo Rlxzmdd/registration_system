@@ -17,7 +17,6 @@ public interface IConfigWebService {
     /**
      * 获取配置列表
      *
-     * @return
      */
     JsonResult getList();
 
@@ -25,7 +24,6 @@ public interface IConfigWebService {
      * 保存配置信息
      *
      * @param info 表单信息
-     * @return
      */
     JsonResult edit(Map<String, Object> info);
 

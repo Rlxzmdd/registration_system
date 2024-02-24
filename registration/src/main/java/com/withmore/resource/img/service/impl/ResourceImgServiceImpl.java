@@ -30,9 +30,6 @@ import com.withmore.resource.img.service.IResourceImgService;
 import com.withmore.resource.img.vo.resourceimg.ResourceImgInfoVo;
 import com.withmore.resource.img.vo.resourceimg.ResourceImgListVo;
 import com.withmore.resource.img.vo.resourceimg.ResourceImgSimpleVo;
-import com.withmore.user.permission.entity.PermissionNode;
-import com.withmore.user.permission.utils.PermissionConvert;
-import com.withmore.user.permission.utils.PermissionJudge;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +39,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * <p>
@@ -68,7 +68,6 @@ public class ResourceImgServiceImpl extends BaseServiceImpl<ResourceImgMapper, R
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -92,7 +91,6 @@ public class ResourceImgServiceImpl extends BaseServiceImpl<ResourceImgMapper, R
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -108,7 +106,6 @@ public class ResourceImgServiceImpl extends BaseServiceImpl<ResourceImgMapper, R
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(ResourceImg entity) {
@@ -126,7 +123,6 @@ public class ResourceImgServiceImpl extends BaseServiceImpl<ResourceImgMapper, R
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(ResourceImg entity) {

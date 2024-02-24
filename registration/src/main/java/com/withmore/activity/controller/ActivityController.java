@@ -2,24 +2,21 @@ package com.withmore.activity.controller;
 
 import com.aliyun.oss.common.utils.HttpHeaders;
 import com.javaweb.common.utils.ExcelUtils;
-import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.javaweb.system.common.BaseQuery;
-import com.javaweb.system.query.LevelQuery;
-import com.javaweb.system.vo.level.LevelInfoVo;
 import com.withmore.activity.entity.ActivityItemInfo;
 import com.withmore.activity.query.*;
-import com.withmore.activity.service.*;
+import com.withmore.activity.service.IActivityExamineService;
+import com.withmore.activity.service.IActivityItemInfoService;
+import com.withmore.activity.service.IActivityItemManageListService;
+import com.withmore.activity.service.IActivitySignUpService;
 import com.withmore.activity.vo.activity.ActivityClassExamineExcelVo;
 import com.withmore.activity.vo.activity.ActivityExamineVo;
-import com.withmore.activity.vo.activity.ActivityInfoVo;
-import com.withmore.activity.vo.activitysignup.ActivitySignUpListVo;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.common.utils.JwtUtil;
 import com.withmore.user.permission.entity.PermissionNode;
 import com.withmore.user.permission.utils.PermissionConvert;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,7 +54,6 @@ public class ActivityController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     //@RequiresPermissions("sys:activity:query:list")
     @GetMapping("/query/list")
@@ -70,7 +66,6 @@ public class ActivityController extends BaseController {
      * 获取活动详情
      *
      * @param activityId 活动id
-     * @return
      */
     @GetMapping("/query/detail/{activityId}")
     public JsonResultS getDetail(@PathVariable("activityId") Integer activityId, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -79,9 +74,6 @@ public class ActivityController extends BaseController {
     }
     /**
      * 删除活动
-     *
-     * @param
-     * @return
      */
     //@RequiresPermissions("sys:activity:del")
     @DeleteMapping("/del/{activityId}")

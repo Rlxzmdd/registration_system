@@ -41,7 +41,6 @@ public final class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 获取当前时间
      *
-     * @return
      */
     public static Date now() {
         return new Date();
@@ -49,8 +48,7 @@ public final class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 获取当前日期, 默认格式为yyyy-MM-dd
-     *
-     * @return String
+     * String
      */
     public static String getDate() {
         return dateTimeNow(YYYY_MM_DD);

@@ -10,13 +10,13 @@
 
 package com.withmore.event.form.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.BaseController;
 import com.withmore.event.form.entity.FormReviewer;
 import com.withmore.event.form.query.FormReviewerQuery;
 import com.withmore.event.form.service.IFormReviewerService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +40,6 @@ public class FormReviewerController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:form_reviewer:index")
     @GetMapping("/index")
@@ -52,7 +51,6 @@ public class FormReviewerController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "审核人映射表", logType = LogType.INSERT)
     @RequiresPermissions("sys:form_reviewer:add")
@@ -65,7 +63,6 @@ public class FormReviewerController extends BaseController {
      * 获取详情
      *
      * @param Id 记录ID
-     * @return
      */
     @GetMapping("/info/{Id}")
     public JsonResult info(@PathVariable("Id") Integer Id) {
@@ -76,7 +73,6 @@ public class FormReviewerController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "审核人映射表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:form_reviewer:edit")
@@ -89,7 +85,6 @@ public class FormReviewerController extends BaseController {
      * 删除记录
      *
      * @param Ids 记录ID
-     * @return
      */
     @Log(title = "审核人映射表", logType = LogType.DELETE)
     @RequiresPermissions("sys:form_reviewer:drop")

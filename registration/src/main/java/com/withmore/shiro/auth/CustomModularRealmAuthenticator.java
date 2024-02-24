@@ -17,8 +17,7 @@ public class CustomModularRealmAuthenticator extends ModularRealmAuthenticator {
      * 自定义Realm 适配器，寻找可以处理token的Realm
      *
      * @param realms Realm认证器集合
-     * @param token  登录Token
-     * @return Realm 可处理Token的Realm
+     * @param token  登录Token Realm 可处理Token的Realm
      */
     @Override
     protected AuthenticationInfo doMultiRealmAuthentication(Collection<Realm> realms, AuthenticationToken token) {

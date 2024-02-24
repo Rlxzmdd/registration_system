@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.AdSort;
 import com.javaweb.system.query.AdSortQuery;
 import com.javaweb.system.service.IAdSortService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class AdSortController extends BaseController {
      * 获取广告位列表
      *
      * @param adSortQuery 查询条件
-     * @return
      */
     @Log(title = "广告位管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:adsort:index")
@@ -55,7 +53,6 @@ public class AdSortController extends BaseController {
      * 添加广告位
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "广告位管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:adsort:add")
@@ -68,7 +65,6 @@ public class AdSortController extends BaseController {
      * 编辑广告位
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "广告位管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:adsort:edit")
@@ -81,7 +77,6 @@ public class AdSortController extends BaseController {
      * 删除广告位
      *
      * @param adSortIds 广告位ID
-     * @return
      */
     @Log(title = "广告位管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:adsort:delete")
@@ -93,7 +88,6 @@ public class AdSortController extends BaseController {
     /**
      * 获取广告位列表
      *
-     * @return
      */
     @GetMapping("/getAdSortList")
     public JsonResult getAdSortList() {

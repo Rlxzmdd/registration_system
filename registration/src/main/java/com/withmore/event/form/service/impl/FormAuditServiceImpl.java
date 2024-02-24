@@ -6,6 +6,8 @@ import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.common.utils.ResultCodeEnum;
 import com.javaweb.system.common.BaseQuery;
@@ -26,8 +28,6 @@ import com.withmore.event.form.service.IFormAuditService;
 import com.withmore.event.form.utils.FormAuditUtil;
 import com.withmore.event.form.vo.formAudit.FormAuditInfoVo;
 import com.withmore.event.form.vo.formAudit.FormAuditListVo;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +62,6 @@ public class FormAuditServiceImpl extends BaseServiceImpl<FormAuditMapper, FormA
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -86,7 +85,6 @@ public class FormAuditServiceImpl extends BaseServiceImpl<FormAuditMapper, FormA
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -102,7 +100,6 @@ public class FormAuditServiceImpl extends BaseServiceImpl<FormAuditMapper, FormA
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(FormAudit entity) {
@@ -120,7 +117,6 @@ public class FormAuditServiceImpl extends BaseServiceImpl<FormAuditMapper, FormA
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(FormAudit entity) {

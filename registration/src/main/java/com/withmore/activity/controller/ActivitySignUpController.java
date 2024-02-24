@@ -10,13 +10,13 @@
 
 package com.withmore.activity.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.BaseController;
 import com.withmore.activity.entity.ActivitySignUp;
 import com.withmore.activity.query.ActivitySignUpQuery;
 import com.withmore.activity.service.IActivitySignUpService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +40,6 @@ public class ActivitySignUpController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:activitysignup:index")
     @GetMapping("/index")
@@ -52,7 +51,6 @@ public class ActivitySignUpController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "活动报名信息表", logType = LogType.INSERT)
     @RequiresPermissions("sys:activitysignup:add")
@@ -65,7 +63,6 @@ public class ActivitySignUpController extends BaseController {
      * 获取详情
      *
      * @param activitysignupId 记录ID
-     * @return
      */
     @GetMapping("/info/{activitysignupId}")
     public JsonResult info(@PathVariable("activitysignupId") Integer activitysignupId) {
@@ -76,7 +73,6 @@ public class ActivitySignUpController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "活动报名信息表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:activitysignup:edit")
@@ -89,7 +85,6 @@ public class ActivitySignUpController extends BaseController {
      * 删除记录
      *
      * @param activitysignupIds 记录ID
-     * @return
      */
     @Log(title = "活动报名信息表", logType = LogType.DELETE)
     @RequiresPermissions("sys:activitysignup:drop")

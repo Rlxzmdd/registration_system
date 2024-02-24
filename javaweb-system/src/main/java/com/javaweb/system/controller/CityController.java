@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.City;
 import com.javaweb.system.query.CityQuery;
 import com.javaweb.system.service.ICityService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class CityController extends BaseController {
      * 获取城市列表
      *
      * @param cityQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:city:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class CityController extends BaseController {
      * 添加城市
      *
      * @param entity 查询条件
-     * @return
      */
     @Log(title = "城市管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:city:add")
@@ -67,7 +64,6 @@ public class CityController extends BaseController {
      * 编辑城市
      *
      * @param entity 查询条件
-     * @return
      */
     @Log(title = "城市管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:city:edit")
@@ -80,7 +76,6 @@ public class CityController extends BaseController {
      * 删除城市
      *
      * @param cityId 城市ID
-     * @return
      */
     @Log(title = "城市管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:city:delete")

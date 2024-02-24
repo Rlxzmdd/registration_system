@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.Layout;
 import com.javaweb.system.query.LayoutQuery;
 import com.javaweb.system.service.ILayoutService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class LayoutController extends BaseController {
      * 获取布局列表
      *
      * @param layoutQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:layout:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class LayoutController extends BaseController {
      * 获取布局详情
      *
      * @param layoutId 布局ID
-     * @return
      */
     @GetMapping("/info/{layoutId}")
     public JsonResult info(@PathVariable("layoutId") Integer layoutId) {
@@ -65,7 +62,6 @@ public class LayoutController extends BaseController {
      * 添加布局
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "布局管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:layout:add")
@@ -78,7 +74,6 @@ public class LayoutController extends BaseController {
      * 编辑布局
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "布局管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:layout:edit")
@@ -91,7 +86,6 @@ public class LayoutController extends BaseController {
      * 删除布局
      *
      * @param layoutIds 布局ID
-     * @return
      */
     @Log(title = "布局管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:layout:delete")

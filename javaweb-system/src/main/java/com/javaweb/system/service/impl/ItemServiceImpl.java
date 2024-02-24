@@ -46,7 +46,6 @@ public class ItemServiceImpl extends BaseServiceImpl<ItemMapper, Item> implement
      * 获取站点列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -85,7 +84,6 @@ public class ItemServiceImpl extends BaseServiceImpl<ItemMapper, Item> implement
      * 添加或编辑
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Item entity) {
@@ -99,7 +97,6 @@ public class ItemServiceImpl extends BaseServiceImpl<ItemMapper, Item> implement
     /**
      * 获取站点列表
      *
-     * @return
      */
     @Override
     public List<Item> getItemList() {
@@ -114,7 +111,6 @@ public class ItemServiceImpl extends BaseServiceImpl<ItemMapper, Item> implement
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult setStatus(Item entity) {

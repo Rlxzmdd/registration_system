@@ -70,7 +70,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     /**
      * 跨域配置
      *
-     * @return
      */
     private CorsConfiguration corsConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -85,7 +84,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     /**
      * 跨域过滤器
      *
-     * @return
      */
     @Bean
     public CorsFilter corsFilter() {

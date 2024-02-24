@@ -10,18 +10,18 @@
 
 package com.withmore.event.form.mapper;
 
-        import com.baomidou.dynamic.datasource.annotation.DS;
-        import com.baomidou.mybatisplus.core.metadata.IPage;
-        import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-        import com.withmore.event.form.constan.FormAuditNoticeStatus;
-        import com.withmore.event.form.dto.FormAuditNoticeTranDto;
-        import com.withmore.event.form.entity.FormAuditNotice;
-        import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-        import com.withmore.event.form.vo.formAuditNotice.FormAuditNoticeSimpleVo;
-        import org.apache.ibatis.annotations.Mapper;
-        import org.apache.ibatis.annotations.Param;
+import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.withmore.event.form.constan.FormAuditNoticeStatus;
+import com.withmore.event.form.dto.FormAuditNoticeTranDto;
+import com.withmore.event.form.entity.FormAuditNotice;
+import com.withmore.event.form.vo.formAuditNotice.FormAuditNoticeSimpleVo;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
-        import java.util.List;
+import java.util.List;
 
 /**
  * <p>
@@ -42,7 +42,6 @@ public interface FormAuditNoticeMapper extends BaseMapper<FormAuditNotice> {
      * @param status         审核状态
      * @param reviewerNumber 审核人学号、工号
      * @param reviewerType   审核人类型
-     * @return
      */
     List<FormAuditNoticeSimpleVo> getAuditNotices(@Param("limit") Integer limit,
                                                   @Param("status") FormAuditNoticeStatus status,
@@ -57,7 +56,6 @@ public interface FormAuditNoticeMapper extends BaseMapper<FormAuditNotice> {
      * @param status         通知所属状态
      * @param reviewerNumber 审核人学号，工号
      * @param reviewerType   审核人类型
-     * @return
      */
     IPage<FormAuditNoticeSimpleVo> getAuditNoticeByFormKey(Page<FormAuditNoticeSimpleVo> page,
                                                            @Param("formKey") String formKey,
@@ -74,7 +72,6 @@ public interface FormAuditNoticeMapper extends BaseMapper<FormAuditNotice> {
      * @param uuid           表单数据UUID
      * @param reviewerNumber 审核人学号，工号
      * @param reviewerType   审核人类型
-     * @return
      */
     FormAuditNoticeTranDto getAuditNoticeByFormKeyAndUuid(@Param("formKey") String formKey,
                                                           @Param("uuid") String uuid,
@@ -85,7 +82,6 @@ public interface FormAuditNoticeMapper extends BaseMapper<FormAuditNotice> {
      * 获取最后一条指定的表单数据的审核通知
      *
      * @param itemUuid 表单数据UUID
-     * @return
      */
     FormAuditNotice getLastFormAuditNotice(@Param("uuid") String itemUuid);
 }

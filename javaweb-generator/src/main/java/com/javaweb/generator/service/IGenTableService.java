@@ -11,9 +11,9 @@
 package com.javaweb.generator.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.generator.entity.GenTable;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.javaweb.generator.query.GenTableQuery;
 
 import java.util.List;
@@ -32,7 +32,6 @@ public interface IGenTableService extends IService<GenTable> {
      * 根据查询条件获取数据列表
      *
      * @param genTableQuery 查询条件
-     * @return
      */
     JsonResult getList(GenTableQuery genTableQuery);
 
@@ -40,7 +39,6 @@ public interface IGenTableService extends IService<GenTable> {
      * 获取数据库表
      *
      * @param query 查询条件
-     * @return
      */
     IPage<GenTable> genDbTableList(GenTableQuery query);
 
@@ -48,7 +46,6 @@ public interface IGenTableService extends IService<GenTable> {
      * 查询据库列表
      *
      * @param tableNames 表数组
-     * @return
      */
     List<GenTable> selectDbTableListByNames(String[] tableNames);
 
@@ -63,7 +60,6 @@ public interface IGenTableService extends IService<GenTable> {
      * 根据表ID获取表信息
      *
      * @param tableId 表ID
-     * @return
      */
     GenTable selectGenTableById(Integer tableId);
 
@@ -85,7 +81,6 @@ public interface IGenTableService extends IService<GenTable> {
      * 生成代码
      *
      * @param tableNames 数据表
-     * @return
      */
     JsonResult generatorCode(String[] tableNames);
 
@@ -93,7 +88,6 @@ public interface IGenTableService extends IService<GenTable> {
      * 删除记录
      *
      * @param ids 业务表ID
-     * @return
      */
     JsonResult delete(Integer[] ids);
 

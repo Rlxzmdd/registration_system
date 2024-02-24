@@ -12,9 +12,9 @@ package com.withmore.activity.service;
 
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseQuery;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.activity.dto.UserIdentityDto;
 import com.withmore.activity.entity.ActivityExamine;
-import com.javaweb.system.common.IBaseService;
 import com.withmore.activity.query.ActivityClassQuery;
 import com.withmore.activity.query.ActivityDataPermissionNodeQuery;
 import com.withmore.activity.query.ActivityExamineListQuery;
@@ -57,7 +57,6 @@ public interface IActivityExamineService extends IBaseService<ActivityExamine> {
      *
      * @param param 鉴权参数
      * @param activityID
-     * @return
      */
     JsonResultS identity(UserIdentityDto param, Integer activityID);
 }

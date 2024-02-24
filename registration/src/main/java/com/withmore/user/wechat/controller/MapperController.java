@@ -10,14 +10,14 @@
 
 package com.withmore.user.wechat.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.withmore.user.wechat.entity.Mapper;
 import com.withmore.user.wechat.query.MapperQuery;
 import com.withmore.user.wechat.service.IMapperService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -42,7 +42,6 @@ public class MapperController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:mapper:index")
     @GetMapping("/index")
@@ -54,7 +53,6 @@ public class MapperController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "小程序kv映射表", logType = LogType.INSERT)
     @RequiresPermissions("sys:mapper:add")
@@ -67,7 +65,6 @@ public class MapperController extends BaseController {
      * 获取详情
      *
      * @param mapperId 记录ID
-     * @return
      */
     @GetMapping("/info/{mapperId}")
     public JsonResult info(@PathVariable("mapperId") Integer mapperId) {
@@ -78,7 +75,6 @@ public class MapperController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "小程序kv映射表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:mapper:edit")
@@ -91,7 +87,6 @@ public class MapperController extends BaseController {
      * 删除记录
      *
      * @param mapperIds 记录ID
-     * @return
      */
     @Log(title = "小程序kv映射表", logType = LogType.DELETE)
     @RequiresPermissions("sys:mapper:drop")
@@ -104,7 +99,6 @@ public class MapperController extends BaseController {
      * 获取KV字典
      *
      * @param token 用户Token
-     * @return
      */
     @GetMapping("/query/mapper")
     public JsonResultS simple(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {

@@ -10,7 +10,9 @@
 
 package com.withmore.event.todo.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.javaweb.system.common.BaseQuery;
@@ -20,8 +22,6 @@ import com.withmore.event.todo.dto.NoticePushDto;
 import com.withmore.event.todo.entity.TodoNotice;
 import com.withmore.event.todo.query.TodoNoticeQuery;
 import com.withmore.event.todo.service.ITodoNoticeService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,6 @@ public class TodoNoticeController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:todo_notice:index")
     @GetMapping("/index")
@@ -63,7 +62,6 @@ public class TodoNoticeController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "待办事项-通知信息表", logType = LogType.INSERT)
     @RequiresPermissions("sys:todo_notice:add")
@@ -76,7 +74,6 @@ public class TodoNoticeController extends BaseController {
      * 获取详情
      *
      * @param Id 记录ID
-     * @return
      */
     @GetMapping("/info/{Id}")
     public JsonResult info(@PathVariable("Id") Integer Id) {
@@ -87,7 +84,6 @@ public class TodoNoticeController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "待办事项-通知信息表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:todo_notice:edit")
@@ -100,7 +96,6 @@ public class TodoNoticeController extends BaseController {
      * 删除记录
      *
      * @param Ids 记录ID
-     * @return
      */
     @Log(title = "待办事项-通知信息表", logType = LogType.DELETE)
     @RequiresPermissions("sys:todo_notice:drop")
@@ -114,7 +109,6 @@ public class TodoNoticeController extends BaseController {
      *
      * @param notice 通知参数
      * @param token  用户Token
-     * @return
      */
     @RequiresPermissions("sys:todo_notice:add")
     @PostMapping("/push")
@@ -128,7 +122,6 @@ public class TodoNoticeController extends BaseController {
      *
      * @param id    通知ID
      * @param token 用户Token
-     * @return
      */
     @DeleteMapping("/del/{id}")
     public JsonResultS del(@PathVariable("id") Integer id, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -141,7 +134,6 @@ public class TodoNoticeController extends BaseController {
      *
      * @param baseQuery 分页参数
      * @param token     用户Token
-     * @return
      */
     @GetMapping("/query/list")
     public JsonResultS list(BaseQuery baseQuery, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -154,7 +146,6 @@ public class TodoNoticeController extends BaseController {
      *
      * @param baseQuery 分页参数
      * @param token     用户Token
-     * @return
      */
     @GetMapping("/query/myself")
     public JsonResultS myself(BaseQuery baseQuery, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -167,7 +158,6 @@ public class TodoNoticeController extends BaseController {
      *
      * @param id    通知ID
      * @param token 用户Token
-     * @return
      */
     @PutMapping("/edit/{id}")
     public JsonResultS edit(@RequestBody NoticePushDto notice,

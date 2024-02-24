@@ -29,7 +29,6 @@ public class WechatStudentExamRealm extends AuthorizingRealm {
      * 授权操作在TokenRealm中实现
      *
      * @param principalCollection
-     * @return
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -40,7 +39,6 @@ public class WechatStudentExamRealm extends AuthorizingRealm {
      * 认证
      *
      * @param authenticationToken Token
-     * @return
      * @throws AuthenticationException
      */
     @Override

@@ -33,8 +33,7 @@ public class IpUtils {
     /**
      * 通过HttpServletRequest返回IP地址
      *
-     * @param request HttpServletRequest
-     * @return ip String
+     * @param request HttpServletRequest ip String
      * @throws Exception
      */
     public static String getIpAddr(HttpServletRequest request) {
@@ -98,8 +97,7 @@ public class IpUtils {
     /**
      * 将IPv4地址转换成字节
      *
-     * @param text IPv4地址
-     * @return byte 字节
+     * @param text IPv4地址 byte 字节
      */
     public static byte[] textToNumericFormatV4(String text) {
         if (text.length() == 0) {
@@ -182,8 +180,7 @@ public class IpUtils {
     /**
      * 通过IP地址获取MAC地址
      *
-     * @param ip String,127.0.0.1格式
-     * @return mac String
+     * @param ip String,127.0.0.1格式 mac String
      * @throws Exception
      */
     public String getMACAddress(String ip) throws Exception {
@@ -234,7 +231,6 @@ public class IpUtils {
      * 通过IP获取地址(需要联网，调用淘宝的IP库)
      *
      * @param ip IP地址
-     * @return
      */
     public static String getIpInfo(String ip) {
         if ("127.0.0.1".equals(ip)) {
@@ -280,7 +276,6 @@ public class IpUtils {
      * 根据IP查询地区
      *
      * @param ip IP地址
-     * @return
      */
     public static String getRealAddressByIP(String ip) {
         String address = "XX XX";

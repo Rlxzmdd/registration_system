@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.Role;
 import com.javaweb.system.query.RoleQuery;
 import com.javaweb.system.service.IRoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class RoleController extends BaseController {
      * 获取角色列表
      *
      * @param roleQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:role:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class RoleController extends BaseController {
      * 添加角色
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "角色管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:role:add")
@@ -67,7 +64,6 @@ public class RoleController extends BaseController {
      * 编辑角色
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "角色管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:role:edit")
@@ -80,7 +76,6 @@ public class RoleController extends BaseController {
      * 删除角色
      *
      * @param roleIds 角色ID
-     * @return
      */
     @Log(title = "角色管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:role:delete")
@@ -92,7 +87,6 @@ public class RoleController extends BaseController {
     /**
      * 获取角色列表
      *
-     * @return
      */
     @GetMapping("/getRoleList")
     public JsonResult getRoleList() {
@@ -103,7 +97,6 @@ public class RoleController extends BaseController {
      * 获取角色菜单列表
      *
      * @param roleId 角色ID
-     * @return
      */
     @GetMapping("/getMenuList/{roleId}")
     public JsonResult getMenuList(@PathVariable("roleId") Integer roleId) {
@@ -115,7 +108,6 @@ public class RoleController extends BaseController {
      *
      * @param roleId  角色ID
      * @param menuIds 菜单ID集合
-     * @return
      */
     @RequiresPermissions("sys:role:permission")
     @PutMapping("/savePermission/{roleId}")

@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.Dept;
 import com.javaweb.system.query.DeptQuery;
 import com.javaweb.system.service.IDeptService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class DeptController extends BaseController {
      * 获取部门列表
      *
      * @param deptQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:dept:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class DeptController extends BaseController {
      * 添加部门
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "部门管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:dept:add")
@@ -67,7 +64,6 @@ public class DeptController extends BaseController {
      * 编辑部门
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "部门管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:dept:edit")
@@ -80,7 +76,6 @@ public class DeptController extends BaseController {
      * 删除部门
      *
      * @param deptId 部门ID
-     * @return
      */
     @Log(title = "部门管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:dept:delete")
@@ -92,7 +87,6 @@ public class DeptController extends BaseController {
     /**
      * 获取部门列表
      *
-     * @return
      */
     @GetMapping("/getDeptList")
     public JsonResult getDeptList() {

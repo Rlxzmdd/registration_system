@@ -10,7 +10,9 @@
 
 package com.withmore.event.form.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.withmore.common.dto.AuthToken2CredentialDto;
@@ -20,8 +22,6 @@ import com.withmore.event.form.dto.FormAuditRetractParamDto;
 import com.withmore.event.form.entity.FormAudit;
 import com.withmore.event.form.query.FormAuditQuery;
 import com.withmore.event.form.service.IFormAuditService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -50,7 +50,6 @@ public class FormAuditController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:form_audit:index")
     @GetMapping("/index")
@@ -62,7 +61,6 @@ public class FormAuditController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "待办事项-表单审核状态表", logType = LogType.INSERT)
     @RequiresPermissions("sys:form_audit:add")
@@ -75,7 +73,6 @@ public class FormAuditController extends BaseController {
      * 获取详情
      *
      * @param Id 记录ID
-     * @return
      */
     @GetMapping("/info/{Id}")
     public JsonResult info(@PathVariable("Id") Integer Id) {
@@ -86,7 +83,6 @@ public class FormAuditController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "待办事项-表单审核状态表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:form_audit:edit")
@@ -99,7 +95,6 @@ public class FormAuditController extends BaseController {
      * 删除记录
      *
      * @param Ids 记录ID
-     * @return
      */
     @Log(title = "待办事项-表单审核状态表", logType = LogType.DELETE)
     @RequiresPermissions("sys:form_audit:drop")
@@ -113,7 +108,6 @@ public class FormAuditController extends BaseController {
      *
      * @param param 请求参数
      * @param token 用户Token
-     * @return
      */
     @PostMapping("/push")
     public JsonResultS push(FormAuditPushParamDto param, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -126,7 +120,6 @@ public class FormAuditController extends BaseController {
      *
      * @param param 表单参数
      * @param token 用户Token
-     * @return
      */
     @PostMapping("/retract")
     public JsonResultS retract(FormAuditRetractParamDto param, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {

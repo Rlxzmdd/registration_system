@@ -32,7 +32,6 @@ public class CommonUtils {
      * 获取到图片域名的地址
      *
      * @param imageUrl
-     * @return
      */
     public static String getImageURL(String imageUrl) {
         return CommonConfig.imageURL + imageUrl;
@@ -42,7 +41,6 @@ public class CommonUtils {
      * 正则匹配富文本图片
      *
      * @param htmlStr 富文本内容
-     * @return
      */
     public static List<String> getImgStr(String htmlStr) {
         Pattern p_image = Pattern.compile("<img.*src\\s*=\\s*(.*?)[^>]*?>", Pattern.CASE_INSENSITIVE);
@@ -66,7 +64,6 @@ public class CommonUtils {
      * 验证邮箱是否正确
      *
      * @param email
-     * @return
      */
     public static boolean isEmail(String email) {
         boolean flag = false;
@@ -85,7 +82,6 @@ public class CommonUtils {
      * 验证手机号是否正确
      *
      * @param mobile
-     * @return
      */
     public static boolean isMobile(String mobile) {
         boolean flag = false;
@@ -104,7 +100,6 @@ public class CommonUtils {
      *
      * @param isNum  是否是纯数字
      * @param length 长度
-     * @return
      */
     public static String getRandomStr(boolean isNum, int length) {
         String resultStr = "";
@@ -135,7 +130,6 @@ public class CommonUtils {
      *
      * @param s
      * @param array
-     * @return
      */
     public static boolean inArray(final String s, final String[] array) {
         for (String item : array) {
@@ -150,7 +144,6 @@ public class CommonUtils {
      * 从html中提取纯文本
      *
      * @param strHtml
-     * @return
      */
     public static String stripHtml(String strHtml) {
         String content = strHtml.replaceAll("</?[^>]+>", ""); //剔出<html>的标签
@@ -162,7 +155,6 @@ public class CommonUtils {
      * 去除字符串中的空格、回车、换行符、制表符等
      *
      * @param str 原始字符串
-     * @return
      */
     public static String replaceSpecialStr(String str) {
         String repl = "";
@@ -179,7 +171,6 @@ public class CommonUtils {
      *
      * @param key 元素
      * @param map 数组
-     * @return
      */
     public static boolean inArray(String key, Map<String, String> map) {
         boolean flag = false;
@@ -195,7 +186,6 @@ public class CommonUtils {
      * 对象转Map
      *
      * @param obj 对象
-     * @return
      * @throws IllegalAccessException
      */
     public static Map<String, Object> objectToMap(Object obj) throws IllegalAccessException {
@@ -214,7 +204,6 @@ public class CommonUtils {
      * 判断是否是JSON格式
      *
      * @param str JSON字符串
-     * @return
      */
     private boolean isJson(String str) {
         try {
@@ -229,7 +218,6 @@ public class CommonUtils {
      * MD5方法
      *
      * @param source
-     * @return
      */
     public static String md5(byte[] source) {
         try {
@@ -250,7 +238,6 @@ public class CommonUtils {
      * 密码加密
      *
      * @param password 密码
-     * @return
      */
     public static String password(String password) {
         String md51 = md5(password.getBytes());
@@ -264,7 +251,6 @@ public class CommonUtils {
      * @param list 数据源
      * @param size 每组几个
      * @param <T>
-     * @return
      */
     public static <T> List<List<T>> split(List<T> list, Integer size) {
         if (CollectionUtils.isEmpty(list)) {

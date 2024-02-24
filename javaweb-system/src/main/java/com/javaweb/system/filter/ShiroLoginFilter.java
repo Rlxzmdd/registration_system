@@ -14,7 +14,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.javaweb.common.utils.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.springframework.http.HttpStatus;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -33,7 +32,6 @@ public class ShiroLoginFilter extends FormAuthenticationFilter {
      * @param request
      * @param response
      * @param mappedValue
-     * @return
      */
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
@@ -57,7 +55,6 @@ public class ShiroLoginFilter extends FormAuthenticationFilter {
      *
      * @param request
      * @param response
-     * @return
      * @throws Exception
      */
     @Override

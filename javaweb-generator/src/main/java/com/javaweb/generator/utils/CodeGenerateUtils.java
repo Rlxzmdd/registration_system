@@ -161,7 +161,6 @@ public class CodeGenerateUtils {
     /**
      * 连接数据库
      *
-     * @return
      * @throws Exception
      */
     public Connection getConnection() throws Exception {
@@ -836,7 +835,6 @@ public class CodeGenerateUtils {
      * 获取数据表列信息
      *
      * @param resultSet
-     * @return
      * @throws IOException
      */
     private Map<String, Object> getColumnsList(ResultSet resultSet) throws Exception {
@@ -965,7 +963,6 @@ public class CodeGenerateUtils {
      * 如：sys_name 变成 SysName
      *
      * @param str 字符串
-     * @return
      */
     public String replaceUnderLineAndUpperCase(String str) {
         StringBuilder sb = new StringBuilder();

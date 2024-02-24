@@ -187,8 +187,7 @@ public class LogAspect {
     /**
      * 判断是否需要过滤的对象。
      *
-     * @param o 对象信息。
-     * @return 如果是需要过滤的对象，则返回true；否则返回false。
+     * @param o 对象信息。 如果是需要过滤的对象，则返回true；否则返回false。
      */
     public boolean isFilterObject(final Object o) {
         return o instanceof MultipartFile || o instanceof HttpServletRequest || o instanceof HttpServletResponse;

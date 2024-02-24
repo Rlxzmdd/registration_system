@@ -29,8 +29,7 @@ public class QRCodeUtils {
      * 生成二维码图片
      *
      * @param content  二维码内容
-     * @param logoPath 图片地址
-     * @return BufferedImage
+     * @param logoPath 图片地址 BufferedImage
      */
     public static BufferedImage qrcodeImageBase64(String content, String logoPath, Integer height, Integer width) throws Exception {
         Hashtable<EncodeHintType, Object> hints = new Hashtable<>();
@@ -58,8 +57,7 @@ public class QRCodeUtils {
     /**
      * @param content 二维码内容
      * @param height  图片高度
-     * @param width   图片宽度
-     * @return qrcode images base64
+     * @param width   图片宽度 qrcode images base64
      */
     public static String qrcodeImageBase64(String content, Integer height, Integer width) throws Exception {
         BufferedImage image = qrcodeImageBase64(content, null, height, width);
@@ -102,8 +100,7 @@ public class QRCodeUtils {
     /**
      * 解析二维码
      *
-     * @param path 二维码图片路径
-     * @return String 二维码内容
+     * @param path 二维码图片路径 String 二维码内容
      */
     public static String decode(String path) throws Exception {
         File file = new File(path);
@@ -123,8 +120,7 @@ public class QRCodeUtils {
     /**
      * 解析base64信息
      *
-     * @param base64 信息
-     * @return String 二维码内容
+     * @param base64 信息 String 二维码内容
      */
     public static String decodeBase64(String base64) throws Exception {
         byte[] img_base64 = Base64.decode(base64);
@@ -145,8 +141,7 @@ public class QRCodeUtils {
     /**
      * 将BufferedImage 对象转换为Base64 字符串
      *
-     * @param image bufferedImage Object
-     * @return image base64 格式
+     * @param image bufferedImage Object image base64 格式
      */
     public static String ConvertToBase64(BufferedImage image) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

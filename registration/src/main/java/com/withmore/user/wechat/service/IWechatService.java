@@ -11,13 +11,13 @@
 package com.withmore.user.wechat.service;
 
 import com.javaweb.common.utils.JsonResultS;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.user.wechat.dto.WechatStudentALLoginDto;
 import com.withmore.user.wechat.dto.WechatStudentEXAMLoginDto;
 import com.withmore.user.wechat.dto.WechatStudentLoginDto;
 import com.withmore.user.wechat.dto.WechatTeacherLoginDto;
 import com.withmore.user.wechat.entity.Wechat;
-import com.javaweb.system.common.IBaseService;
 
 /**
  * <p>
@@ -34,7 +34,6 @@ public interface IWechatService extends IBaseService<Wechat> {
      * 登录凭据：学号+真实姓名
      *
      * @param loginDto 登录凭据Dto
-     * @return
      */
     JsonResultS loginByStuNumberAndRealName(WechatStudentLoginDto loginDto);
 
@@ -43,7 +42,6 @@ public interface IWechatService extends IBaseService<Wechat> {
      * 登录凭据：通知书编号+真实姓名
      *
      * @param loginDto 登录凭据Dto
-     * @return
      */
     JsonResultS loginBySerialNumberAndRealName(WechatStudentALLoginDto loginDto);
 
@@ -52,7 +50,6 @@ public interface IWechatService extends IBaseService<Wechat> {
      * 登录凭据：考生号+真实姓名+身份证后六位
      *
      * @param dto 登录凭据Dto
-     * @return
      */
     JsonResultS loginByExamNumberAndLastId(WechatStudentEXAMLoginDto dto);
 
@@ -61,7 +58,6 @@ public interface IWechatService extends IBaseService<Wechat> {
      *
      * @param code   小程序Code
      * @param dto
-     * @return
      */
     JsonResultS bind(String code, AuthToken2CredentialDto dto);
 
@@ -69,7 +65,6 @@ public interface IWechatService extends IBaseService<Wechat> {
      * 根据Code 获取绑定的微信信息
      *
      * @param code 小程序code
-     * @return
      */
     JsonResultS getBind(String code);
 
@@ -78,7 +73,6 @@ public interface IWechatService extends IBaseService<Wechat> {
      *
      * @param dto    用户信息
      * @param height 图像高度
-     * @return
      */
     JsonResultS getQRCode(AuthToken2CredentialDto dto, Integer width, Integer height);
 
@@ -86,7 +80,6 @@ public interface IWechatService extends IBaseService<Wechat> {
      * 小程序教师用户登录
      *
      * @param loginDto 登录凭据Dto
-     * @return
      */
     JsonResultS loginByTchNumberAndPassword(WechatTeacherLoginDto loginDto);
 
@@ -94,7 +87,6 @@ public interface IWechatService extends IBaseService<Wechat> {
      * 获取指定工号、学号极简信息
      *
      * @param number 学号，工号
-     * @return
      */
     JsonResultS simple(String number);
 

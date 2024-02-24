@@ -16,9 +16,8 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.javaweb.common.utils.*;
-import com.javaweb.system.common.BaseQuery;
 import com.javaweb.common.config.CommonConfig;
+import com.javaweb.common.utils.*;
 import com.javaweb.system.constant.UserConstant;
 import com.javaweb.system.dto.ResetPwdDto;
 import com.javaweb.system.dto.UpdatePwdDto;
@@ -68,7 +67,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * 获取用户列表
      *
      * @param userQuery 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(UserQuery userQuery) {
@@ -139,7 +137,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * 添加或编辑
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(User entity) {
@@ -179,7 +176,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * 根据用户ID删除用户
      *
      * @param ids 记录ID
-     * @return
      */
     @Override
     public JsonResult deleteByIds(Integer[] ids) {
@@ -207,7 +203,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult setStatus(User entity) {
@@ -223,7 +218,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     /**
      * 获取用户信息
      *
-     * @return
      */
     @Override
     public JsonResult getUserInfo() {
@@ -256,7 +250,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * 修改密码
      *
      * @param updatePwdDto 参数
-     * @return
      */
     @Override
     public JsonResult updatePwd(UpdatePwdDto updatePwdDto) {
@@ -281,7 +274,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * 更新个人资料
      *
      * @param updateUserInfoDto 参数
-     * @return
      */
     @Override
     public JsonResult updateUserInfo(UpdateUserInfoDto updateUserInfoDto) {
@@ -308,7 +300,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * 重置密码
      *
      * @param resetPwdDto 参数
-     * @return
      */
     @Override
     public JsonResult resetPwd(ResetPwdDto resetPwdDto) {

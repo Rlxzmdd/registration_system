@@ -29,14 +29,12 @@ public interface IMenuService extends IBaseService<Menu> {
      * 获取导航菜单
      *
      * @param userId 用户ID
-     * @return
      */
     List<Menu> getMenuList(Integer userId);
 
     /**
      * 获取所有菜单列表
      *
-     * @return
      */
     List<Menu> getMenuAll();
 
@@ -44,7 +42,6 @@ public interface IMenuService extends IBaseService<Menu> {
      * 获取节点权限
      *
      * @param userId 用户ID
-     * @return
      */
     List<String> getPermissionList(Integer userId);
 

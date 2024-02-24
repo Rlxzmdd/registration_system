@@ -44,7 +44,6 @@ public class PositionServiceImpl extends BaseServiceImpl<PositionMapper, Positio
      * 获取岗位列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -67,7 +66,6 @@ public class PositionServiceImpl extends BaseServiceImpl<PositionMapper, Positio
     /**
      * 获取岗位列表
      *
-     * @return
      */
     @Override
     public JsonResult getPositionList() {

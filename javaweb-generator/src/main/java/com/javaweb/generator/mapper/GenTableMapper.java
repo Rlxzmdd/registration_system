@@ -10,9 +10,9 @@
 
 package com.javaweb.generator.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.javaweb.generator.entity.GenTable;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.javaweb.generator.query.GenTableQuery;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,7 +33,6 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      *
      * @param page  分页信息
      * @param param 参数
-     * @return
      */
     IPage<GenTable> selectGenTableList(IPage<GenTable> page, @RequestParam("param") GenTableQuery param);
 
@@ -42,7 +41,6 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      *
      * @param page  分页信息
      * @param param 查询条件
-     * @return
      */
     IPage<GenTable> selectDbTableList(IPage<GenTable> page, @RequestParam("param") GenTableQuery param);
 
@@ -50,7 +48,6 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * 根据表明获取数据库列表
      *
      * @param tableNames 数据库名
-     * @return
      */
     List<GenTable> selectDbTableListByNames(String[] tableNames);
 
@@ -58,7 +55,6 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * 插入数据表
      *
      * @param genTable 待生成数据表
-     * @return
      */
     int insertGenTable(GenTable genTable);
 
@@ -66,7 +62,6 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * 根据表ID获取表信息
      *
      * @param tableId 表ID
-     * @return
      */
     GenTable selectGenTableById(Integer tableId);
 
@@ -74,7 +69,6 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * 修改业务表信息
      *
      * @param genTable 业务表
-     * @return
      */
     int updateGenTable(GenTable genTable);
 
@@ -83,7 +77,6 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * 根据表名查询业务表
      *
      * @param tableName 表名
-     * @return
      */
     GenTable selectGenTableByName(String tableName);
 

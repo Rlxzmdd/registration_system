@@ -15,14 +15,17 @@ import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.javaweb.common.utils.*;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
+import com.javaweb.common.utils.JsonResultS;
+import com.javaweb.common.utils.ResultCodeEnum;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
-import com.withmore.common.utils.QRCodeUtils;
 import com.withmore.common.constant.Constant;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.common.dto.WechatProgramIdentityDto;
 import com.withmore.common.utils.JwtUtil;
+import com.withmore.common.utils.QRCodeUtils;
 import com.withmore.common.utils.WxUserRegisterUtil;
 import com.withmore.shiro.token.WechatStudentUserALToken;
 import com.withmore.shiro.token.WechatStudentUserEXAMToken;
@@ -54,7 +57,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -90,7 +95,6 @@ public class WechatServiceImpl extends BaseServiceImpl<WechatMapper, Wechat> imp
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -114,7 +118,6 @@ public class WechatServiceImpl extends BaseServiceImpl<WechatMapper, Wechat> imp
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -130,7 +133,6 @@ public class WechatServiceImpl extends BaseServiceImpl<WechatMapper, Wechat> imp
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Wechat entity) {
@@ -148,7 +150,6 @@ public class WechatServiceImpl extends BaseServiceImpl<WechatMapper, Wechat> imp
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(Wechat entity) {

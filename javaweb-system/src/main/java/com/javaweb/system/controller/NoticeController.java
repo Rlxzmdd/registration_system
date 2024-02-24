@@ -14,14 +14,13 @@ package com.javaweb.system.controller;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import com.javaweb.system.entity.Notice;
 import com.javaweb.system.query.NoticeQuery;
 import com.javaweb.system.service.INoticeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class NoticeController extends BaseController {
      * 获取通知公告列表
      *
      * @param noticeQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:notice:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class NoticeController extends BaseController {
      * 获取通知公告详情
      *
      * @param noticeId 通知公告ID
-     * @return
      */
     @GetMapping("/info/{noticeId}")
     public JsonResult info(@PathVariable("noticeId") Integer noticeId) {
@@ -65,7 +62,6 @@ public class NoticeController extends BaseController {
      * 添加通知公告
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "通知公告", logType = LogType.INSERT)
     @RequiresPermissions("sys:notice:add")
@@ -78,7 +74,6 @@ public class NoticeController extends BaseController {
      * 编辑通知公告
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "通知公告", logType = LogType.UPDATE)
     @RequiresPermissions("sys:notice:edit")
@@ -91,7 +86,6 @@ public class NoticeController extends BaseController {
      * 删除通知公告
      *
      * @param noticeIds 通知公告ID
-     * @return
      */
     @Log(title = "通知公告", logType = LogType.DELETE)
     @RequiresPermissions("sys:notice:delete")
@@ -104,7 +98,6 @@ public class NoticeController extends BaseController {
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "通知公告", logType = LogType.STATUS)
     @RequiresPermissions("sys:notice:status")
@@ -117,7 +110,6 @@ public class NoticeController extends BaseController {
      * 设置指定
      *
      * @param entity 实体对象
-     * @return
      */
     @RequiresPermissions("sys:notice:setIsTop")
     @PutMapping("/setIsTop")

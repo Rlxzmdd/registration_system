@@ -40,7 +40,6 @@ public class StudentPermissionController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:student_permission:index")
     @GetMapping("/index")
@@ -52,7 +51,6 @@ public class StudentPermissionController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "学生-学生可访问权限表", logType = LogType.INSERT)
     @RequiresPermissions("sys:student_permission:add")
@@ -65,7 +63,6 @@ public class StudentPermissionController extends BaseController {
      * 获取详情
      *
      * @param studentpermissionId 记录ID
-     * @return
      */
     @GetMapping("/info/{id}")
     public JsonResult info(@PathVariable("id") Integer studentpermissionId) {
@@ -76,7 +73,6 @@ public class StudentPermissionController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "学生-学生可访问权限表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:student_permission:edit")
@@ -89,7 +85,6 @@ public class StudentPermissionController extends BaseController {
      * 删除记录
      *
      * @param studentpermissionIds 记录ID
-     * @return
      */
     @Log(title = "学生-学生可访问权限表", logType = LogType.DELETE)
     @RequiresPermissions("sys:student_permission:drop")

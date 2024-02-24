@@ -10,8 +10,8 @@
 
 package com.javaweb.system.service;
 
-import com.javaweb.system.common.IBaseService;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.IBaseService;
 import com.javaweb.system.entity.Role;
 
 /**
@@ -27,7 +27,6 @@ public interface IRoleService extends IBaseService<Role> {
     /**
      * 获取角色列表
      *
-     * @return
      */
     JsonResult getRoleList();
 
@@ -35,7 +34,6 @@ public interface IRoleService extends IBaseService<Role> {
      * 获取角色菜单列表
      *
      * @param roleId 角色ID
-     * @return
      */
     JsonResult getMenuList(Integer roleId);
 
@@ -44,7 +42,6 @@ public interface IRoleService extends IBaseService<Role> {
      *
      * @param roleId  角色ID
      * @param menuIds 菜单ID几个
-     * @return
      */
     JsonResult savePermission(Integer roleId, String[] menuIds);
 

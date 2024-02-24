@@ -33,9 +33,6 @@ public class FormItemInfoVo {
     private Integer id;
 
     /**
-     * 表单内容
-     */
-    /**
      * 表单类型key
      */
     private String formKey;

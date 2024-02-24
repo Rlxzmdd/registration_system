@@ -20,7 +20,6 @@ public class ConfigWebController extends BaseController {
     /**
      * 获取配置列表
      *
-     * @return
      */
     @RequiresPermissions("sys:website:index")
     @GetMapping("/index")
@@ -32,7 +31,6 @@ public class ConfigWebController extends BaseController {
      * 保存配置信息
      *
      * @param info 表单信息
-     * @return
      */
     @RequiresPermissions("sys:website:edit")
     @PutMapping("/edit")

@@ -42,7 +42,6 @@ public class ConfigDataServiceImpl extends BaseServiceImpl<ConfigDataMapper, Con
      * 获取配置列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -70,7 +69,6 @@ public class ConfigDataServiceImpl extends BaseServiceImpl<ConfigDataMapper, Con
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult setStatus(ConfigData entity) {

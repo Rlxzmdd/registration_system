@@ -14,24 +14,20 @@ import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.javaweb.common.config.CommonConfig;
-import com.javaweb.common.utils.CommonUtils;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
 import com.javaweb.system.entity.Role;
 import com.javaweb.system.mapper.RoleMapper;
-import com.withmore.user.wechat.constant.RouteConstant;
 import com.withmore.user.wechat.entity.Route;
 import com.withmore.user.wechat.mapper.RouteMapper;
 import com.withmore.user.wechat.query.RoleRouteQuery;
 import com.withmore.user.wechat.query.RouteQuery;
 import com.withmore.user.wechat.service.IRouteService;
-import com.javaweb.system.utils.ShiroUtils;
 import com.withmore.user.wechat.vo.route.RouteInfoVo;
 import com.withmore.user.wechat.vo.route.RouteListVo;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
 import com.withmore.user.wechat.vo.wechat.RoleRouteVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +35,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -62,7 +59,6 @@ public class RouteServiceImpl extends BaseServiceImpl<RouteMapper, Route> implem
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -90,7 +86,6 @@ public class RouteServiceImpl extends BaseServiceImpl<RouteMapper, Route> implem
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -106,7 +101,6 @@ public class RouteServiceImpl extends BaseServiceImpl<RouteMapper, Route> implem
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(Route entity) {
@@ -124,7 +118,6 @@ public class RouteServiceImpl extends BaseServiceImpl<RouteMapper, Route> implem
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(Route entity) {

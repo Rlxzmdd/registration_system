@@ -14,31 +14,27 @@ import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
-import com.withmore.activity.entity.ActivityExamine;
-import com.withmore.activity.entity.ActivityItemInfo;
 import com.withmore.activity.entity.ActivitySignUp;
 import com.withmore.activity.mapper.ActivityItemInfoMapper;
 import com.withmore.activity.mapper.ActivitySignUpMapper;
 import com.withmore.activity.query.ActivitySignUpQuery;
 import com.withmore.activity.service.IActivitySignUpService;
-import com.javaweb.system.utils.ShiroUtils;
 import com.withmore.activity.vo.activity.ActivityInfoManageVo;
 import com.withmore.activity.vo.activitysignup.ActivitySignUpInfoVo;
 import com.withmore.activity.vo.activitysignup.ActivitySignUpListVo;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
 import com.withmore.common.constant.Constant;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.List;
 
 /**
   * <p>
@@ -61,7 +57,6 @@ public class ActivitySignUpServiceImpl extends BaseServiceImpl<ActivitySignUpMap
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -85,7 +80,6 @@ public class ActivitySignUpServiceImpl extends BaseServiceImpl<ActivitySignUpMap
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -101,7 +95,6 @@ public class ActivitySignUpServiceImpl extends BaseServiceImpl<ActivitySignUpMap
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(ActivitySignUp entity) {
@@ -117,7 +110,6 @@ public class ActivitySignUpServiceImpl extends BaseServiceImpl<ActivitySignUpMap
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(ActivitySignUp entity) {
@@ -129,8 +121,6 @@ public class ActivitySignUpServiceImpl extends BaseServiceImpl<ActivitySignUpMap
 
     /**
      * 根据activityId获取报名情况
-     * @param activityId
-     * @return
      */
     @Override
     public List<ActivitySignUpListVo> getListByActivityId(Integer activityId) {
@@ -143,10 +133,6 @@ public class ActivitySignUpServiceImpl extends BaseServiceImpl<ActivitySignUpMap
 
     /**
      * 报名活动
-     *
-     * @param activityId
-     * @param dto
-     * @return
      */
     public JsonResultS signUp(AuthToken2CredentialDto dto,Integer activityId){
         ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(activityId, dto.getNumber(), dto.getType(),

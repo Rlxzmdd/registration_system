@@ -47,7 +47,6 @@ public class LevelServiceImpl extends BaseServiceImpl<LevelMapper, Level> implem
      * 获取职级列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -70,7 +69,6 @@ public class LevelServiceImpl extends BaseServiceImpl<LevelMapper, Level> implem
     /**
      * 获取职级列表
      *
-     * @return
      */
     @Override
     public JsonResult getLevelList() {
@@ -86,7 +84,6 @@ public class LevelServiceImpl extends BaseServiceImpl<LevelMapper, Level> implem
      * 导出Excel
      *
      * @param levelQuery 查询条件
-     * @return
      */
     @Override
     public List<LevelInfoVo> exportExcel(LevelQuery levelQuery) {

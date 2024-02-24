@@ -10,15 +10,15 @@
 
 package com.withmore.user.wechat.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.withmore.user.wechat.entity.Route;
 import com.withmore.user.wechat.query.RoleRouteQuery;
 import com.withmore.user.wechat.query.RouteQuery;
 import com.withmore.user.wechat.service.IRouteService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +42,6 @@ public class RouteController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:route:index")
     @GetMapping("/index")
@@ -54,7 +53,6 @@ public class RouteController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "微信小程序路由表", logType = LogType.INSERT)
     @RequiresPermissions("sys:route:add")
@@ -67,7 +65,6 @@ public class RouteController extends BaseController {
      * 获取详情
      *
      * @param routeId 记录ID
-     * @return
      */
     @GetMapping("/info/{routeId}")
     public JsonResult info(@PathVariable("routeId") Integer routeId) {
@@ -78,7 +75,6 @@ public class RouteController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "微信小程序路由表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:route:edit")
@@ -91,7 +87,6 @@ public class RouteController extends BaseController {
      * 删除记录
      *
      * @param routeIds 记录ID
-     * @return
      */
     @Log(title = "微信小程序路由表", logType = LogType.DELETE)
     @RequiresPermissions("sys:route:drop")
@@ -104,7 +99,6 @@ public class RouteController extends BaseController {
      * 小程序用户获取角色路由
      *
      * @param query 查询参数
-     * @return
      */
     @GetMapping("/query/role")
     public JsonResultS query(RoleRouteQuery query) {

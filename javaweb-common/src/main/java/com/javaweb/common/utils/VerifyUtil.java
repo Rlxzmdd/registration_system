@@ -48,7 +48,6 @@ public class VerifyUtil {
     /**
      * 字体的设置
      *
-     * @return
      */
     private Font getFont() {
         return new Font("Times New Roman", Font.ROMAN_BASELINE, 40);
@@ -59,7 +58,6 @@ public class VerifyUtil {
      *
      * @param fc
      * @param bc
-     * @return
      */
     private static Color getRandomColor(int fc, int bc) {
 
@@ -91,7 +89,6 @@ public class VerifyUtil {
      * 随机字符的获取
      *
      * @param num
-     * @return
      */
     private String getRandomString(int num) {
         num = num > 0 ? num : randomString.length();
@@ -104,7 +101,6 @@ public class VerifyUtil {
      * @param g
      * @param randomStr
      * @param i
-     * @return
      */
     private String drawString(Graphics g, String randomStr, int i) {
         g.setFont(getFont());
@@ -152,7 +148,6 @@ public class VerifyUtil {
     /**
      * 生成随机图片的base64编码字符串
      *
-     * @return
      */
     public Map<String, String> getRandomCodeBase64() {
         Map<String, String> result = new HashMap<>();

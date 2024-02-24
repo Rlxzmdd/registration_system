@@ -11,11 +11,11 @@
 package com.withmore.event.form.service;
 
 import com.javaweb.common.utils.JsonResultS;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.event.form.dto.FormAuditPushParamDto;
 import com.withmore.event.form.dto.FormAuditRetractParamDto;
 import com.withmore.event.form.entity.FormAudit;
-import com.javaweb.system.common.IBaseService;
 
 /**
  * <p>
@@ -32,7 +32,6 @@ public interface IFormAuditService extends IBaseService<FormAudit> {
      *
      * @param param 请求参数
      * @param dto   用户凭据
-     * @return
      */
     JsonResultS push(FormAuditPushParamDto param, AuthToken2CredentialDto dto);
 
@@ -41,7 +40,6 @@ public interface IFormAuditService extends IBaseService<FormAudit> {
      *
      * @param param 请求参数
      * @param dto   用户凭据
-     * @return
      */
     JsonResultS retract(FormAuditRetractParamDto param, AuthToken2CredentialDto dto);
 }

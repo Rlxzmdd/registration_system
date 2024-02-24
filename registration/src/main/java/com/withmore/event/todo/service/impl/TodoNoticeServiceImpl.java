@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.common.utils.ResultCodeEnum;
 import com.javaweb.system.common.BaseQuery;
@@ -13,8 +15,8 @@ import com.javaweb.system.common.BaseServiceImpl;
 import com.withmore.common.constant.Constant;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.common.utils.PageUtil;
-import com.withmore.event.todo.dto.NoticePushDto;
 import com.withmore.event.todo.dto.NoticeDetailsDto;
+import com.withmore.event.todo.dto.NoticePushDto;
 import com.withmore.event.todo.entity.TodoNotice;
 import com.withmore.event.todo.entity.TodoNoticeImg;
 import com.withmore.event.todo.entity.TodoNoticePermission;
@@ -26,8 +28,6 @@ import com.withmore.event.todo.service.ITodoNoticeService;
 import com.withmore.event.todo.vo.todonotice.TodoNoticeDetailsVo;
 import com.withmore.event.todo.vo.todonotice.TodoNoticeInfoVo;
 import com.withmore.event.todo.vo.todonotice.TodoNoticeListVo;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
 import com.withmore.resource.img.vo.resourceimg.ImagePair;
 import com.withmore.user.permission.entity.PermissionNode;
 import com.withmore.user.permission.utils.PermissionConvert;
@@ -64,7 +64,6 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -92,7 +91,6 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -108,7 +106,6 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(TodoNotice entity) {
@@ -126,7 +123,6 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(TodoNotice entity) {
@@ -140,7 +136,6 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
      * 判断是否存在记录
      *
      * @param title 通知标题
-     * @return
      */
     private boolean isExists(String title, String initiatorNumber, String initiatorType) {
         QueryWrapper<TodoNotice> todoNoticeQueryWrapper = new QueryWrapper<>();
@@ -180,7 +175,6 @@ public class TodoNoticeServiceImpl extends BaseServiceImpl<TodoNoticeMapper, Tod
      *
      * @param detailsList 通知详情列表
      * @param baseQuery   分页参数
-     * @return
      */
     private IPage<TodoNoticeDetailsVo> filterDetails(List<NoticeDetailsDto> detailsList, BaseQuery baseQuery) {
         Map<Integer, TodoNoticeDetailsVo> filter = new HashMap<>();

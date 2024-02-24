@@ -6,9 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.withmore.common.constant.Constant;
-import org.apache.tomcat.util.bcel.Const;
-import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -25,8 +24,7 @@ public class JwtUtil {
     /**
      * 校验token是否正确, 以及是否过期
      *
-     * @param token 密钥
-     * @return 是否正确
+     * @param token 密钥 是否正确
      */
     public boolean verify(String token) {
         try {
@@ -51,7 +49,6 @@ public class JwtUtil {
      *
      * @param token 用户Token
      * @param key   指定key
-     * @return
      */
     public String getTokenClaim(String token, String key) {
         try {
@@ -66,7 +63,6 @@ public class JwtUtil {
      * 获取Token Payload 中的用户类型
      *
      * @param token
-     * @return
      */
     public String getUserType(String token) {
         if (StringUtils.startsWithIgnoreCase(token, "Bearer ")) {
@@ -77,8 +73,7 @@ public class JwtUtil {
 
     /**
      * 获取Token Payload 中的用户ID
-     *
-     * @return token中包含的用户名
+     * token中包含的用户名
      */
     public String getUserId(String token) {
         if (StringUtils.startsWithIgnoreCase(token, "Bearer ")) {
@@ -90,8 +85,7 @@ public class JwtUtil {
     /**
      * 签署生成jwt Token
      *
-     * @param userId 用户id
-     * @return 加密的token
+     * @param userId 用户id 加密的token
      */
     public String sign(String userId, String type) {
         return sign(userId,type,Constant.TOKEN_EXPIRE_TIME);
@@ -102,8 +96,7 @@ public class JwtUtil {
      * 签署生成jwt Token
      *
      * @param userId 用户id
-     * @param time 可用时长
-     * @return 加密的token
+     * @param time 可用时长 加密的token
      */
     public String sign(String userId, String type,Integer time) {
         // 过期时间

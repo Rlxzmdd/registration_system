@@ -32,7 +32,6 @@ public interface StudentPermissionMapper extends BaseMapper<StudentPermission> {
     /**
      * 查询学生可视权限
      * @param stuNumber 目标学号
-     * @return
      */
     List<StudentPermissionDto> getStudentViewPermission(String stuNumber);
 }

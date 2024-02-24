@@ -10,13 +10,13 @@
 
 package com.withmore.user.student.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.BaseController;
 import com.withmore.user.student.entity.StudentLabel;
 import com.withmore.user.student.query.StudentLabelQuery;
 import com.withmore.user.student.service.IStudentLabelService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +40,6 @@ public class StudentLabelController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:studentlabel:index")
     @GetMapping("/index")
@@ -52,7 +51,6 @@ public class StudentLabelController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "学生标签信息表", logType = LogType.INSERT)
     @RequiresPermissions("sys:studentlabel:add")
@@ -65,7 +63,6 @@ public class StudentLabelController extends BaseController {
      * 获取详情
      *
      * @param studentlabelId 记录ID
-     * @return
      */
     @GetMapping("/info/{studentlabelId}")
     public JsonResult info(@PathVariable("studentlabelId") Integer studentlabelId) {
@@ -76,7 +73,6 @@ public class StudentLabelController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "学生标签信息表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:studentlabel:edit")
@@ -89,7 +85,6 @@ public class StudentLabelController extends BaseController {
      * 删除记录
      *
      * @param studentlabelIds 记录ID
-     * @return
      */
     @Log(title = "学生标签信息表", logType = LogType.DELETE)
     @RequiresPermissions("sys:studentlabel:drop")

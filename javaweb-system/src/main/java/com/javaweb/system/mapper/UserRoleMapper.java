@@ -10,9 +10,9 @@
 
 package com.javaweb.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.javaweb.system.entity.Role;
 import com.javaweb.system.entity.UserRole;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -32,7 +32,6 @@ public interface UserRoleMapper extends BaseMapper<UserRole> {
      * 根据用户ID获取角色
      *
      * @param userId 用户ID
-     * @return
      */
     List<Role> getRolesByUserId(Integer userId);
 

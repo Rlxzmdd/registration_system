@@ -1,12 +1,12 @@
 package com.withmore.event.form.controller;
 
+import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.BaseController;
 import com.withmore.event.form.entity.ReviewerStrategy;
 import com.withmore.event.form.query.ReviewerStrategyQuery;
 import com.withmore.event.form.service.IReviewerStrategyService;
-import com.javaweb.common.annotation.Log;
-import com.javaweb.common.utils.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,6 @@ public class ReviewerStrategyController extends BaseController {
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @RequiresPermissions("sys:reviewer_strategy:index")
     @GetMapping("/index")
@@ -42,7 +41,6 @@ public class ReviewerStrategyController extends BaseController {
      * 添加记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "表单审核策略表", logType = LogType.INSERT)
     @RequiresPermissions("sys:reviewer_strategy:add")
@@ -55,7 +53,6 @@ public class ReviewerStrategyController extends BaseController {
      * 获取详情
      *
      * @param Id 记录ID
-     * @return
      */
     @GetMapping("/info/{Id}")
     public JsonResult info(@PathVariable("Id") Integer Id) {
@@ -66,7 +63,6 @@ public class ReviewerStrategyController extends BaseController {
      * 更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "表单审核策略表", logType = LogType.UPDATE)
     @RequiresPermissions("sys:reviewer_strategy:edit")
@@ -79,7 +75,6 @@ public class ReviewerStrategyController extends BaseController {
      * 删除记录
      *
      * @param Ids 记录ID
-     * @return
      */
     @Log(title = "表单审核策略表", logType = LogType.DELETE)
     @RequiresPermissions("sys:reviewer_strategy:drop")

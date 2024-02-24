@@ -38,8 +38,7 @@ public class AsyncFactory {
      * @param username 用户名
      * @param status   状态
      * @param message  消息
-     * @param args     列表
-     * @return 任务task
+     * @param args     列表 任务task
      */
     public static TimerTask recordLogininfor(final String username, final String status, final String message,
                                              final Object... args) {
@@ -91,8 +90,7 @@ public class AsyncFactory {
     /**
      * 操作日志记录
      *
-     * @param operLog 操作日志信息
-     * @return 任务task
+     * @param operLog 操作日志信息 任务task
      */
     public static TimerTask recordOper(final OperLog operLog) {
         return new TimerTask() {

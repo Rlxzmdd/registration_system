@@ -13,7 +13,6 @@ package com.javaweb.system.service;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.IBaseService;
 import com.javaweb.system.entity.Notice;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -29,7 +28,6 @@ public interface INoticeService extends IBaseService<Notice> {
      * 设置是否置顶
      *
      * @param entity 实体对象
-     * @return
      */
     JsonResult setIsTop(Notice entity);
 

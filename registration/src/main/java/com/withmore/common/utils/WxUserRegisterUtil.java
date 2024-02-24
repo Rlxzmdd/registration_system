@@ -44,8 +44,7 @@ public class WxUserRegisterUtil {
 
     /**
      * 替换URL请求参数
-     *
-     * @return REQUEST URL
+     * REQUEST URL
      */
     private String generateAccessTokenURL() {
         return String.format(this.authTokenURL, this.appId, this.appSecret);
@@ -55,7 +54,6 @@ public class WxUserRegisterUtil {
      * 生成换取openid 的请求地址
      *
      * @param code 小程序用户code
-     * @return
      */
     private String generateCode2SessionURL(String code) {
         return String.format(this.code2SessionURL, this.appId, this.appSecret, code);
@@ -64,7 +62,6 @@ public class WxUserRegisterUtil {
     /**
      * 从Redis 缓存中获取AccessToken
      *
-     * @return
      */
     private String getAccessTokenForRedis() {
         return redisUtils.get(Constant.WECHAT_ACCESS_TOKEN_REDIS_KEY).toString();
@@ -75,7 +72,6 @@ public class WxUserRegisterUtil {
      *
      * @param token
      * @param expire
-     * @return
      */
     private Boolean setAccessToken2Redis(String token, Integer expire) {
         redisUtils.set(Constant.WECHAT_ACCESS_TOKEN_REDIS_KEY, token);
@@ -85,8 +81,7 @@ public class WxUserRegisterUtil {
     /**
      * 请求wx Access_token
      * 若请求失败，将返回null
-     *
-     * @return Access_token
+     * Access_token
      */
     private String requestAccessToken() {
         Map<String, Object> response = httpClientUtil.sendGetData(this.generateAccessTokenURL(), "UTF-8");
@@ -102,8 +97,7 @@ public class WxUserRegisterUtil {
 
     /**
      * 获取wx AccessToken ,若redis无token则设置一份置于redis中
-     *
-     * @return access_token
+     * access_token
      */
     public String getAccessToken() {
         String access_token = getAccessTokenForRedis();
@@ -113,8 +107,7 @@ public class WxUserRegisterUtil {
 
     /**
      * 请求微信用户OpenId
-     *
-     * @return response
+     * response
      */
     public WechatProgramIdentityDto requestCode2Session(String code) {
         String url = generateCode2SessionURL(code);

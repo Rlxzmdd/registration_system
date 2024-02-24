@@ -40,7 +40,6 @@ public class UploadController {
      *
      * @param request 网络请求
      * @param name    目录名
-     * @return
      */
     @PostMapping("/uploadImage/{name}")
     public JsonResult uploadImage(HttpServletRequest request, @PathVariable("name") String name) {
@@ -52,7 +51,6 @@ public class UploadController {
      *
      * @param request 网络请求
      * @param name 目录名
-     * @return
      */
     @PostMapping("/uploadFile/{name}")
     public JsonResult uploadFile(HttpServletRequest request, @PathVariable("name") String name) {

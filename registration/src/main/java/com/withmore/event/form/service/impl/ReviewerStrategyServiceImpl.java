@@ -14,6 +14,8 @@ import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
 import com.withmore.event.form.entity.ReviewerStrategy;
@@ -22,8 +24,6 @@ import com.withmore.event.form.query.ReviewerStrategyQuery;
 import com.withmore.event.form.service.IReviewerStrategyService;
 import com.withmore.event.form.vo.reviewerstrategy.ReviewerStrategyInfoVo;
 import com.withmore.event.form.vo.reviewerstrategy.ReviewerStrategyListVo;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +48,6 @@ public class ReviewerStrategyServiceImpl extends BaseServiceImpl<ReviewerStrateg
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -72,7 +71,6 @@ public class ReviewerStrategyServiceImpl extends BaseServiceImpl<ReviewerStrateg
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -88,7 +86,6 @@ public class ReviewerStrategyServiceImpl extends BaseServiceImpl<ReviewerStrateg
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(ReviewerStrategy entity) {
@@ -106,7 +103,6 @@ public class ReviewerStrategyServiceImpl extends BaseServiceImpl<ReviewerStrateg
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(ReviewerStrategy entity) {

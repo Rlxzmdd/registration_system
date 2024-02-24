@@ -42,7 +42,6 @@ public class OperLogServiceImpl extends BaseServiceImpl<OperLogMapper, OperLog> 
      * 获取操作日志列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {

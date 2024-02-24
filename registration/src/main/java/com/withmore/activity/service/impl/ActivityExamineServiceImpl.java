@@ -15,7 +15,10 @@ import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.javaweb.common.utils.*;
+import com.javaweb.common.utils.DateUtils;
+import com.javaweb.common.utils.JsonResult;
+import com.javaweb.common.utils.JsonResultS;
+import com.javaweb.common.utils.StringUtils;
 import com.javaweb.system.common.BaseQuery;
 import com.javaweb.system.common.BaseServiceImpl;
 import com.withmore.activity.dto.UserIdentityDto;
@@ -68,7 +71,6 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
      * 获取数据列表
      *
      * @param query 查询条件
-     * @return
      */
     @Override
     public JsonResult getList(BaseQuery query) {
@@ -92,7 +94,6 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
      * 获取详情Vo
      *
      * @param id 记录ID
-     * @return
      */
     @Override
     public Object getInfo(Serializable id) {
@@ -108,7 +109,6 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
      * 添加、更新记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult edit(ActivityExamine entity) {
@@ -124,7 +124,6 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
      * 删除记录
      *
      * @param entity 实体对象
-     * @return
      */
     @Override
     public JsonResult delete(ActivityExamine entity) {
@@ -141,11 +140,6 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
 
     /**
      * 添加一条核销记录
-     *
-     * @param dto
-     * @param activityId
-     * @param examinedDto
-     * @return
      */
     @Override
     public JsonResultS examine(AuthToken2CredentialDto dto, Integer activityId, AuthToken2CredentialDto examinedDto) {
@@ -183,10 +177,6 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
 
     /**
      * 获取核销情况列表
-     *
-     * @param dto
-     * @param query
-     * @return
      */
     @Override
     public JsonResultS getExamineList(AuthToken2CredentialDto dto, ActivityExamineListQuery query) {
@@ -222,10 +212,6 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
 
     /**
      * 获取核销情况列表
-     *
-     * @param dto
-     * @param query
-     * @return
      */
     @Override
     public JsonResultS getExamineListSelf(AuthToken2CredentialDto dto, BaseQuery query) {

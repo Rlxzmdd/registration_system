@@ -17,11 +17,10 @@ import com.javaweb.admin.service.IMemberService;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.LogType;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.javaweb.system.common.BaseController;
 
 /**
  * <p>
@@ -42,7 +41,6 @@ public class MemberController extends BaseController {
      * 获取会员列表
      *
      * @param memberQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:member:index")
     @GetMapping("/index")
@@ -54,7 +52,6 @@ public class MemberController extends BaseController {
      * 添加会员
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "会员管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:member:add")
@@ -67,7 +64,6 @@ public class MemberController extends BaseController {
      * 编辑会员
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "会员管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:member:edit")
@@ -80,7 +76,6 @@ public class MemberController extends BaseController {
      * 删除会员
      *
      * @param memberIds 会员ID
-     * @return
      */
     @Log(title = "会员管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:member:delete")
@@ -93,7 +88,6 @@ public class MemberController extends BaseController {
      * 设置状态
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "会员管理", logType = LogType.STATUS)
     @RequiresPermissions("sys:member:status")

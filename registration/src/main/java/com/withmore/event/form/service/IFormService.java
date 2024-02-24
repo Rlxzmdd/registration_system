@@ -12,10 +12,10 @@ package com.withmore.event.form.service;
 
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseQuery;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.event.form.dto.FormCreateParamDto;
 import com.withmore.event.form.entity.Form;
-import com.javaweb.system.common.IBaseService;
 
 /**
  * <p>
@@ -32,7 +32,6 @@ public interface IFormService extends IBaseService<Form> {
      *
      * @param param 表单模版参数
      * @param dto   用户凭据
-     * @return
      */
     JsonResultS push(FormCreateParamDto param, AuthToken2CredentialDto dto);
 
@@ -42,7 +41,6 @@ public interface IFormService extends IBaseService<Form> {
      *
      * @param baseQuery 分页参数
      * @param dto       用户凭据
-     * @return
      */
     JsonResultS list(BaseQuery baseQuery, AuthToken2CredentialDto dto);
 
@@ -51,7 +49,6 @@ public interface IFormService extends IBaseService<Form> {
      *
      * @param formKey 表单Key
      * @param dto     用户凭据
-     * @return
      */
     JsonResultS detail(String formKey, AuthToken2CredentialDto dto);
 

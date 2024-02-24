@@ -10,16 +10,13 @@
 
 package com.withmore.resource.img.service;
 
-import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
+import com.javaweb.system.common.IBaseService;
 import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.resource.img.entity.ResourceImg;
-import com.javaweb.system.common.IBaseService;
 import com.withmore.resource.img.query.ResourceUuidQuery;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 /**
  * <p>
@@ -36,7 +33,6 @@ public interface IResourceImgService extends IBaseService<ResourceImg> {
      *
      * @param request 请求
      * @param dto     用户凭据
-     * @return
      */
     JsonResultS upload(HttpServletRequest request, AuthToken2CredentialDto dto);
 
@@ -45,7 +41,6 @@ public interface IResourceImgService extends IBaseService<ResourceImg> {
      *
      * @param uuid 图片UUID
      * @param dto  用户凭据
-     * @return
      */
     JsonResultS del(String uuid, AuthToken2CredentialDto dto);
 
@@ -54,7 +49,6 @@ public interface IResourceImgService extends IBaseService<ResourceImg> {
      *
      * @param param 查询参数
      * @param dto   用户凭据
-     * @return
      */
     JsonResultS gets(ResourceUuidQuery param, AuthToken2CredentialDto dto);
 }

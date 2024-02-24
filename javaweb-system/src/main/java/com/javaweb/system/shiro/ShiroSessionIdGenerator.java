@@ -26,7 +26,6 @@ public class ShiroSessionIdGenerator implements SessionIdGenerator {
      * 实现SessionId生成
      *
      * @param session
-     * @return
      */
     @Override
     public Serializable generateId(Session session) {

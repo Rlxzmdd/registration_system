@@ -42,7 +42,6 @@ public class ConfigController extends BaseController {
      * 获取配置列表
      *
      * @param configQuery 查询条件
-     * @return
      */
     @RequiresPermissions("sys:config:index")
     @GetMapping("/index")
@@ -54,7 +53,6 @@ public class ConfigController extends BaseController {
      * 添加配置
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "配置管理", logType = LogType.INSERT)
     @RequiresPermissions("sys:config:add")
@@ -67,7 +65,6 @@ public class ConfigController extends BaseController {
      * 编辑配置
      *
      * @param entity 实体对象
-     * @return
      */
     @Log(title = "配置管理", logType = LogType.UPDATE)
     @RequiresPermissions("sys:config:edit")
@@ -80,7 +77,6 @@ public class ConfigController extends BaseController {
      * 删除配置
      *
      * @param configId 配置ID
-     * @return
      */
     @Log(title = "配置管理", logType = LogType.DELETE)
     @RequiresPermissions("sys:config:delete")

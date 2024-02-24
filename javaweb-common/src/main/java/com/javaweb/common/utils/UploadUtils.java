@@ -71,7 +71,6 @@ public class UploadUtils {
      * 获取文件在本地文件缓存中的绝对路径
      *
      * @param relativePath 相对路径
-     * @return
      */
     public String getFileAbsolutePath(String relativePath) {
         return UploadFileConfig.uploadFolder + relativePath;
@@ -89,7 +88,6 @@ public class UploadUtils {
      * 文件上传
      *
      * @param request
-     * @return
      */
     @SuppressWarnings("unchecked")
     public Map<String, Object> uploadFile(HttpServletRequest request, String name) {
@@ -120,7 +118,6 @@ public class UploadUtils {
      * 上传验证并初始化目录
      *
      * @param request
-     * @return
      */
     private String validateFields(HttpServletRequest request, String name) {
         String errorInfo = "";
@@ -187,7 +184,6 @@ public class UploadUtils {
     /**
      * 处理上传内容
      *
-     * @return
      */
 //	@SuppressWarnings("unchecked")
     private Map<String, Object> initFields(HttpServletRequest request) {
@@ -252,7 +248,6 @@ public class UploadUtils {
      * 保存文件
      *
      * @param item
-     * @return
      */
     private String saveFile(FileItem item) {
         String error = "";

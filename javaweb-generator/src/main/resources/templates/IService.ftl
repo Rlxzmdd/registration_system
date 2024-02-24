@@ -31,7 +31,6 @@ public interface I${entityName}Service extends IBaseService<${entityName}> {
      * 设置${model.columnCommentName}
      *
      * @param entity 实体对象
-     * @return
      */
     JsonResult set${model.changeColumnName?cap_first}(${entityName} entity);
 
