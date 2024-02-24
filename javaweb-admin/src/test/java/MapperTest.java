@@ -1,11 +1,11 @@
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.javaweb.admin.AdminApplication;
-import com.withmore.event.todo.entity.FormAudit;
-import com.withmore.event.todo.entity.FormAuditNotice;
-import com.withmore.event.todo.entity.FormItem;
-import com.withmore.event.todo.mapper.FormAuditMapper;
-import com.withmore.event.todo.mapper.FormAuditNoticeMapper;
-import com.withmore.event.todo.mapper.FormItemMapper;
+import com.withmore.event.form.entity.FormAudit;
+import com.withmore.event.form.entity.FormAuditNotice;
+import com.withmore.event.form.entity.FormItem;
+import com.withmore.event.form.mapper.FormAuditMapper;
+import com.withmore.event.form.mapper.FormAuditNoticeMapper;
+import com.withmore.event.form.mapper.FormItemMapper;
 import com.withmore.user.student.entity.Student;
 import com.withmore.user.student.mapper.StudentMapper;
 import org.junit.Test;

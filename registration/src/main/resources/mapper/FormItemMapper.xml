@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.withmore.event.todo.mapper.FormItemMapper">
+<mapper namespace="com.withmore.event.form.mapper.FormItemMapper">
 
-    <resultMap id="FormDataItemVo" type="com.withmore.event.todo.vo.formItem.FormDataItemVo">
+    <resultMap id="FormDataItemVo" type="com.withmore.event.form.vo.formItem.FormDataItemVo">
         <result property="content" column="content"
                 typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
         <result property="formKey" column="formKey"/>
@@ -23,7 +23,7 @@
 
     <select id="getFormDataItemByKey" resultMap="FormDataItemVo">
         <foreach collection="nodes" item="node" separator="UNION">
-            SELECT DISTINCT
+            (SELECT
             fi.content AS content,
             fi.item_uuid AS uuid,
             fi.form_key AS formKey,
@@ -53,11 +53,11 @@
                 </if>
             </where>
             ORDER BY an.create_time DESC
-            LIMIT 1
+            LIMIT 1)
         </foreach>
     </select>
     <select id="getFormDataItemStatusList"
-            resultType="com.withmore.event.todo.vo.formItem.FormDataItemStatusVO">
+            resultType="com.withmore.event.form.vo.formItem.FormDataItemStatusVO">
         WITH inventory AS (
         SELECT
         item.item_uuid AS uuid ,

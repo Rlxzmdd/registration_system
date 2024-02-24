@@ -73,6 +73,7 @@ public class ShiroConfig {
          * anon:所有url都都可以匿名访问，authc:所有url都必须认证通过才可以访问;
          * 过滤链定义，从上向下顺序执行，authc 应放在 anon 下面
          * */
+        // 小程序服务借口
         filterChainDefinitionMap.put("/common/**", "anon");
         filterChainDefinitionMap.put("/login/**", "anon");
         filterChainDefinitionMap.put("/wechat/login/**", "anon");
@@ -119,8 +120,6 @@ public class ShiroConfig {
     /**
      * 凭证匹配器（由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了）
      * 下面调用了自定义的验证类 这个方法就没有了
-     *
-     * @return
      */
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
@@ -134,8 +133,6 @@ public class ShiroConfig {
 
     /**
      * 将自己的验证方式加入容器
-     *
-     * @return
      */
     @Bean
     public MyShiroRealm myShiroRealm() {
@@ -146,8 +143,6 @@ public class ShiroConfig {
 
     /**
      * RedisSessionDAOI shiro sessionDao层的实现 通过redis，使用的是shiro-redis开源插件
-     *
-     * @return
      */
     @Bean
     public RedisSessionDAO redisSessionDAO() {
@@ -161,8 +156,6 @@ public class ShiroConfig {
 
     /**
      * Session ID生成器
-     *
-     * @return
      */
     @Bean
     public JavaUuidSessionIdGenerator sessionIdGenerator() {
@@ -171,8 +164,6 @@ public class ShiroConfig {
 
     /**
      * 自定义的sessionManager
-     *
-     * @return
      */
     @Bean
     public SessionManager sessionManager() {
@@ -185,8 +176,6 @@ public class ShiroConfig {
 
     /**
      * 配置shiro RedisManager，使用的是shiro-redis开源插件
-     *
-     * @return
      */
     private RedisManager redisManager() {
         RedisManager redisManager = new RedisManager();
@@ -201,8 +190,6 @@ public class ShiroConfig {
 
     /**
      * 缓存redis实现，使用的shiro-redis开源查看
-     *
-     * @return
      */
     @Bean
     public RedisCacheManager cacheManager() {
@@ -216,8 +203,6 @@ public class ShiroConfig {
 
     /**
      * 安全管理器，授权管理，配置主要是Realm的管理认证
-     *
-     * @return
      */
     @Bean
     public SecurityManager securityManager() {
@@ -250,8 +235,6 @@ public class ShiroConfig {
 
     /**
      * 退出过滤器
-     *
-     * @return
      */
     public ShiroLogoutFilter logoutFilter() {
         return new ShiroLogoutFilter();
@@ -260,8 +243,6 @@ public class ShiroConfig {
     /**
      * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
      * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
-     *
-     * @return
      */
     @Bean
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {

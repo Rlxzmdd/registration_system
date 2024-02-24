@@ -25,7 +25,7 @@
                     AND cla.class_name like '${node.getLevel3()}'
                 </if>
             </where>
-            GROUP BY cla.class_name
+            GROUP BY cla.class_name,cla.id
         </foreach>
     </select>
     <select id="simple" resultType="com.withmore.group.classes.vo.classes.ClassesSimpleVo">

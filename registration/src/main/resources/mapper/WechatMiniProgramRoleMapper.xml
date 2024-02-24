@@ -4,7 +4,7 @@
 
     <!--获取用户Shiro权限节点列表-->
     <select id="getPermissionList" resultType="java.lang.String">
-        SELECT DISTINCT m.permission
+        SELECT DISTINCT m.permission, m.sort
         FROM `javaweb.vue.pro`.sys_menu AS m
                  INNER JOIN `javaweb.vue.pro`.sys_role_menu AS rm ON m.id = rm.menu_id
                  INNER JOIN `registration_system`.user_role AS ur

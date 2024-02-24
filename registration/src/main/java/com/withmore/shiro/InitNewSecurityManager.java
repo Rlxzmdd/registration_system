@@ -27,9 +27,11 @@ import java.util.List;
 @Order(2)
 @Slf4j
 public class InitNewSecurityManager implements CommandLineRunner {
+    // 自动注入，无需实例化
     @Autowired
     private SecurityManager securityManager;
 
+    // -> com.withmore.shiro.auth.CustomModularRealmAuthenticator
     @Autowired
     private ModularRealmAuthenticator customModularRealmAuthenticator;
 
@@ -59,18 +61,23 @@ public class InitNewSecurityManager implements CommandLineRunner {
         // 注入Realm 到 Shiro SecurityManager 中
         List<Realm> realmList = new ArrayList<>();
         realmList.add(myShiroRealm);
+        // 学生三类登录验证方式
         realmList.add(studentRealm);
         realmList.add(studentALRealm);
         realmList.add(studentExamRealm);
+        // 教师工号登录验证方式
         realmList.add(teacherRealm);
+        // Token常态验证方式
         realmList.add(jwtTokenRealm);
-        realmAuthorizer.setRealms(realmList);
 
+        realmAuthorizer.setRealms(realmList);
         DefaultSecurityManager manager = (DefaultSecurityManager) securityManager;
+        // 设置自定义的认证器
         manager.setAuthenticator(customModularRealmAuthenticator);
+        // 设置自定义的授权器
         manager.setAuthorizer(realmAuthorizer);
         // 加载顺序 Authenticator -> realms
-
+        // Authenticator和Authorizer的区别 -> Authenticator是用来验证用户身份的，而Authorizer是用来验证用户权限的
         manager.setRealms(realmList);
     }
 }

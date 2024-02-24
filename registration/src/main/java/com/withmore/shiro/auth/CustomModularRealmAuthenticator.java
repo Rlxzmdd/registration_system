@@ -26,6 +26,7 @@ public class CustomModularRealmAuthenticator extends ModularRealmAuthenticator {
         assertRealmsConfigured();
         Realm uniqueRealm = null;
         for (Realm realm : realms) {
+            // 遍历所有的Realm -> InitNewSecurityManager->run
             if (realm.supports(token)) {
                 uniqueRealm = realm;
                 break;

@@ -50,11 +50,9 @@ public class MyShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("认证成功进行授权中...");
         User user = (User) principalCollection.getPrimaryPrincipal();
         //添加角色和权限
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-
         Integer userId = user.getId();
         if (userId.equals(1)) {
             //管理员拥有所有权限
@@ -69,6 +67,7 @@ public class MyShiroRealm extends AuthorizingRealm {
                     simpleAuthorizationInfo.addStringPermission(permission);
                 }
             }
+            log.info(String.format("认证成功进行授权中...{}:{}", user.getUsername(), permissionList));
         }
         return simpleAuthorizationInfo;
     }
@@ -115,6 +114,7 @@ public class MyShiroRealm extends AuthorizingRealm {
                 ByteSource.Util.bytes(""),      //设置盐值
                 getName()
         );
+        log.info(String.format("用户验证通过...{}:{}", user.getUsername(), authenticationInfo));
         return authenticationInfo;
     }
 }

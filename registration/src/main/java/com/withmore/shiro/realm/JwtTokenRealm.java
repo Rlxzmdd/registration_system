@@ -12,6 +12,7 @@ import com.withmore.user.student.entity.Student;
 import com.withmore.user.student.service.IStudentService;
 import com.withmore.user.teacher.entity.Teacher;
 import com.withmore.user.teacher.service.ITeacherService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+@Slf4j
 public class JwtTokenRealm extends AuthorizingRealm {
 
     /*通过Bean聚合*/
@@ -78,12 +80,14 @@ public class JwtTokenRealm extends AuthorizingRealm {
         }
         // 根据生成密钥验证Token真伪与有效性
         if (!jwtUtil.verify(userToken)) {
+            log.info("Token验证失败⛔️ - {}", userToken);
             throw new AuthenticationException(ResultCodeEnum.USER_ERROR_A0304.getDescription());
         }
         String type = jwtUtil.getUserType(userToken);
         String user_id = jwtUtil.getUserId(userToken);
         // Token 中未携带用户类型情况
         if (type == null || user_id == null) {
+            log.info("Token未携带用户信息⛔️ - {}", userToken);
             throw new AuthenticationException(ResultCodeEnum.USER_ERROR_A0300.getDescription());
         }
 
@@ -109,9 +113,7 @@ public class JwtTokenRealm extends AuthorizingRealm {
         } else {
             throw new AuthenticationException(ResultCodeEnum.USER_ERROR_A0305.getDescription());
         }
-
+        log.info("[{}]类型用户[{}]验证Token通过✅", type, user_id);
         return new SimpleAuthenticationInfo(wechatProgramUserPrincipal, token, getName());
     }
-
-
 }

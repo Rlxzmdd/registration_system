@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.withmore.event.todo.mapper.FormAuditNoticeMapper">
+<mapper namespace="com.withmore.event.form.mapper.FormAuditNoticeMapper">
 
     <select id="getAuditNotices"
-            resultType="com.withmore.event.todo.vo.formAuditNotice.FormAuditNoticeSimpleVo">
+            resultType="com.withmore.event.form.vo.formAuditNotice.FormAuditNoticeSimpleVo">
         WITH inventory
         AS (
         SELECT item.item_uuid AS itemUuid,
@@ -49,7 +49,7 @@
         WHERE row_num &lt;= ${limit}
     </select>
     <select id="getAuditNoticeByFormKey"
-            resultType="com.withmore.event.todo.vo.formAuditNotice.FormAuditNoticeSimpleVo">
+            resultType="com.withmore.event.form.vo.formAuditNotice.FormAuditNoticeSimpleVo">
         SELECT DISTINCT item.item_uuid AS itemUuid,
         item.submit_number AS submitNumber,
         item.update_time AS submitTime,
@@ -81,7 +81,7 @@
         </if>
     </select>
     <select id="getAuditNoticeByFormKeyAndUuid"
-            resultType="com.withmore.event.todo.dto.FormAuditNoticeTranDto">
+            resultType="com.withmore.event.form.dto.FormAuditNoticeTranDto">
         SELECT an.*,
                fa.*
         FROM event_form_audit_notice AS an
@@ -93,7 +93,7 @@
         ORDER BY an.create_time DESC
         LIMIT 1
     </select>
-    <select id="getLastFormAuditNotice" resultType="com.withmore.event.todo.entity.FormAuditNotice">
+    <select id="getLastFormAuditNotice" resultType="com.withmore.event.form.entity.FormAuditNotice">
         SELECT *
         FROM event_form_audit_notice AS an
         WHERE an.item_uuid = '${uuid}'

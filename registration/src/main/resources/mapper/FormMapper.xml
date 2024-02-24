@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.withmore.event.todo.mapper.FormMapper">
+<mapper namespace="com.withmore.event.form.mapper.FormMapper">
 
-    <select id="getFormSimpleList" resultType="com.withmore.event.todo.vo.form.FormSimpleListVo">
+    <select id="getFormSimpleList" resultType="com.withmore.event.form.vo.form.FormSimpleListVo">
         SELECT DISTINCT
         tf.id ,
         tf.title,
@@ -28,7 +28,7 @@
         </where>
     </select>
 <!--    #         ORDER BY tf.create_time DESC-->
-    <select id="getFormSubmitStatus" resultType="com.withmore.event.todo.dto.FormSubmitStatusDto">
+    <select id="getFormSubmitStatus" resultType="com.withmore.event.form.dto.FormSubmitStatusDto">
         SELECT
         item.form_key AS formKey,
         item.audit_passed AS passed,
@@ -42,7 +42,7 @@
         </where>
     </select>
 
-    <resultMap id="FormDetailVo" type="com.withmore.event.todo.vo.form.FormDetailVo">
+    <resultMap id="FormDetailVo" type="com.withmore.event.form.vo.form.FormDetailVo">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="startTime" column="startTime"/>
