@@ -102,7 +102,8 @@ public class ExcelUtils<T> {
      * 解析导出值 0=男,1=女,2=未知
      *
      * @param propertyValue 参数值
-     * @param converterExp  翻译注解 解析后值
+     * @param converterExp  翻译注解
+     * @return 解析后值
      * @throws Exception
      */
     public static String convertByExp(String propertyValue, String converterExp) throws Exception {
@@ -124,7 +125,8 @@ public class ExcelUtils<T> {
      * 反向解析值 男=0,女=1,未知=2
      *
      * @param propertyValue 参数值
-     * @param converterExp  翻译注解 解析后值
+     * @param converterExp  翻译注解
+     * @return 解析后值
      * @throws Exception
      */
     public static String reverseByExp(String propertyValue, String converterExp) throws Exception {
@@ -145,7 +147,8 @@ public class ExcelUtils<T> {
     /**
      * 对excel表单默认第一个索引名转换成list
      *
-     * @param is 输入流 转换后集合
+     * @param is 输入流
+     * @return 转换后集合
      */
     public List<T> importExcel(InputStream is) throws Exception {
         return importExcel(StringUtils.EMPTY, is);
@@ -155,7 +158,8 @@ public class ExcelUtils<T> {
      * 对excel表单指定表格索引名转换成list
      *
      * @param sheetName 表格索引名
-     * @param is        输入流 转换后集合
+     * @param is        输入流
+     * @return 转换后集合
      */
     public List<T> importExcel(String sheetName, InputStream is) throws Exception {
         this.type = Type.IMPORT;
@@ -262,7 +266,8 @@ public class ExcelUtils<T> {
      * 对list数据源将其里面的数据导入到excel表单
      *
      * @param list      导出数据集合
-     * @param sheetName 工作表的名称 结果
+     * @param sheetName 工作表的名称
+     * @return 结果
      */
     public JsonResult exportExcel(List<T> list, String sheetName) {
         this.init(list, sheetName, Type.EXPORT);
@@ -296,7 +301,8 @@ public class ExcelUtils<T> {
     /**
      * 对list数据源将其里面的数据导入到excel表单
      *
-     * @param sheetName 工作表的名称 结果
+     * @param sheetName 工作表的名称
+     * @return 结果
      */
     public JsonResult importTemplateExcel(String sheetName) {
         this.init(null, sheetName, Type.IMPORT);
@@ -413,7 +419,8 @@ public class ExcelUtils<T> {
 
     /**
      * 对list数据源将其里面的数据导入到excel表单
-     * 结果
+     *
+     * @return 结果
      */
     public JsonResult exportExcel() {
         OutputStream out = null;
@@ -436,6 +443,7 @@ public class ExcelUtils<T> {
                 }
             }
             String filename = encodingFilename(sheetName);
+            System.out.println(filename);
             out = new FileOutputStream(getAbsoluteFile(filename));
             wb.write(out);
             return JsonResult.success(filename, "导出成功");
@@ -463,7 +471,8 @@ public class ExcelUtils<T> {
     /**
      * 创建表格样式
      *
-     * @param wb 工作薄对象 样式列表
+     * @param wb 工作薄对象
+     * @return 样式列表
      */
     private Map<String, CellStyle> createStyles(Workbook wb) {
         // 写入各条记录,每条记录对应excel表中的一行
@@ -510,7 +519,8 @@ public class ExcelUtils<T> {
      * @param firstRow 开始行
      * @param endRow   结束行
      * @param firstCol 开始列
-     * @param endCol   结束列 设置好的sheet.
+     * @param endCol   结束列
+     * @return 设置好的sheet.
      */
     public void setXSSFValidation(Sheet sheet, String[] textlist, int firstRow, int endRow, int firstCol, int endCol) {
         DataValidationHelper helper = sheet.getDataValidationHelper();
@@ -558,7 +568,8 @@ public class ExcelUtils<T> {
      *
      * @param vo    实体对象
      * @param field 字段
-     * @param excel 注解 最终的属性值
+     * @param excel 注解
+     * @return 最终的属性值
      * @throws Exception
      */
     private Object getTargetValue(T vo, Field field, Excel excel) throws Exception {
@@ -581,7 +592,8 @@ public class ExcelUtils<T> {
      * 以类的属性的get方法方法形式获取值
      *
      * @param o
-     * @param name value
+     * @param name
+     * @return value
      * @throws Exception
      */
     private Object getValue(Object o, String name) throws Exception {
@@ -656,7 +668,8 @@ public class ExcelUtils<T> {
      * 获取单元格值
      *
      * @param row    获取的行
-     * @param column 获取单元格列号 单元格值
+     * @param column 获取单元格列号
+     * @return 单元格值
      */
     public Object getCellValue(Row row, int column) {
         if (row == null) {

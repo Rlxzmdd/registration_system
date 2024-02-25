@@ -140,6 +140,7 @@ file:
   staticAccessPath: /**
   #静态资源实际存储路径
   uploadFolder: C:\Users\xxx\downloads
+  # fixme 这里的路径影响表格导出
 
 # Shiro
 shiro:

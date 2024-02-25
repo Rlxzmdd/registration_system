@@ -1,7 +1,9 @@
 package com.withmore.activity.controller;
 
 import com.aliyun.oss.common.utils.HttpHeaders;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.javaweb.common.utils.ExcelUtils;
+import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.JsonResultS;
 import com.javaweb.system.common.BaseController;
 import com.javaweb.system.common.BaseQuery;
@@ -17,6 +19,7 @@ import com.withmore.common.dto.AuthToken2CredentialDto;
 import com.withmore.common.utils.JwtUtil;
 import com.withmore.user.permission.entity.PermissionNode;
 import com.withmore.user.permission.utils.PermissionConvert;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +35,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/activity")
+@Slf4j
 public class ActivityController extends BaseController {
 
     @Autowired
@@ -150,13 +154,17 @@ public class ActivityController extends BaseController {
     @GetMapping("/examine/export/excel/{activityId}")
     public JsonResultS exportExcel(ActivityExamineListQuery query, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
         AuthToken2CredentialDto dto = AuthToken2CredentialDto.create(jwtUtil, token);
+        log.info("[活动]请求核销数据 ->{}", query.toString());
         JsonResultS result = activityExamineService.getExamineList(dto,query);
         if(!result.getCode().equals("00000")){
             return result;
         }
-        List<ActivityExamineVo> ExamineInfoVoList = (List<ActivityExamineVo>) result.getData();
+        log.info("[活动]数据转换表格 ->{}", result);
+        IPage<ActivityExamineVo> pageDate = (IPage<ActivityExamineVo>) result.getData();
+        List<ActivityExamineVo> ExamineInfoVoList = pageDate.getRecords();
         ExcelUtils<ActivityExamineVo> excelUtils = new ExcelUtils<>(ActivityExamineVo.class);
-        return JsonResultS.success(excelUtils.exportExcel(ExamineInfoVoList, "核销名单").getData());
+        JsonResult data = excelUtils.exportExcel(ExamineInfoVoList, "核销名单");
+        return JsonResultS.success(data.getData());
 
     }
 

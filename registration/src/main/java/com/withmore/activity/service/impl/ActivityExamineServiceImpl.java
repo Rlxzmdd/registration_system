@@ -180,6 +180,7 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
      */
     @Override
     public JsonResultS getExamineList(AuthToken2CredentialDto dto, ActivityExamineListQuery query) {
+        // fixme query 分页数据未传入，通过为分页数据添加默认值解决
         ActivityInfoManageVo ac = activityItemInfoMapper.getActivity(query.getActivityId(), dto.getNumber(), dto.getType(),
                 Constant.TOKEN_USER_TYPE_STUDENT, Constant.TOKEN_USER_TYPE_TEACHER);
         if (ac == null) {
@@ -187,6 +188,10 @@ public class ActivityExamineServiceImpl extends BaseServiceImpl<ActivityExamineM
         }
         if (ac.getIsManager() == 0 && ac.getIsOwner() == 0)
             return JsonResultS.error("权限不足");
+        if (query.getPage() == null) {
+            query.setPage(1);
+            query.setLimit(20);
+        }
         Page<ActivityExamineVo> page = new Page<>(query.getPage(), query.getLimit());
         IPage<ActivityExamineVo> pageData = activityExamineMapper.getExamineList(page, query.getActivityId(), 1);
         return JsonResultS.success(pageData);
